@@ -87,5 +87,4 @@
    <aop:config>
       <aop:advisor advice-ref="tx" pointcut="bean(*Service)" />
    </aop:config>
-
 </beans>
