@@ -12,10 +12,10 @@ public class IndexController {
 	
 	@RequestMapping({"/index","/"})
 
-	public String indexHandle(Model model, HttpSession session ) {
-		model.addAttribute("hello","hello" );
-
-		return "index";
+	public String indexHandle(Model model) {
+		model.addAttribute("main","index.jsp" );
+		
+		return "default";
 	}
 	
 }
