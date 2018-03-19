@@ -15,7 +15,7 @@ public class IndexController {
 	public String indexHandle(Model model) {
 		model.addAttribute("main","index.jsp" );
 		
-		return "default";
+		return "index";
 	}
 	
 }

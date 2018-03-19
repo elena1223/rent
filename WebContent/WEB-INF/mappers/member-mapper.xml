@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="create">
+		insert into member values(rent_member_seq.nextval,#{id},#{name},#{password},#{phone},0)
+	</insert>
+	<select id="loginCheck" resultType="hashMap">
+		select * from member where id=#{id} and password=#{password}
+	</select>
+	<select id="readOne" resultType="hashMap">
+		select * from member where id=#{id}
+	</select>
+	<select id="readAll" resultType="hashMap">
+		select * from member
+	</select>
+	<delete id="delete">
+		delete from member where id=#{id}
+	</delete>
+</mapper>
