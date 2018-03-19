@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/info")
-public class infoContoller {
+public class InfoContoller {
 	@RequestMapping("")
 	public String infoHandle(Model model) {
 		model.addAttribute("main","info.jsp");
