@@ -1,5 +1,6 @@
 package total.service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,6 +21,19 @@ public class CustomerService {
 		boolean rst=false;
 		try {
 		rst= template.insert("board.add",map)>0?true:false;
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}finally {
+			return rst;
+		}	
+	}
+	public boolean hitUp(Map map) {
+		boolean rst=false;
+		BigDecimal bh=(BigDecimal)map.get("HIT");
+		map.put("HIT",bh.intValue()+1 );
+		try {
+		rst= template.update("board.hitUp",map)>0?true:false;
 		}catch(Exception e){
 			e.printStackTrace();
 			
