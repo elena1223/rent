@@ -64,9 +64,13 @@ th, td {
 	<form id="registerform" name="registerform" action="register" onsubmit="return registerform_submit(this);" 
 	method="post" autocomplete="off" >
 		
-		<h5 align="center">회원가입</h5>
-		<hr>
-		<small>모든 항목은 필수 입력사항입니다.</small>
+    <div id="sub_tit">
+        <h2 id="ctn_title">회원가입</h2>
+		<div style="border-top:2px solid #ccc;"></div>
+    </div>
+    <p  style="margin-top: 10px;">
+		<small >모든 항목은 필수 입력사항입니다.</small>
+	</p>
 		<div align="center">
 			<table style="margin-top: 20px;">
 				<tr>
