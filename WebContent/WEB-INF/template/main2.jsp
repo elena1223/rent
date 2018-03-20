@@ -56,11 +56,11 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="<%=request.getContextPath() %>/img/mainImg1.jpg" alt="Image" style="height:450px" >    
+        <img src="<%=request.getContextPath() %>/img/main1.jpg" alt="Image" style="height:450px" >    
       </div>
 
       <div class="item">
-        <img src="<%=request.getContextPath() %>/img/mainImg2.jpg" alt="Image" style="height:450px">
+        <img src="<%=request.getContextPath() %>/img/main2.jpg" alt="Image" style="height:450px">
       </div>
     </div>
 
