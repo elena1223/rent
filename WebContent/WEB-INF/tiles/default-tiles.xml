@@ -19,6 +19,5 @@
 	<definition name="default" extends="t_default">
 		<put-attribute name="center" expression="/WEB-INF/view/${main}"/>
 	</definition>
-	
-	
+			
 </tiles-definitions>
