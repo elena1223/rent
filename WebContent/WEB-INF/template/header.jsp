@@ -21,7 +21,7 @@
         <li class="<%=uri.equals("service")?"active":""%>"><a href="<%=request.getContextPath() %>/service/way">이용안내</a></li>
         <li class="<%=uri.equals("costomer")?"active":""%>"><a href="<%=request.getContextPath() %>/costomer/qna">고객센터</a></li>
         <li class="<%=uri.equals("mypage")?"active":""%>"><a href="<%=request.getContextPath() %>/mypage">회원정보</a></li>
-        <c:if test="${logon.lv==2}">
+        <c:if test="${logon.LV==2}">
         <li class="<%=uri.equals("manager")?"active":""%>"><a href="<%=request.getContextPath() %>/manager">관리자페이지</a></li>
         </c:if>
       </ul>
