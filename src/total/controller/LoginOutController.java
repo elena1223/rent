@@ -32,7 +32,7 @@ public class LoginOutController {
 	public String loginPostHandle(@RequestParam Map<String, String> param, HttpSession session, Model model) {
 		Map logon = loginOutService.findByIdAndPass(param);
 		if(logon != null) {
-			session.setAttribute("logon", logon.get("ID"));
+			session.setAttribute("logon", logon);
 			return "redirect:/";
 		} else {
 			model.addAttribute("err", "Logon Failed");
