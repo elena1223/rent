@@ -28,14 +28,14 @@ font-size: small;
 
 
 <!-- 회원가입약관 동의 시작 { -->
-<div class="mbskin" style=" width:980px;">
+<div class="mbskin" >
     <p style="margin-top: 10px;"><b>회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</b></p>
     <form  name="fregister" id="fregister" action="joinp" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
 
 
     <section id="fregister_term" style="margin-top: 30px;">
         <h4>회원가입약관</h4>
-        <textarea style=" resize: none; width:980px;" readonly >제1조(목적)
+        <textarea style=" resize: none; width:100%;" readonly >제1조(목적)
 이 약관은 (주)에코렌트카(전자상거래 사업자)가 운영하는 (주)에코렌트카 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스 (이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
 ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다」
 
@@ -214,7 +214,7 @@ font-size: small;
 <div>
     <section id="fregister_private"  style="margin-top: 30px;">
         <h4>개인정보처리방침안내</h4>
-        <textarea  style=" resize: none; width:980px;"readonly>제1조 (목적)
+        <textarea  style=" resize: none; width:100%;"readonly>제1조 (목적)
 이 약관은 (주)에코렌트카(이하 "회사"이라 칭함)이 운영하는 사이버 회사(이하 "회사"이라 함)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)의 이용에 있어 회사과 이용자의권리·의무 및 책임사항을 규정하여 고객 권익을 보호함을 목적으로 합니다.
 
 제2조 (정의) 

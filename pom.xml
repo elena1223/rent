@@ -25,6 +25,22 @@
     </plugins>
   </build>
 <dependencies>
+
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+				
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.3.14.RELEASE</version>
+		</dependency>
+		
+		
  		<!--  타일 사용하려면 이거 2개 복붙 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
 		<dependency>

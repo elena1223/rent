@@ -31,7 +31,14 @@ public class JoinController {
 		return "default";
 	}
 	
-	@RequestMapping({"/joinp"})
+	@RequestMapping(path="/joinp", method = RequestMethod.GET)
+
+	public String joinpGetHandle(Model model) {
+		return "redirect:/";
+	}
+	
+	
+	@RequestMapping(path="/joinp", method = RequestMethod.POST)
 
 	public String joinpHandle(Model model) {
 		model.addAttribute("main","joinp.jsp" );
@@ -57,7 +64,7 @@ public class JoinController {
 			throw new Exception();
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("err", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+			model.addAttribute("err", "°èÁ¤»ý¼º¿¡¼­ ¹®Á¦°¡ ÀÖ¾ú½À´Ï´Ù.");
 			model.addAttribute("main","joinp.jsp" );
 
 			return "default";

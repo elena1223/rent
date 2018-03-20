@@ -3,6 +3,8 @@
 <html>
 <head>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <style>
 
 table, td, th {    
@@ -61,8 +63,8 @@ th, td {
 </style>
 <body>
     <input type="hidden" name="w" value="">
-	<form id="registerform" name="registerform" action="register" onsubmit="return registerform_submit(this);" 
-	method="post" autocomplete="off" >
+	<form id="registerform" name="registerform" action="register" 
+	onsubmit="return registerform_submit(this);" method="post" autocomplete="off" >
 		
     <div id="sub_tit">
         <h2 id="ctn_title">회원가입</h2>
@@ -84,11 +86,13 @@ th, td {
 				</tr >
 				<tr>
 					<td >
-						ID&nbsp;<span><small>이메일을 입력해주세요.</small></span>&nbsp;<span class="msg"></span>
+						ID(E-mail)&nbsp;<span class="msg"></span>
 					</td>
 					<td>
 						<input type="text" name = "id" id= "id" value="${param.ID}"/> &nbsp; 
-						 <input type="button" value="인증" onclick=""/>
+						<input type="button" id="t1" value="인증하기" onclick="mailcheck()"> 
+						 <span><small>(이메일 인증을 하셔야 렌트카 예약이 가능합니다)</small></span>
+						 
 					</td>
 				</tr>					
 				
@@ -120,12 +124,24 @@ th, td {
 				</tr>
 
 			</table>
-						<button type="submit" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
-						회원가입</button>
+		<button type="submit" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
+		회원가입</button>
 			
 		</div>
 	</form>
 <script>
+
+
+	
+	function mailcheck() {
+		var mail = $("#id").val();
+		console.log(mail)
+		$.post("/email", {
+			"email" : mail
+		}, function(rst) {
+			window.alert("rst = " + rst);
+		});
+	};
 
     
     function apply(str){
