@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<insert id="add">
+		insert into rent_board values(#{type},rent_board_seq.nextval,#{title},#{writer},#{name},sysdate,0,#{content})
+	</insert>
+	<select id="readOne" resultType="hashMap">
+		select * from rent_board where no=#{no}
+	</select>
+	<select id="readAll" resultType="hashMap">
+		select * from rent_board where type=#{type}
+	</select>
+	<delete id="delete">
+		delete from rent_board where no=#{no}
+	</delete>
+	<update id="hitUp">
+		update rent_board set hit=#{hit} where no=#{no}
+	</update>
+	<update id="modify">
+		update rent_board set title=#{title},#{content} where no=#{no}
+	</update>
+</mapper>
