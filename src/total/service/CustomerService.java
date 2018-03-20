@@ -31,7 +31,7 @@ public class CustomerService {
 	public boolean hitUp(Map map) {
 		boolean rst=false;
 		BigDecimal bh=(BigDecimal)map.get("HIT");
-		map.put("HIT",bh.intValue()+1 );
+		map.put("HIT",bh.intValue()+1);
 		try {
 		rst= template.update("board.hitUp",map)>0?true:false;
 		}catch(Exception e){
