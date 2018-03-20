@@ -14,11 +14,14 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import total.service.JoinService;
+import total.service.LoginOutService;
 
 @Controller
 public class JoinController {
 	@Autowired
 	JoinService joinService;
+	@Autowired
+	LoginOutService loginOutService;
 	
 	@RequestMapping({"/join"})
 
@@ -46,14 +49,15 @@ public class JoinController {
 			System.out.println("param =  " + param);
 			
 			if(rst) {
-				session.setAttribute("logon", param);
+				Map info = loginOutService.findByIdAndPass(param);
+				session.setAttribute("logon", info);
 				return "redirect:/";
 			}
 			
 			throw new Exception();
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("err", "°èÁ¤»ý¼º¿¡¼­ ¹®Á¦°¡ ÀÖ¾ú½À´Ï´Ù.");
+			model.addAttribute("err", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			model.addAttribute("main","joinp.jsp" );
 
 			return "default";

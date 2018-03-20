@@ -31,6 +31,7 @@
 				</div>
 			</div>
 		</form>
+		아이디가 없습니까? <a href="/join">회원가입</a>
 	</div>
 </body>
 </html>
