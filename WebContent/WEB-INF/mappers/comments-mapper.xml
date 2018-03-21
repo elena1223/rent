@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comments">
+	<insert id="add">
+		insert into rent_comments values(#{cno},rent_comments_seq.nextval,#{name},#{mno},sysdate,#{comment})
+	</insert>
+	<select id="readAll" resultType="hashMap">
+		select * from rent_comments where cno=#{cno} order by no asc
+	</select>
+	<delete id="delete">
+		delete from rent_comments where no=#{no}
+	</delete>
+	<update id="modify">
+		update rent_board set comments=#{comment} where no=#{no}
+	</update>
+</mapper>
