@@ -28,10 +28,4 @@ public class InfoContoller {
 		return "default";
 	}
 	
-	@RequestMapping(path="/info", method=RequestMethod.POST)
-	public String infoPostHandle(@RequestParam String param, Model model) {
-		System.out.println(param);
-		return "default";
-	}
-	
 }
