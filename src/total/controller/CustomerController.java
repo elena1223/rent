@@ -34,7 +34,6 @@ public class CustomerController {
 		model.addAttribute("comments",customerService.readComments(no));
 		if(customerService.hitUp(read)) {
 			model.addAttribute("main","customer/board.jsp");
-			System.out.println("ok");
 			return "default";
 		}else {
 			return "redirect:/customer/"+type;
@@ -104,6 +103,6 @@ public class CustomerController {
 		if(!customerService.deleteComment(no)) {
 			model.addAttribute("err","댓글삭제에 실패하였습니다.");
 		}
-		return "redirect:customer/"+type+"/"+cno;
+		return "redirect:/customer/"+type+"/"+cno;
 	}
 }
