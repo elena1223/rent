@@ -11,6 +11,7 @@
 	<c:when test="${uri==location[0]}">
 		<p><a href="/info?type=소형">소형</a></p>
 		<p><a href="/info?type=중형">중형</a></p>
+		<p><a href="/info?type=대형">대형</a></p>
 		<p><a href="/info?type=외제">외제</a></p>
 	</c:when>
 	<c:when test="${uri==location[2]}">

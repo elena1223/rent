@@ -6,7 +6,7 @@
 <title>Login</title>
 </head>
 <body>
-	<div class="container" align="center">
+	<div align="center">
 		<form action="/session" method="post">
 			<div>
 				<h2>Login</h2>

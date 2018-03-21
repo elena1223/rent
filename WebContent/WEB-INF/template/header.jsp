@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="<%=uri.equals("index")?"active":""%>"><a href="<%=request.getContextPath() %>/index">메인</a></li>
-        <li class="<%=uri.equals("info")?"active":""%>"><a href="<%=request.getContextPath() %>/info?type=small">차량정보</a></li>
+        <li class="<%=uri.equals("info")?"active":""%>"><a href="<%=request.getContextPath() %>/info?type=소형">차량정보</a></li>
         <li class="<%=uri.equals("reserve")?"active":""%>"><a href="<%=request.getContextPath() %>/reserve">렌트예약</a></li>
         <li class="<%=uri.equals("service")?"active":""%>"><a href="<%=request.getContextPath() %>/service/way">이용안내</a></li>
         <li class="<%=uri.equals("costomer")?"active":""%>"><a href="<%=request.getContextPath() %>/costomer/qna">고객센터</a></li>
