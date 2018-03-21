@@ -68,12 +68,11 @@ th, td {
 	<form id="registerform" name="registerform" method="post" autocomplete="off" >
 		
     <div id="sub_tit">
-        <h2 id="ctn_title">회원가입</h2>
+        <h2 id="ctn_title">회원정보</h2>
 		<div style="border-top:2px solid #ccc;"></div>
     </div>
     <p  style="margin-top: 10px;">
-		<small >(*)항목은 필수 입력사항입니다.</small><br/>
-		<span><small>이메일 인증 후 렌트카 예약 가능</small></span>
+		<span><small>할말잇으면 쓰고</small></span>
 	</p>
 		<div align="center">
 			<table style="margin-top: 20px;">
@@ -83,7 +82,7 @@ th, td {
 					</td>
 					
 					<td>
-						 <input type="text" name= "name" id="name" value="${param.NAME}" onblur="nameCheck()"/>
+						 <label type="text" name= "name" id="name" value="${param.NAME}"></label>
 						  &nbsp;<small><span class="msg_name" ></span></small>
 					</td>
 				</tr >

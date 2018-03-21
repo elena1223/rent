@@ -2,6 +2,7 @@ package total.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,15 @@ public class MypageController {
 	
 	@RequestMapping("/mypage")
 
-	public String myPageHandle(Model model, HttpSession session, Map map,
-			@RequestParam String id) {
+	public String myPageHandle(Model model, HttpSession session, Map map,HttpServletRequest req) {
 	
 		try {
-			System.out.println("param =  " + id);
+			HttpSession s = req.getSession();
+			Map logon = (Map)s.getAttribute("logon");
+			System.out.println("세션에 로그온 정보 맵" + logon);
+				String id = (String)logon.get("ID");
+				
+			System.out.println("id =  " + id);
 			map = mypageService.readOne(id); 
 			System.out.println("회원정보 맵 : " + map);
 			model.addAttribute("main","mypage.jsp" );
