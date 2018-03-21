@@ -82,7 +82,7 @@ th, td {
 					</td>
 					
 					<td>
-						 <label type="text" name= "name" id="name" value="${param.NAME}"></label>
+						 <label name= "name" id="name" value="${map.NAME}"></label>
 						  &nbsp;<small><span class="msg_name" ></span></small>
 					</td>
 				</tr >

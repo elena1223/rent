@@ -32,6 +32,7 @@ public class MypageController {
 			map = mypageService.readOne(id); 
 			System.out.println("È¸¿øÁ¤º¸ ¸Ê : " + map);
 			model.addAttribute("main","mypage.jsp" );
+			model.addAttribute("mypage",map);
 
 		}catch(Exception e) {
 			e.printStackTrace();
