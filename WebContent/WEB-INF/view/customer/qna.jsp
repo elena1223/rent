@@ -54,10 +54,11 @@
     </tbody>
   </table>
 
-
+<c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
   <button type="button" onclick="location.href='/customer/write?type=${type}'" style="position: absolute; right: 0; margin:10px" class="btn btn-primary">글쓰기</button>
   </c:if>
+</c:if>
 </div>
 
     
