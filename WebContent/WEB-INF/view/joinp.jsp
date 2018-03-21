@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
 </head>
@@ -18,7 +20,7 @@ table {
 }
 
 th, td {
-    padding: 15px;
+    padding: 10px;
 }
 
 .button {
@@ -63,42 +65,55 @@ th, td {
 </style>
 <body>
     <input type="hidden" name="w" value="">
-	<form id="registerform" name="registerform" action="register" 
-	onsubmit="return registerform_submit(this);" method="post" autocomplete="off" >
+	<form id="registerform" name="registerform" method="post" autocomplete="off" >
 		
     <div id="sub_tit">
         <h2 id="ctn_title">회원가입</h2>
 		<div style="border-top:2px solid #ccc;"></div>
     </div>
     <p  style="margin-top: 10px;">
-		<small >모든 항목은 필수 입력사항입니다.</small>
+		<small >(*)항목은 필수 입력사항입니다.</small><br/>
+		<span><small>이메일 인증 후 렌트카 예약 가능</small></span>
 	</p>
 		<div align="center">
 			<table style="margin-top: 20px;">
 				<tr>
 					<td >
-						이름 &nbsp;<span class="msg"></span>
+						(*) 이름 &nbsp;
 					</td>
 					
 					<td>
-						 <input type="text" name= "name" id="name" value="${param.NAME}"/>
+						 <input type="text" name= "name" id="name" value="${param.NAME}" onblur="nameCheck()"/>
+						  &nbsp;<small><span class="msg_name" ></span></small>
 					</td>
 				</tr >
 				<tr>
 					<td >
-						ID(E-mail)&nbsp;<span class="msg"></span>
+						(*) ID(E-mail)&nbsp;
+						
 					</td>
 					<td>
-						<input type="text" name = "id" id= "id" value="${param.ID}"/> &nbsp; 
-						<input type="button" id="t1" value="인증하기" onclick="mailcheck()"> 
-						 <span><small>(이메일 인증을 하셔야 렌트카 예약이 가능합니다)</small></span>
+						<input type="text" name = "id" id= "id" value="${param.ID}" 
+						onblur="idCheck()"/> &nbsp;
+						<small><span class="msg_id"></span></small> 
+						<input type="button" id="t1" value="인증" onclick="mailcheck()"> 
 						 
 					</td>
-				</tr>					
-				
+				</tr>	
 				<tr>
 					<td >
-						비밀번호 &nbsp;<span class="msg"></span>
+						인증번호&nbsp;<small><span class="msg_auth"></span></small>
+					</td>
+					<td>
+						<input type="text" name = "lv" id= "lv"/> &nbsp; 
+						<input type="button" id="t2" value="확인" onclick="authCheck()"> 
+						<input type="button" id="t1" value="다시받기" onclick="mailcheck()"> 
+						 
+					</td>
+				</tr>	
+				<tr>
+					<td >
+						(*) 비밀번호 &nbsp;<br/>
 					</td>
 					<td>
 						<input type="password" name = "password" id="password" value="${param.PASSWORD}"/>
@@ -106,42 +121,170 @@ th, td {
 				</tr>
 				<tr >
 					<td >
-						비밀번호 확인 &nbsp;<span class="msg"></span>
+						(*) 비밀번호 확인 &nbsp;<br/>
 					</td>
 					<td>
-						<input type="password" id="password_re" />
+						<input type="password" id="password_re" onblur="passCheck()"/>
+						&nbsp;<small><span class="msg_re"></span></small>
 					</td>
 				</tr>
 				<tr >
 					<td >
-						핸드폰 번호&nbsp;<span class="msg"></span>
+						(*) 핸드폰 번호&nbsp;<br/>
 					</td> 
 					<td>
 						<input type="text" name= "phone" id="phone" autocomplete="off" maxlength="13"
 						placeholder="xxx-xxxx-xxxx" value="${param.PHONE}"
 						style="padding: 2px;" />
+						&nbsp;<small><span class="msg"></span></small>
 					</td>
 				</tr>
 
 			</table>
-		<button type="submit" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
+		<button type="button" onclick="register()" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
 		회원가입</button>
 			
 		</div>
 	</form>
 <script>
+	function nameCheck(){
+		var name =  $("#name").val();
+		if(name == ""){
+			$(".msg_name").html("이름을 입력하세요.");
+			$(".msg_name").css("color", "red");
 
+		} else {
+			$(".msg_name").html("");
+		}
+	}
+
+	function idCheck(){
+		
+		var id =  $("#id").val();
+		if(id.length==0){
+			//아이디가 없는 경우
+			$(".msg_id").html("아이디를 입력해주세요.");
+			$(".msg_id").css("color", "red");
+			return false;
+		}
+
+		$.ajax({
+			url: "/idCheck",
+			type: "POST",
+			async:false,
+			data : {
+				"id" : id
+			},
+			success: function(rst){
+				var result = rst;
+				if(result == ""){
+					//아이디가 없는 경우
+					$(".msg_id").html("사용가능합니다.");
+					$(".msg_id").css("color", "green");
+
+				} else {
+					//아이디가 있는 경우
+					$(".msg_id").html("이미 사용중인 ID입니다.");
+					$(".msg_id").css("color", "red");
+
+				}
+			}
+		});
+	}
+
+	function authCheck(){
+		
+		var lv =  $("#lv").val();
+		console.log(lv);
+		if(lv.length==0){
+			//인증번호 없는 경우
+			$(".msg_auth").html("인증번호를 입력해주세요.");
+			$(".msg_auth").css("color", "red");
+			return false;
+		}
+		if(lv==null){
+			return lv = 0;
+		} else {
+		$.ajax({
+			url: "/authCheck",
+			type: "POST",
+			async:false,
+			data : {
+				"lv" : lv
+			},
+			success: function(rst){
+				if(rst == true){
+					//인증값이 맞는경우
+					$(".msg_auth").html("확인되었습니다.");
+					$(".msg_auth").css("color", "green");
+					$("#lv").val() =  1;
+
+				} else {
+					//인증값이 틀린경우
+					$(".msg_auth").html("인증번호가 틀립니다.");
+					$(".msg_auth").css("color", "red");
+					$("#lv").val() =  0;
+
+				}
+			}
+		});
+	}
+	}
 
 	
+	function passCheck(){
+		var pass =  $("#password").val();
+		var pass_re =  $("#password_re").val();
+		if(pass==""||pass_re==""){
+			$(".msg_re").html("비밀번호를 입력하세요");
+			$(".msg_re").css("color", "red");
+		} else{
+			
+			if(pass==pass_re){
+				$(".msg_re").html("비밀번호가 일치합니다.");
+				$(".msg_re").css("color", "green");
+			} else {
+				$(".msg_re").html("비밀번호가 일치하지 않습니다.");
+				$(".msg_re").css("color", "red");
+			}
+		}
+	}
+	
+	
 	function mailcheck() {
-		var mail = $("#id").val();
-		console.log(mail)
-		$.post("/email", {
-			"email" : mail
-		}, function(rst) {
-			window.alert("rst = " + rst);
+		
+		var email = $("#id").val();
+		
+// 		if(mail.length == 0){
+// 			alert("ID(E-MAIL)을 입력해야 합니다.");
+// 			return false;
+// 		}
+		
+// 		$.post("/email", {
+// 			"email" : email
+// 		}, function(rst) {
+// 			alert(rst);
+// 		});
+		
+		$.ajax({
+			url: "/email",
+			type: "POST",
+			async:false,
+			data : {
+				"email" : email
+			},
+			success: function(rst){
+				var result = rst;
+				if(result == true){
+					//인증메일 전송완료
+					alert("인증메일이 전송되었습니다.");
+				} else {
+					//인증메일 전송실패
+					alert("ERROR");
+				}
+			}
 		});
-	};
+	}
 
     
     function apply(str){
@@ -173,13 +316,45 @@ th, td {
         return str;
     }
 
-    	var phone = document.getElementById('phone');
-    	phone.onkeyup = function(event){
+    var phone = document.getElementById('phone');
+    phone.onkeyup = function(event){
     	event = event || window.event;
     	var s = this.value.trim();
     	this.value = apply(s) ;
     }
-
+	
+    function register(){
+    	if($("#name").val()==""){
+    		alert("이름을 입력하세요!");
+    		return;
+    	}
+    	
+    	if($("#id").val()==""){
+    		alert("아이디을 입력하세요!");
+    		return;
+    	}
+    	if($("#passwork").val()==""){
+    		alert("비밀번호를 입력하세요!");
+    		return;
+    	}
+    	if($("#password_re").val()==""){
+    		alert("비밀번호확인을 입력하세요!");
+    		return;
+    	}
+    	if($("#phone").val()==""){
+    		alert("전화번호를 입력하세요!");
+    		return;
+    	}
+    	
+    	if($("#password").val()!= $("#password_re").val()){
+    		alert("비밀번호가 틀립니다. 확인해주세요.");
+    		return;
+    	}
+    	
+    	var form = document.getElementById("registerform");
+    	form.action = "register";
+    	form.submit();
+    }
 
 
 </script>

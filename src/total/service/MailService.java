@@ -18,14 +18,7 @@ import com.sun.mail.iap.Response;
 public class MailService {
 	@Autowired
 	JavaMailSender mailSender;
-	public boolean sendWelcomeMail(String email ) {
-		
-		UUID uuid = UUID.randomUUID();	// 고유식별문자 생성 (8-4-4-4-12) : 
-		System.out.println(uuid.toString());
-		String authkey = uuid.toString().split("-")[1];
-		System.out.println(authkey);
-	
-
+	public boolean sendWelcomeMail(String email, String authkey ) {
 
 		MimeMessage message =  mailSender.createMimeMessage();
 		try {

@@ -1,6 +1,8 @@
 package total.controller;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -51,16 +54,24 @@ public class JoinController {
 	public String registerHandle(Model model, HttpSession session, Map map,
 									@RequestParam Map<String, String> param) {
 		try {
-			boolean rst= joinService.addNewOne(param);
-			System.out.println("rst =  " + rst);
+
 			System.out.println("param =  " + param);
-			
+			String lv = param.get("lv");
+			System.out.println("인증안받음? " + lv.equals(""));
+			boolean rst = false;
+			if(lv.equals("")) {
+				param.put("lv", "0");
+				rst= joinService.addNewOne(param); 
+			}else {
+				param.put("lv", "1");
+				rst= joinService.addNewOne(param); 
+			}
+			System.out.println("인증 여부 =  " + rst);
 			if(rst) {
 				Map info = loginOutService.findByIdAndPass(param);
 				session.setAttribute("logon", info);
 				return "redirect:/";
 			}
-			
 			throw new Exception();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -70,6 +81,28 @@ public class JoinController {
 			return "default";
 		}
 	}
+	@ResponseBody
+	@RequestMapping(path="/idCheck", method= RequestMethod.POST)
+	public Map idCheck(Model model, HttpSession session, @RequestParam Map<String, String> param) {
+		
+			  String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";   
+			  Pattern p = Pattern.compile(regex);
+			  Matcher m = p.matcher(param.get("id"));
+			  Map check = new HashMap<>();
+			  if(m.matches()) {
+					
+					try {
+						check = joinService.existIdCheck(param.get("id"));
+							
+					} catch (Exception e) {
+						e.printStackTrace();
+						
+					}
+					return check;
+			  }
+			  return check;
+			  
+		}
 	
 	
-}
+	}

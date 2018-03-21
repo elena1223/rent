@@ -16,8 +16,16 @@ public class JoinService {
 		return template.insert("member.create", map)==1;
 	}
 	
-	public boolean existIdCheck(String id) {
-		return template.selectOne("member.getById", id)!=null;
+	
+//	public boolean addNewAuth(Map map) {
+//		System.out.println(map);
+//		return template.insert("member.acreate", map)==1;
+//	}
+	
+	public HashMap existIdCheck(String id) {
+		HashMap map = new HashMap<>();
+		map = template.selectOne("member.getById", id);
+		return map;
 	}
 	
 	public boolean existEmailCheck(String email) {
