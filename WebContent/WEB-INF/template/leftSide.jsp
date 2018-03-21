@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String uri=((String)request.getAttribute( "javax.servlet.forward.request_uri" )).split("/")[1];
-	String[] location="info,reserve,service,customer,mypage".split(",");
+	String[] location="info,reserve,service,customer,mypage,manager".split(",");
 	request.setAttribute("location", location);
 	request.setAttribute("uri", uri);
 %>
@@ -23,6 +23,10 @@
 		<p><a href="/customer/qna">고객문의</a></p>
 		<p><a href="/customer/notice">공지</a></p>
 		<p><a href="/customer/review">후기</a></p>
+	</c:when>
+	<c:when test="${uri==location[5]}">
+		<p><a href="/manager/register">차량등록</a></p>
+		<p><a href="/manager/reservation">예약내역</a></p>
 	</c:when>
 	<c:otherwise>
 	</c:otherwise>
