@@ -11,10 +11,15 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
 	@Autowired
 	SqlSessionTemplate template;
-	public List<Map> readAll(String type){
+	public List<Map> readAllBoard(String type){
 		return template.selectList("board.readAll", type);
 	}
-	public Map readOne(String no) {
+	
+	public List<Map> readComments(String cno){
+		return template.selectList("comments.readAll", cno);
+	}
+	
+	public Map readOneBoard(String no) {
 		return template.selectOne("board.readOne",no);
 	}
 	public boolean addBoard(Map map) {
@@ -28,6 +33,19 @@ public class CustomerService {
 			return rst;
 		}	
 	}
+	
+	public boolean addComments(Map map) {
+		boolean rst=false;
+		try {
+		rst= template.insert("comments.add",map)>0?true:false;
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}finally {
+			return rst;
+		}	
+	}
+	
 	public boolean hitUp(Map map) {
 		boolean rst=false;
 		BigDecimal bh=(BigDecimal)map.get("HIT");
@@ -45,6 +63,28 @@ public class CustomerService {
 		boolean rst=false;
 		try {
 		rst= template.delete("board.delete",no)>0?true:false;
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}finally {
+			return rst;
+		}	
+	}
+	public boolean modifyBoard(Map map) {
+		boolean rst=false;
+		try {
+		rst= template.update("board.modify",map)>0?true:false;
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}finally {
+			return rst;
+		}	
+	}
+	public boolean deleteComment(String no) {
+		boolean rst=false;
+		try {
+		rst= template.delete("comments.delete",no)>0?true:false;
 		}catch(Exception e){
 			e.printStackTrace();
 			

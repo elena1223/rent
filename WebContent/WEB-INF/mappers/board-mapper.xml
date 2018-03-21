@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from rent_board where no=#{no}
 	</select>
 	<select id="readAll" resultType="hashMap">
-		select * from rent_board where type=#{type} order by no desc
+		select * from rent_board left join (select cno, count(*) as cnt from rent_comments group by cno) tmp on rent_board.no=tmp.cno where type=#{type} order by no desc
 	</select>
 	<delete id="delete">
 		delete from rent_board where no=#{no}
@@ -19,6 +19,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update rent_board set hit=#{HIT} where no=#{NO}
 	</update>
 	<update id="modify">
-		update rent_board set title=#{title},#{content} where no=#{no}
+		update rent_board set title=#{title},contents=#{contents} where no=#{no}
 	</update>
 </mapper>
