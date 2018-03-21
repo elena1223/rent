@@ -4,6 +4,18 @@
 
 <head>
 </head>
+<style>
+
+textarea {
+
+font-size: small;
+
+
+}
+
+
+
+</style>
 <body>
 
 <!-- 콘텐츠 시작 { -->
@@ -14,26 +26,21 @@
 		<div style="border-top:2px solid #ccc;"></div>
     </div>
 
-    <div id="container" >
-        <div id="container_title">회원가입약관</div>		<div style="position:absolute; width:100px; right:-110px;">
-			<!--<a href="http://goto.kakao.com/jr8s7li0" target="_blank"><img src="http://www.jj-rentcar.com/theme/company/img/kakao_pc.png"></a>-->
-			<a href="#"><img src="<%=request.getContextPath() %>/img/banner1.jpg"></a>
-		</div>
 
 <!-- 회원가입약관 동의 시작 { -->
-<div class="mbskin" style=" width:980px;">
+<div class="mbskin" >
+    <p style="margin-top: 10px;"><b>회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</b></p>
     <form  name="fregister" id="fregister" action="joinp" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
 
-    <p>회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
 
-    <section id="fregister_term">
-        <h2>회원가입약관</h2>
-        <textarea style=" resize: none; width:980px;" readonly >제1조(목적)
-이 약관은 (주)한국렌트카(전자상거래 사업자)가 운영하는 (주)한국렌트카 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스 (이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
+    <section id="fregister_term" style="margin-top: 30px;">
+        <h4>회원가입약관</h4>
+        <textarea style=" resize: none; width:100%;" readonly >제1조(목적)
+이 약관은 (주)에코렌트카(전자상거래 사업자)가 운영하는 (주)에코렌트카 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스 (이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
 ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다」
 
 제2조(정의) 
-① “몰”이란 (주)한국렌트카 회사가 재화 또는 용역(이하 “재화등”이라 함)을 이용자에게 제공하기 위하여 컴퓨터등 정보통신설비를 이용하여 재화등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 사이버몰을 운영하는 사업자의 의미로도 사용합니다.
+① “몰”이란 (주)에코렌트카 회사가 재화 또는 용역(이하 “재화등”이라 함)을 이용자에게 제공하기 위하여 컴퓨터등 정보통신설비를 이용하여 재화등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 사이버몰을 운영하는 사업자의 의미로도 사용합니다.
 ② “이용자”란 “몰”에 접속하여 이 약관에 따라 “몰”이 제공하는 서비스를 받는 회원 및 비회원을 말합니다.
 ③ ‘회원’이라 함은 “몰”에 개인정보를 제공하여 회원등록을 한 자로서, “몰”의 정보를 지속적으로 제공받으며, “몰”이 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.
 ④ ‘비회원’이라 함은 회원에 가입하지 않고 “몰”이 제공하는 서비스를 이용하는 자를 말합니다.
@@ -204,11 +211,11 @@
             <input type="checkbox" name="agree" value="1" id="agree11">
         </fieldset>
     </section>
-
-    <section id="fregister_private">
-        <h2>개인정보처리방침안내</h2>
-        <textarea  style=" resize: none; width:980px;"readonly>제1조 (목적)
-이 약관은 (주)한국렌트카(이하 "회사"이라 칭함)이 운영하는 사이버 회사(이하 "회사"이라 함)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)의 이용에 있어 회사과 이용자의권리·의무 및 책임사항을 규정하여 고객 권익을 보호함을 목적으로 합니다.
+<div>
+    <section id="fregister_private"  style="margin-top: 30px;">
+        <h4>개인정보처리방침안내</h4>
+        <textarea  style=" resize: none; width:100%;"readonly>제1조 (목적)
+이 약관은 (주)에코렌트카(이하 "회사"이라 칭함)이 운영하는 사이버 회사(이하 "회사"이라 함)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)의 이용에 있어 회사과 이용자의권리·의무 및 책임사항을 규정하여 고객 권익을 보호함을 목적으로 합니다.
 
 제2조 (정의) 
 1. "회사" 이란 회사가 재화 또는 용역을 이용자에게 제공하기 위하여 컴퓨터등 정보통신설비를 이용하여 재화 또는 용역을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 회사을 운영하는 회사의 의미로도 사용합니다.
@@ -354,44 +361,44 @@
 2. "회사"과 이용자간에 제기된 전자거래 소송에는 한국법을 적용합니다.
 
 2012년 1월 1일부터 시행합니다. </textarea>
+
+
         <fieldset class="fregister_agree">
             <label for="agree21">개인정보처리방침안내의 내용에 동의합니다.</label>
             <input type="checkbox" name="agree2" value="1" id="agree21">
         </fieldset>
     </section>
-
+</div>
     <div class="btn_confirm">
-        <input type="submit" class="btn_submit" value="회원가입">
+        <input style="margin-top: 30px;" type="submit" class="btn_submit" value="회원가입">
     </div>
 
     </form>
 
-    <script>
-    function fregister_submit(f)
-    {
-        if (!f.agree.checked) {
-            alert("회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
-            f.agree.focus();
-            return false;
-        }
-
-        if (!f.agree2.checked) {
-            alert("개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
-            f.agree2.focus();
-            return false;
-        }
-
-        return true;
-    }
-    </script>
 </div>
 <!-- } 회원가입 약관 동의 끝 --> 
-       <a href="#hd" id="top_btn">상단으로</a>
     </div>
-</div>
 
 <!-- } 콘텐츠 끝 -->
 
 
+   <script>
+   function fregister_submit(f)
+   {
+       if (!f.agree.checked) {
+           alert("회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+           f.agree.focus();
+           return false;
+       }
+
+       if (!f.agree2.checked) {
+           alert("개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+           f.agree2.focus();
+           return false;
+       }
+
+       return true;
+   }
+   </script>
 </body>
 </html>
