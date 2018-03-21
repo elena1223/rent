@@ -83,9 +83,11 @@
 		if(${err}+""!=""){
 			window.alert(${err});
 		}
-
+		if(${logon}+""==""){
+			$("#content").attr('readonly', 'true');
+		}
 		$("#content").click(function(){
-			if(${logon}==null){
+			if(${logon}+""==""){
 				if(window.confirm("로그인 후 이용하실 수 있습니다. 로그인 하시겠습니까?")){
 					location.href='/login';
 				}
@@ -98,7 +100,7 @@
 			}else{
 				$("#form").submit();
 			}
-		}
+		})
 	
 	</script>
 
