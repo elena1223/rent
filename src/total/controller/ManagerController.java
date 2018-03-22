@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ManagerController {
@@ -16,4 +17,12 @@ public class ManagerController {
 		model.addAttribute("main","managerRegister.jsp");
 		return "default";
 	}
+	
+	@RequestMapping(path="/manager/addCar", method=RequestMethod.POST)
+	public String addCarHandle(@RequestParam Map<String,String> param, Model model) {
+		System.out.println(param);
+		model.addAttribute("main","managerRegister.jsp");
+		return "default";
+	}
+	
 }
