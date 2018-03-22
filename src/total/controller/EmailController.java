@@ -61,9 +61,13 @@ public class EmailController {
 //		System.out.println(param.get("auth"));
 //		System.out.println((String)s.getAttribute("authCheck"));
 		boolean b = param.get("lv").equals((String)s.getAttribute("authCheck"));
-		System.out.println(b);
+//		System.out.println(b);
 			return b;
 			
 		}
+	
+	
+	
+	
 	
 }

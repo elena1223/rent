@@ -15,5 +15,10 @@ public class LoginOutService {
 		Map map = template.selectOne("member.loginCheck", data);
 		return map;
 	}
+	
+	public Map findPass(String id) {
+		Map map= template.selectOne("member.findPass", id);
+		return map;
+	}
 
 }

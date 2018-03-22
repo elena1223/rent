@@ -32,10 +32,9 @@ public class MypageController {
 			if(logon==null) {
 				return "redirect:/";
 			}
-			System.out.println("(마이페이지 in)세션에 로그온 정보 맵" + logon);
+//			System.out.println("(마이페이지 in)세션에 로그온 정보 맵" + logon);
 			
 			String id = (String)logon.get("ID");
-			System.out.println("id =  " + id);
 			
 			map = mypageService.readOne(id); 
 			System.out.println("회원정보 맵 : " + map);
@@ -59,15 +58,22 @@ public class MypageController {
 	@RequestMapping(path="/mypageInfo")
 		public String myPageHandle(Model model, HttpSession session, Map map,HttpServletRequest req,
 				@RequestParam Map<String, String> param, Map editmap) {
-		System.out.println("param =  " + param);
 		try {
+			
+//			System.out.println("param =  " + param);
 			HttpSession s = req.getSession();
 			Map logon = (Map)s.getAttribute("logon");
-			String lv = param.get("lv");
-			System.out.println("(마이페이지out)세션에 로그온 정보 맵" + logon);
-			if(lv == null) {
-				param.put("lv", (String)logon.get("LV"));
-				map.put("lv", logon.get("LV"));
+			if(logon==null) {
+				return "redirect:/";
+			}
+			String lv =  String.valueOf(param.get("LV"));
+			//String LV = String.valueOf(logon.get("LV"));
+			String phone =  String.valueOf(param.get("phone"));
+//			System.out.println(lv);
+//			System.out.println("(마이페이지out)세션에 로그온 정보 맵" + logon);
+			if(lv==null) {
+				param.put("lv", lv);
+				map.put("lv", String.valueOf(logon.get("LV")));
 				
 			} else {
 				if(logon.get("LV").equals("0")) {
@@ -80,17 +86,22 @@ public class MypageController {
 					}
 				} 
 			}
+			if(phone==null) {
+				param.put("phone", (String)logon.get("phone"));
+				map.put("phone", (String)logon.get("phone"));
+			}
 
-			System.out.println("(2)id =  " + param.get("id"));
-			System.out.println("(2)password =  " +  param.get("password"));
-			System.out.println("(2)phone =  " + param.get("phone"));
-			
+//			System.out.println("(2)id =  " + param.get("id"));
+//			System.out.println("(2)password =  " +  param.get("password"));
+//			System.out.println("(2)phone =  " + param.get("phone"));
+//			System.out.println("(2)lv =  " + param.get("lv"));
+
 
 			map.put("id", param.get("id"));
 			map.put("password", param.get("password"));
 			map.put("phone", param.get("phone"));
 			
-			System.out.println("넘어가는 맵 =  " + map);
+//			System.out.println("쿼리로 넘어가는 맵 =  " + map);
 			boolean b = mypageService.editMypage(map); 
 			// 수정되었는지 여부
 			if(b) {
@@ -115,10 +126,4 @@ public class MypageController {
 	}
 
 	
-//	@RequestMapping(path= {"/mypageInfo","/mypage"}, method=RequestMethod.GET)
-//	public String logoutPostHandle(HttpSession session, Model model) {
-//		session.removeAttribute("logon");
-//		return "redirect:/";
-//	}
-
 }

@@ -146,17 +146,24 @@ td	{
 						핸드폰 번호&nbsp;<br/>
 					</td> 
 					<td>
+
 						<input type="text" name= "phone" id="phone" autocomplete="off" maxlength="13"
-						placeholder="xxx-xxxx-xxxx" value="${mypage.PHONE}" onblur="phoneCheck()"
-						style="padding: 2px;"/>${param.PHONE}
-						&nbsp;<small><span class="msg"></span></small>
+						value="${mypage.PHONE}" onblur="myphoneCheck()" class="p"
+						style="padding: 2px;"disabled/>
+						<button type="button" id="t4">변경하기</button>
+						&nbsp;<small><span class="msg_phone"></span></small>
 					</td>
 				</tr>
 
 			</table>
-		<button type="button" onclick="edit()" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
+		<p  align="right" >
+		<button type="button" onclick="bye()"style=" vertical-align:middle; margin-top: 10px; margin-bottom: 10px;color:grey; ">
+		회원탈퇴</button>
+		</p>
+		<br/>
+		<button type="button" onclick="edit()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
 		확인</button>
-		<button type="button" onclick="home()" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
+		<button type="button" onclick="home()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
 		취소</button>	
 		</div>
 	</form>
@@ -283,7 +290,7 @@ td	{
     	this.value = apply(s) ;
     }
 	
-    function phoneCheck(){
+    function myphoneCheck(){
 		var phone =  $("#phone").val();
 		
 		if(phone.length > 13){
@@ -294,15 +301,14 @@ td	{
 		}
 		
 		$.ajax({
-			url: "/phoneCheck",
+			url: "/myphoneCheck",
 			type: "POST",
 			async:false,
 			data : {
 				"phone" : phone
 			},
 			success: function(rst){
-				var result = rst;
-				if(result == ""){
+				if(rst == true){
 					//폰번호 중복 아닌 경우
 					$(".msg_phone").html("사용가능합니다.");
 					$(".msg_phone").css("color", "green");
@@ -317,8 +323,13 @@ td	{
 			}
 		});
     }
-    	
-    	
+
+	
+	$("#t4").click(function() {
+		$(".p").attr("disabled", false);	// t4를 누르면 disabled 걸린걸 풀게 만들어줌..
+	})
+    
+    
     function edit(){
     	
     	if($("#id").val()==""){
@@ -355,7 +366,34 @@ td	{
     	form.submit();
     }
 
-</script>
+    //회원탈퇴 만드는중!
+    function bye() {
+		$.ajax({
+			url: "/myphoneCheck",
+			type: "POST",
+			async:false,
+			data : {
+				"phone" : phone
+			},
+			success: function(rst){
+				if(rst == true){
+					//폰번호 중복 아닌 경우
+					$(".msg_phone").html("사용가능합니다.");
+					$(".msg_phone").css("color", "green");
 
+				} else {
+					//폰번호 중복인 경우
+					$(".msg_phone").html("이미 사용중인 번호입니다.");
+					$("#phone").val("");
+					$(".msg_phone").css("color", "red");
+
+				}
+			}
+		});    	
+    	
+    }
+		
+	
+</script>
 </body>
 </html>

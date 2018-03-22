@@ -83,7 +83,8 @@ th, td {
 					</td>
 					
 					<td>
-						 <input type="text" name= "name" id="name" value="${param.NAME}" onblur="nameCheck()"/>
+						 <input type="text" name= "name" id="name" value="${param.NAME}" 
+						 pattern = "[가-힣]{2,4}" onblur="nameCheck()"/>
 						  &nbsp;<small><span class="msg_name" ></span></small>
 					</td>
 				</tr >
@@ -293,8 +294,7 @@ th, td {
 				"phone" : phone
 			},
 			success: function(rst){
-				var result = rst;
-				if(result == ""){
+				if(rst == true){
 					//폰번호 중복 아닌 경우
 					$(".msg_phone").html("사용가능합니다.");
 					$(".msg_phone").css("color", "green");
