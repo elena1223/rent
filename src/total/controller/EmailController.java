@@ -28,7 +28,7 @@ public class EmailController {
 	
 	@ResponseBody
 	@RequestMapping(path="/email", method = RequestMethod.POST)
-	public Map authHandle(@RequestParam String email, String authkey, Map map,
+	public boolean authHandle(@RequestParam String email, String authkey, Map map,
 			HttpServletRequest req, HttpSession session) {
 		HttpSession s = req.getSession();
 		String auth = uuidService.authUUID();
@@ -39,15 +39,15 @@ public class EmailController {
 		boolean b = mailService.sendWelcomeMail(email, authkey);
 		System.out.println("메일 전송 결과 = " + b);
 			if(b) {
-				map.put("auth", authkey);
-				map.put("send", true);
+//				map.put("auth", authkey);
+//				map.put("send", true);
 				session.setAttribute("authCheck", auth);
 			} 
-			return map;
+			return true;
 		} else {
 			session.setAttribute("err", "error");
 			
-			return map;
+			return false;
 		}
 		
 	}

@@ -26,7 +26,12 @@ public class JoinService {
 	public boolean existEmailCheck(String email) {
 		return template.selectOne("member.getByEmail", email)!=null;
 	}
-		
+	public HashMap existPhoneCheck(String phone) {
+		HashMap map = new HashMap<>();
+		map = template.selectOne("member.getByPhone", phone);
+		return map;
+
+	}
 
 }
 

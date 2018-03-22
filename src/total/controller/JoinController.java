@@ -104,5 +104,30 @@ public class JoinController {
 			  
 		}
 	
+	@ResponseBody
+	@RequestMapping(path="/phoneCheck", method= RequestMethod.POST)
+	public Map phoneCheck(Model model, HttpSession session, @RequestParam Map<String, String> param) {
+			  Map check = new HashMap<>();
+			  String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";   
+			  Pattern p = Pattern.compile(regex);
+			  Matcher m = p.matcher(param.get("phone"));
+			  if(m.matches()) {
+					
+				try {
+
+						check = joinService.existPhoneCheck(param.get("phone"));
+						System.out.println("휴대폰 중복확인 false는 중복 : " + (check==null));	
+				} catch (Exception e) {
+						e.printStackTrace();
+				}
+				return check;
+			  }
+			  
+			  return check;
+
+		}
 	
+	
+	
+		
 	}

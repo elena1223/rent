@@ -134,9 +134,9 @@ th, td {
 					</td> 
 					<td>
 						<input type="text" name= "phone" id="phone" autocomplete="off" maxlength="13"
-						placeholder="xxx-xxxx-xxxx" value="${param.PHONE}"
+						placeholder="xxx-xxxx-xxxx" value="${param.PHONE}" onblur="phoneCheck()"
 						style="padding: 2px;" />
-						&nbsp;<small><span class="msg"></span></small>
+						&nbsp;<small><span class="msg_phone"></span></small>
 					</td>
 				</tr>
 
@@ -255,17 +255,6 @@ th, td {
 		
 		var email = $("#id").val();
 		
-// 		if(mail.length == 0){
-// 			alert("ID(E-MAIL)을 입력해야 합니다.");
-// 			return false;
-// 		}
-		
-// 		$.post("/email", {
-// 			"email" : email
-// 		}, function(rst) {
-// 			alert(rst);
-// 		});
-		
 		$.ajax({
 			url: "/email",
 			type: "POST",
@@ -286,7 +275,41 @@ th, td {
 		});
 	}
 
-    
+    function phoneCheck(){
+		var phone =  $("#phone").val();
+		
+		if(phone.length > 13){
+			alert("잘못된 휴대폰 번호입니다.");
+			$("#phone").val("");
+		
+    		return false;
+		}
+		
+		$.ajax({
+			url: "/phoneCheck",
+			type: "POST",
+			async:false,
+			data : {
+				"phone" : phone
+			},
+			success: function(rst){
+				var result = rst;
+				if(result == ""){
+					//폰번호 중복 아닌 경우
+					$(".msg_phone").html("사용가능합니다.");
+					$(".msg_phone").css("color", "green");
+
+				} else {
+					//폰번호 중복인 경우
+					$(".msg_phone").html("이미 사용중인 번호입니다.");
+					$("#phone").val("");
+					$(".msg_phone").css("color", "red");
+
+				}
+			}
+		});
+    }
+     
     function apply(str){
         str = str.replace(/[^0-9]/g, '');
         console.log(str);
@@ -333,7 +356,7 @@ th, td {
     		alert("아이디을 입력하세요!");
     		return;
     	}
-    	if($("#passwork").val()==""){
+    	if($("#password").val()==""){
     		alert("비밀번호를 입력하세요!");
     		return;
     	}
