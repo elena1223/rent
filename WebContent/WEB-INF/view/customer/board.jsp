@@ -66,7 +66,7 @@
   	<form action="/customer/comment" method="post" id="form">
   		<input type="hidden" name="uri" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>">
   		<input type="hidden" name="cno" value="${board.NO }"/>
-      <textarea class="form-control" name="comment" rows="5" id="content" style="height:100px;width:80%" placeholder="댓글작성"></textarea><br/>
+      <textarea class="form-control" name="comment" rows="5" id="content" style="resize: none;height:100px;width:80%" placeholder="댓글작성"></textarea><br/>
        <button id="sub" style="position: absolute; right: 0; margin-right:125px" class="btn btn-primary">댓글작성</button>
      </form>
        <br/><br/><br/>
@@ -80,9 +80,7 @@
 </form>
 	<script>
 		
-		if(${err}+""!=""){
-			window.alert(${err});
-		}
+
 		if(${logon}+""==""){
 			$("#content").attr('readonly', 'true');
 		}

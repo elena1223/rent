@@ -13,9 +13,9 @@
 </div>
   
   <div  class="form-group">
-  <textarea class="form-control" name="contents" rows="5" id="content" style="height:300px" placeholder="본문">${content }</textarea>
+  <textarea class="form-control" name="contents" rows="5" id="content" style="resize: none;height:300px" placeholder="본문">${content }</textarea>
 </div>
- <button id="sub" style="position: absolute; right: 0; margin:10px" class="btn btn-default">글쓰기</button>
+ <button id="sub" style="position: absolute; right: 0; margin:10px" class="btn btn-default">수정완료</button>
 </form>
  <script>
  	$("#sub").click(function(){
@@ -26,6 +26,7 @@
  			window.alert("본문내용을 10글자 이상 입력해주세요.");
  			$("#content").focus();
  		}else{
+ 			console.log("?")
  			$("#form").submit();
  		}
  		
