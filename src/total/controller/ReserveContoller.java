@@ -9,6 +9,7 @@ import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,11 +35,18 @@ public class ReserveContoller {
 		}
 		
 	}
-	@RequestMapping(path="/readByType",method=RequestMethod.POST, produces="application/json;charset=utf-8")
-	public String readByTypeHandle(Model model,@RequestParam String type) {
+	@RequestMapping("/{no}")
+	public String noHandle(Model model, @PathVariable String no) {
+		Map car = infoService.readOneCar(no);
+		if(car.get("NO")!=null) {
+			model.addAttribute("car",car);
+			model.addAttribute("main","reserve/selectDate.jsp");
+			return "default";
+			
+		}else {
+			return "redirect:/reserve";
+		}
 		
-		String js= new Gson().toJson(infoService.readByType(type));
-		return js;
 		
 	}
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reserve">
+	<insert id="add">
+	insert into rent_reserve values(rent_reserve_seq.nextval,#{cno},#{start},#{end},{mno})
+	</insert>
+	<select id="readAll">
+		select * from rent_reserve
+	</select>
+	<select id="readByMember">
+		select * from rent_reserve where mno=#{mno}
+	</select>
+	<select id="readByCar">
+		select * from rent_reserve where cno=#{cno}
+	</select>
+</mapper>

@@ -6,11 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="readAllCar" resultType="hashMap">
 		select * from rent_car
 	</select>
-	<select id="readOne">
-		select * from rent_car where #{no}
+	<select id="readOne" resultType="hashMap">
+		select * from rent_car where no=#{no}
 	</select>
 	<select id="readByType" resultType="hashMap">
-		select * from rent_car where #{type}
+		select * from rent_car where type=#{type}
 	</select>
 	<delete id="delete">
 		delete from rent_car where no=#{no}
