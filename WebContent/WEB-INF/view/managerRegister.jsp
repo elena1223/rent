@@ -15,24 +15,24 @@
 <body>
 	<div align="center">
 		<h2>차량 등록</h2>
-		<form id="addform" name="addform" method="post" enctype="multipart/form-data">
+		<form action="/manager/addCar" id="addform" name="addform" method="post" enctype="multipart/form-data" onsubmit="return add();">
 			모든 항목은 필수 입력사항입니다.
 			<div class="form-group" align="center" style="width: 50%">
 				<div align="left">
 					<label for="cName">Car Name</label>
 				</div>
 				<input type="text" class="form-control" id="cName"
-					placeholder="Car Name" name="cName"/>
+					placeholder="Car Name" name="cName" autocomplete="off"/>
 			</div>
 
 			<div align="center" style="width: 50%">
 				<div align="left">
 					<label for="type">Type</label>
 				</div>
-			<label class="radio-inline"><input type="radio" name="type" value="소형">소형</label>
-			<label class="radio-inline"><input type="radio" name="type" value="중형">중형</label>
-			<label class="radio-inline"><input type="radio" name="type" value="대형">대형</label>
-			<label class="radio-inline"><input type="radio" name="type" value="외제">외제</label>
+			<label class="radio-inline"><input type="radio" name="type" value="소형" class="type">소형</label>
+			<label class="radio-inline"><input type="radio" name="type" value="중형" class="type">중형</label>
+			<label class="radio-inline"><input type="radio" name="type" value="대형" class="type">대형</label>
+			<label class="radio-inline"><input type="radio" name="type" value="외제" class="type">외제</label>
 			</div>
 
 			<div class="form-group" align="center" style="width: 50%">
@@ -50,9 +50,9 @@
 				<div align="left">
 					<label for="oil">Oil</label>
 				</div>
-			<label class="radio-inline"><input type="radio" name="oil" value="가솔린">가솔린</label>
-			<label class="radio-inline"><input type="radio" name="oil" value="디젤">디젤</label>
-			<label class="radio-inline"><input type="radio" name="oil" value="LPG">LPG</label>
+			<label class="radio-inline"><input type="radio" name="oil" value="가솔린" class="oil">가솔린</label>
+			<label class="radio-inline"><input type="radio" name="oil" value="디젤" class="oil">디젤</label>
+			<label class="radio-inline"><input type="radio" name="oil" value="LPG" class="oil">LPG</label>
 			</div>
 
 			<div class="form-group" align="center" style="width: 50%">
@@ -88,11 +88,11 @@
 				</div>
 			</div>
 
-			<input id="image" type="file" onchange="InputImage();"><br/>
+			<input id="image" type="file" onchange="InputImage();" name="img"><br/>
 			<div id="imagePreview"></div>
 
 			<br/>
-			<button type="submit" class="btn" style="width: 20%" onclick="add()">등록</button>
+			<button type="submit" class="btn" style="width: 20%" >등록</button>
 		</form>
 	</div>
 
@@ -132,42 +132,39 @@
 		function add(){
 	    	if($("#cName").val()==""){
 	    		alert("차량 이름을 입력하세요.");
-	    		return;
+	    		return false;
 	    	}
 	    	
-	    	if($("#type").val()==""){
+	    	if($(".type:checked").length==0){
 	    		alert("차량 종류를 선택하세요.");
-	    		return;
+	    		return false;
 	    	}
 	    	
 	    	if($("#price").val()==""){
 	    		alert("렌트비를 입력하세요.");
-	    		return;
+	    		return false;
 	    	}
 	    	
-	    	if($("#oil").val()==""){
+	    	if($(".oil:checked").length==0){
 	    		alert("유종을 선택하세요.");
-	    		return;
+	    		return false;
 	    	}
 	    	
 	    	if($("#max").val()==""){
 	    		alert("최대 정원을 입력하세요.");
-	    		return;
+	    		return false;
 	    	}
 	    	
 	    	if($("#cnt").val()==""){
 	    		alert("보유 대수를 입력하세요.");
-	    		return;
+	    		return false;
 	    	}
 	    	
 	    	if($("#image").val()==""){
 	    		alert("이미지를 선택하세요.");
-	    		return;
+	    		return false;
 	    	}
 	    	
-	    	var form = document.getElementById("addform");
-	    	form.action = "addCar";
-	    	form.submit();
 	    }
 	</script>
 
