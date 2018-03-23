@@ -20,4 +20,16 @@ public class MypageService {
 		return template.update("member.editMypage", map) == 1 ;
 
 	}
+	
+	public boolean outMember(Map map) {
+		Map find = new HashMap<>();
+		find = template.selectOne("member.getById", map.get("id"));
+		boolean rst = false;
+		if(find != null) {
+			template.delete("member.outMember",map);
+			rst = true;
+		}
+		return rst;
+	}
+	
 }

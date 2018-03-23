@@ -129,38 +129,40 @@ public class JoinController {
 		}
 	
 	@ResponseBody
-	@RequestMapping(path="/myphoneCheck", method= RequestMethod.POST)
-	public boolean myphoneCheck(Model model, HttpSession session, 
-			@RequestParam Map<String, String> param, HttpServletRequest req) {
-		
+	@RequestMapping(path = "/myphoneCheck", method = RequestMethod.POST)
+	public boolean myphoneCheck(Model model, HttpSession session, @RequestParam Map<String, String> param,
+			HttpServletRequest req) {
+
 		HttpSession s = req.getSession();
-		Map logon = (Map)s.getAttribute("logon");
-//		System.out.println("세션의 로그온 값" + logon );
+		Map logon = (Map) s.getAttribute("logon");
+		// System.out.println("세션의 로그온 값" + logon );
 		String phone = String.valueOf(logon.get("PHONE"));
 		String paramphone = String.valueOf(param.get("phone"));
-//		System.out.println("세션의 폰값 : " + phone);
-//		System.out.println("파람의 폰값 : "+ param.get("phone"));
-		  Map check = new HashMap<>();
-		  String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";   
-		  Pattern p = Pattern.compile(regex);
-		  Matcher m = p.matcher(param.get("phone"));
-		  
-		  if(paramphone.equals(phone)) {
-			  param.put("phone", phone);
-		  }else {
-			if(m.matches()) {
-					
-			try {
-				check = joinService.existPhoneCheck(param.get("phone"));
-//				System.out.println("휴대폰 중복확인 false는 중복 : " + (check==null));	
-			} catch (Exception e) {
+		// System.out.println("세션의 폰값 : " + phone);
+		// System.out.println("파람의 폰값 : "+ param.get("phone"));
+		Map check = new HashMap<>();
+		String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(param.get("phone"));
+
+		if (paramphone.equals(phone)) {
+			param.put("phone", phone);
+		} else {
+			if (m.matches()) {
+
+				try {
+					check = joinService.existPhoneCheck(param.get("phone"));
+					// System.out.println("휴대폰 중복확인 false는 중복 : " + (check==null));
+				} catch (Exception e) {
 					e.printStackTrace();
+				}
+				return check == null;
 			}
-				return check==null;
-			  }
-			  
-			  return check==null;
+
+			return check == null;
 		}
-		  return true;
+		return true;
 	}
+	
+	
 	}

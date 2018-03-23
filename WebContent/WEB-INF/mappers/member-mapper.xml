@@ -36,4 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findPass" resultType="hashMap">
 		select password from rent_member where id=#{id}
 	</select>
+	<delete id="outMember">
+	delete from rent_member where id=#{id} and password = #{password }
+	</delete>
 </mapper>

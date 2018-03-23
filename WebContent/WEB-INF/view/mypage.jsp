@@ -157,7 +157,7 @@ td	{
 
 			</table>
 		<p  align="right" >
-		<button type="button" onclick="bye()"style=" vertical-align:middle; margin-top: 10px; margin-bottom: 10px;color:grey; ">
+		<button type="button" onclick="outMember()"style=" vertical-align:middle; margin-top: 10px; margin-bottom: 10px;color:grey; ">
 		회원탈퇴</button>
 		</p>
 		<br/>
@@ -367,30 +367,9 @@ td	{
     }
 
     //회원탈퇴 만드는중!
-    function bye() {
-		$.ajax({
-			url: "/myphoneCheck",
-			type: "POST",
-			async:false,
-			data : {
-				"phone" : phone
-			},
-			success: function(rst){
-				if(rst == true){
-					//폰번호 중복 아닌 경우
-					$(".msg_phone").html("사용가능합니다.");
-					$(".msg_phone").css("color", "green");
+    function outMember() {
+		var t= window.open("/target", "m", "left=100,top=200,width=400,height=300");
 
-				} else {
-					//폰번호 중복인 경우
-					$(".msg_phone").html("이미 사용중인 번호입니다.");
-					$("#phone").val("");
-					$(".msg_phone").css("color", "red");
-
-				}
-			}
-		});    	
-    	
     }
 		
 	
