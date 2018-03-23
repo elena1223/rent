@@ -34,6 +34,28 @@
 		<p style="margin-top: 50px;">
 		아이디가 없으신가요? &nbsp;<a href="/join" style="text-decoration: none;">회원가입</a>
 		</p>
+		<p style="margin-top: 10px;">
+		비밀번호를 잊으셨나요? &nbsp;<a href="#" style="text-decoration: none;" onclick="find()">비밀번호 찾기</a>
+		</p>		
 	</div>
+	
+	
+	<script>
+	
+    function find() {
+		 
+		var t= window.open("/mypass", "p", "width=500, height=500");
+		t.resizeTo(500,500);  
+    }
+		
+	
+	
+	
+	
+	
+	
+	</script>
+	
+	
 </body>
 </html>

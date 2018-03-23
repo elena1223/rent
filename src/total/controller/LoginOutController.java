@@ -3,6 +3,7 @@ package total.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,22 +56,44 @@ public class LoginOutController {
 	}
 	
 	@RequestMapping(path="/findpass", method=RequestMethod.POST)
-	public String findPassHandle(HttpSession session, Model model, @RequestParam("id") String email) {
+	public String findPassHandle(HttpSession session, Model model, @RequestParam Map<String, String> param) {
 		try {
+			boolean b = false;
 			Map map = new HashMap();
-			map = loginOutService.findPass(email); 
-			String pass = String.valueOf(map.get("password"));
+			
+			map = loginOutService.findPass(param); 
+//			System.out.println("찾아온 정보 : " + map);
+			String pass = String.valueOf(map.get("PASSWORD"));
+			String email = (String)map.get("ID");
+//			System.out.println("password : " + pass +" / email :  " + email);
 			if (map != null) {
-				boolean b = mailService.sendPassMail(email, pass);
+				b = mailService.sendPassMail(email, pass);
+				if(b) {
+//					System.out.println("메일수신성공 : " + b);
+					model.addAttribute("rst", "true");
+					return "/mypass";
+				}
 			}
+				throw new Exception();
+
 			
 		}catch (Exception e) {
 			e.printStackTrace();
+			model.addAttribute("err", "Logon Failed");
+			model.addAttribute("main","login.jsp");
+			return "default";
 		}
 
-		
-		session.removeAttribute("logon");
-		return "redirect:/";
 	}
+	
+	
+	@RequestMapping(path = "/mypass")
+	public String mypassHandle(Model model, HttpSession session, HttpServletRequest req,
+			@RequestParam Map<String, String> param) {
+//		model.addAttribute("main","target.jsp" );
+		return "mypass";
+
+	}
+	
 	
 }
