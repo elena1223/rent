@@ -368,8 +368,9 @@ td	{
 
     //회원탈퇴 만드는중!
     function outMember() {
-		var t= window.open("/target", "m", "left=100,top=200,width=400,height=300");
-
+		 
+		var t= window.open("/target", "m", "width=500, height=500");
+		t.resizeTo(500,500);  
     }
 		
 	
