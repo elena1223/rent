@@ -9,4 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from rent_car where no=#{no}
 	</delete>
+	<insert id="add">
+		insert into rent_car values(rent_car_seq.nextval,#{cname},#{type},#{img},#{price},#{oil },#{kilo },#{opt },#{max },#{cnt })
+	</insert>
 </mapper>

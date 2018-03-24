@@ -19,10 +19,10 @@
 			모든 항목은 필수 입력사항입니다.
 			<div class="form-group" align="center" style="width: 50%">
 				<div align="left">
-					<label for="cName">Car Name</label>
+					<label for="cname">Car Name</label>
 				</div>
-				<input type="text" class="form-control" id="cName"
-					placeholder="Car Name" name="cName" autocomplete="off"/>
+				<input type="text" class="form-control" id="cname"
+					placeholder="Car Name" name="cname" autocomplete="off"/>
 			</div>
 
 			<div align="center" style="width: 50%">
@@ -57,10 +57,21 @@
 
 			<div class="form-group" align="center" style="width: 50%">
 				<div align="left">
-					<label for="option">Option</label>
+					<label for="kilo">Kilo</label>
 				</div>
-				<input type="text" class="form-control" id="option"
-					placeholder="Option" name="option">
+				<input type="number" min="0" class="form-control" id="kilo"
+					placeholder="kilo" name="kilo">
+				<div align="left">
+					<small>연비를 입력하세요.</small>
+				</div>
+			</div>
+			
+			<div class="form-group" align="center" style="width: 50%">
+				<div align="left">
+					<label for="opt">Option</label>
+				</div>
+				<input type="text" class="form-control" id="opt"
+					placeholder="Option" name="opt">
 				<div align="left">
 					<small>옵션은 ','를 사용하여 구분합니다. 예)후방카메라,네비게이션</small>
 				</div>
@@ -147,6 +158,11 @@
 	    	
 	    	if($(".oil:checked").length==0){
 	    		alert("유종을 선택하세요.");
+	    		return false;
+	    	}
+	    	
+	    	if($("#kilo").val()==""){
+	    		alert("연비를 입력하세요.");
 	    		return false;
 	    	}
 	    	
