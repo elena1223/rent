@@ -12,7 +12,6 @@
 		<h2 style="margin-bottom: 50px;">비밀번호 찾기</h2>
 			<small><span style="color: red; font: bold;">사용하시는 아이디(E-mail)와 휴대폰번호를 입력해주세요</span> </small>
 			<div class="" >
-<!-- 				<form id="findform" name="findform" autocomplete="off" > -->
 				<div class="input-group" style="width: 50%; margin-top: 20px;">
 					<span class="input-group-addon"><i
 						class="glyphicon glyphicon-user"></i></span> <input id="id" type="text"
@@ -28,7 +27,6 @@
 				<div class="input-group" style="width: 20%; margin-top: 20px;" >
 					<button type="button" id="findpass" class="btn" style="width: 100%" onclick="findpass()">찾기</button>
 				</div>
-	</form>
 			</div>
 	</div>
 	<script>
@@ -72,11 +70,6 @@
 			}
 		});  
 
-
-		
-//     	var form = document.getElementById("findform");
-//     	form.action = "/findpass";
-//     	form.submit();
 	}
 	
     
