@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import total.service.LoginOutService;
 import total.service.MailService;
@@ -55,34 +56,39 @@ public class LoginOutController {
 		return "redirect:/";
 	}
 	
+	@ResponseBody
 	@RequestMapping(path="/findpass", method=RequestMethod.POST)
 	public String findPassHandle(HttpSession session, Model model, @RequestParam Map<String, String> param) {
 		try {
 			boolean b = false;
-			Map map = new HashMap();
+			 
 			
-			map = loginOutService.findPass(param); 
-//			System.out.println("찾아온 정보 : " + map);
-			String pass = String.valueOf(map.get("PASSWORD"));
-			String email = (String)map.get("ID");
-//			System.out.println("password : " + pass +" / email :  " + email);
-			if (map != null) {
-				b = mailService.sendPassMail(email, pass);
-				if(b) {
+			System.out.println("찾아온 정보 : " + param);
+			String phone = String.valueOf(param.get("phone"));
+			String email = String.valueOf(param.get("id"));
+			System.out.println("phone : " + phone +" / email :  " + email);
+			String pass = null;
+			Map map = loginOutService.findPass(param); 
+			System.out.println(map);
+			
+				if(map==null) {
+					return "false";
+				} else {
+				System.out.println(String.valueOf(map.get("PASSWORD")));
+				pass = String.valueOf(map.get("PASSWORD"));
+					b = mailService.sendPassMail(email, pass);
+					System.out.println(b);
+					if(b) {
 //					System.out.println("메일수신성공 : " + b);
-					model.addAttribute("rst", "true");
-					return "/mypass";
-				}
-			}
-				throw new Exception();
+						return "true";
+					}
+					
+				} 
 
-			
 		}catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("err", "Logon Failed");
-			model.addAttribute("main","login.jsp");
-			return "default";
 		}
+		return "false";
 
 	}
 	
@@ -90,7 +96,6 @@ public class LoginOutController {
 	@RequestMapping(path = "/mypass")
 	public String mypassHandle(Model model, HttpSession session, HttpServletRequest req,
 			@RequestParam Map<String, String> param) {
-//		model.addAttribute("main","target.jsp" );
 		return "mypass";
 
 	}
