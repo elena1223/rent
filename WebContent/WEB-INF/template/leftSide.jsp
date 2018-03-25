@@ -26,6 +26,7 @@
 	</c:when>
 	<c:when test="${uri==location[5]}">
 		<p><a href="/manager/register">차량등록</a></p>
+		<p><a href="/manager/updateremove">수정/삭제</a></p>
 		<p><a href="/manager/reservation">예약내역</a></p>
 	</c:when>
 	<c:otherwise>
