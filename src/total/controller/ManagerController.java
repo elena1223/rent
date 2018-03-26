@@ -1,12 +1,12 @@
 package total.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,15 +30,16 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(path="/manager/addCar", method=RequestMethod.POST)
-	public String addCarHandle(@RequestParam Map<String,String> param, Model model,@RequestParam(name = "img") MultipartFile img) {
-		String realPath = "C:\\Users\\d\\git\\rent\\WebContent\\imgCar";
+	public String addCarHandle(HttpServletRequest req, @RequestParam Map<String,String> param, Model model,@RequestParam(name = "img") MultipartFile img) {
+		ServletContext sc = req.getServletContext();
+		String realPath = sc.getRealPath("/imgCar");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String fileName = sdf.format(new Date()) + "_" + img.getOriginalFilename();
 		
 		param.put("img", fileName);
 		managerService.addCar(param);
 		
-		// 파일 업로드
+		// �뙆�씪 �뾽濡쒕뱶
 		File saveFile = new File(realPath+"/"+fileName);
 		try {
 			img.transferTo(saveFile);
