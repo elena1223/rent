@@ -14,6 +14,7 @@
 <body>
 	<div align="center">
 		<h2>차량 목록</h2>
+		<form name="form" method="post">
 		<table class="table table-condensed table-hover">
 			<thead>
 				<tr align="center">
@@ -31,7 +32,7 @@
 			<c:forEach var="li" items="${car }">
 				<tbody>
 					<tr>
-						<td><input type="checkbox" name="check" class="check" /></td>
+						<td><input type="checkbox" name="no" class="check" value="${li.NO }"/></td>
 						<td>${li.CNAME }</td>
 						<td>${li.TYPE }</td>
 						<td align="right"><fmt:formatNumber pattern="#,###">${li.PRICE }</fmt:formatNumber>원</td>
@@ -44,24 +45,24 @@
 				</tbody>
 			</c:forEach>
 		</table>
-
-		<button type="submit" class="btn btn-primary" style="width: 20%">수정</button>
-		<button type="submit" class="btn btn-danger" style="width: 20%">삭제</button>
+		<button type="submit" class="btn btn-primary" style="width: 20%" formaction="/manager/update">수정</button>
+		<button type="submit" class="btn btn-danger" style="width: 20%" formaction="/manager/remove">삭제</button>
+		</form>
 
 	</div>
 	<script>
-		var chkObj = document.getElementsByName("check");
+		var chkObj = document.getElementsByName("no");
 		var rowCnt = chkObj.length;
 		var ck;
 		$(document).ready(function() {
 			$('#checkAll').click(function() {
 				if ($('#checkAll').is(':checked')) {
 					//전체체크
-					$('input:checkbox[name=check]').prop('checked', true);
+					$('input:checkbox[name=no]').prop('checked', true);
 
 				} else {
 					//전체체크해제
-					$('input:checkbox[name=check]').prop('checked', false);
+					$('input:checkbox[name=no]').prop('checked', false);
 				}
 			});
 
