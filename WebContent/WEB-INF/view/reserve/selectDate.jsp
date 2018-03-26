@@ -15,27 +15,63 @@
   
   <h2 style="color:#2E64FE">예약 날짜 선택</h2>
   <h4 style="color:gray">${car.CNAME}</h4>
-  
-  <%@ include file="calendar.jsp" %>
+<form id="form" action="/reserve/result" method="post">
+<input type="hidden" name="no" value="${car.NO }">
   <table>
-  <tr><td><input type="text" readonly class="input-group input-append date" id="from"/></td>
+  <tr><td><input type="text" name="start" readonly class="input-group input-append date" id="from"/></td>
   <td> ~ </td>
-  <td><input type="text" readonly class="input-group input-append date" id="to"/></tr>
+  <td><input type="text" name="end" readonly class="input-group input-append date" id="to"/></td></tr>
   </table>
-  총<span id="day"> 1</span>일 / <span id="price"></span>원
-<button type="button" id="sub" style= "margin-left:315px" class="btn btn-primary">예약하기</button>
   
+</form>
+  총 <span id="day">1</span>일 / <span id="price"></span>원<br/>
+  <span id="msg"></span><br/>
+  <button type="button" id="sub" style= "margin-left:315px" class="btn btn-primary">예약하기</button>
  <script>
+ 	var dateCheck=false;
  window.onload = function () {
 		bw()
 	}
+ 	
+ 	function check(){
+		$.ajax({
+			url: "/reserve/dateCheck",
+			type: "POST",
+			async:false,
+			data : {
+				"start" : $('#from').val(),
+				"end" : $('#to').val(),
+				"no" : '${car.NO}'
+			},
+			success: function(rst){
+				if(rst.CNT==rst.RCNT){
+					$("#msg").css("color","red");
+					$("#msg").html("예약 불가능한 날짜입니다.");
+					dateCheck=false;
+				} else {
+					$("#msg").css("color","green");
+					$("#msg").html("예약 가능한 날짜 입니다.");
+					dateCheck=true;
+				}
+			}
+		});
+ 	}
  
- var oneDay=1000*60*60*24
 	function bw(){
 	 var between=(new Date($('#to').val())-new Date($('#from').val()))/1000/60/60/24+1
 	 $('#day').html(between);
 	 $('#price').html(between*${car.PRICE});
  }
+	
+	$("#sub").click(function(){
+		check();
+		if(dateCheck){
+			$("#form").submit();
+		}else{
+			window.alert("예약가능한 날짜를 선택해주세요.")
+		}
+		
+	});
  
  $('#from').datepicker({
 	 format: "yyyy-mm-dd",
@@ -55,6 +91,7 @@
 	 $('#to').val($('#from').val())
 	 }
 	 bw();
+	 check();
  })
  
   $('#to').change(function(){
@@ -62,6 +99,7 @@
 	 $('#from').val($('#to').val())
 	 }
 	 bw();
+	 check();
  })
  
  

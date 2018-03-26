@@ -4,15 +4,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reserve">
 	<insert id="add">
-	insert into rent_reserve values(rent_reserve_seq.nextval,#{cno},#{start},#{end},{mno})
+	insert into rent_reserve values(rent_reserve_seq.nextval,#{no},#{start},#{end},${mno})
 	</insert>
-	<select id="readAll">
+	<select id="readAll" resultType="hashMap">
 		select * from rent_reserve
 	</select>
-	<select id="readByMember">
+	<select id="readByMember" resultType="hashMap">
 		select * from rent_reserve where mno=#{mno}
 	</select>
-	<select id="readByCar">
+	<select id="readByCar" resultType="hashMap">
 		select * from rent_reserve where cno=#{cno}
 	</select>
+	
+	<select id="dateCheck" resultType="hashMap">
+	select * from rent_car left join (select cno,count(*) as rcnt from rent_reserve where 
+	(((start_day &lt; #{start} and end_day > #{start})or(start_day &lt; #{end} and end_day > #{end}) or (start_day between #{start} and #{end}) or (end_day between #{start} and #{end})) 
+	and sysdate &lt; end_day ) group by cno) tmp on rent_car.no=tmp.cno where no=${no}
+	</select>
+	
 </mapper>
