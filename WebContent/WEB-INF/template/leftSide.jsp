@@ -24,9 +24,13 @@
 		<p><a href="/customer/notice">공지</a></p>
 		<p><a href="/customer/review">후기</a></p>
 	</c:when>
+	<c:when test="${uri==location[4]}">
+		<p><a href="/mypage/modify">정보수정</a></p>
+		<p><a href="/mypage/reserve">예약관리</a></p>
+	</c:when>
 	<c:when test="${uri==location[5]}">
-		<p><a href="/manager/register">차량등록</a></p>
-		<p><a href="/manager/reservation">예약내역</a></p>
+		<p><a href="/manager/update">차량등록</a></p>
+		<p><a href="/manager/reserve">예약관리</a></p>
 	</c:when>
 	<c:otherwise>
 	</c:otherwise>

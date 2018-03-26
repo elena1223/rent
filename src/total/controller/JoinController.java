@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,7 @@ public class JoinController {
 			boolean rst = false;
 			if(lv.equals("")) {
 				param.put("lv", "0");
+
 				rst= joinService.addNewOne(param); 
 			}else {
 				param.put("lv", "1");
@@ -81,6 +83,7 @@ public class JoinController {
 			return "default";
 		}
 	}
+	
 	@ResponseBody
 	@RequestMapping(path="/idCheck", method= RequestMethod.POST)
 	public Map idCheck(Model model, HttpSession session, @RequestParam Map<String, String> param) {
@@ -96,13 +99,71 @@ public class JoinController {
 							
 					} catch (Exception e) {
 						e.printStackTrace();
-						
 					}
 					return check;
 			  }
 			  return check;
 			  
 		}
+	
+	@ResponseBody
+	@RequestMapping(path="/phoneCheck", method= RequestMethod.POST)
+	public boolean phoneCheck(Model model, HttpSession session, 
+			@RequestParam Map<String, String> param, HttpServletRequest req) {
+		
+		  Map check = new HashMap<>();
+		  String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";   
+		  Pattern p = Pattern.compile(regex);
+		  Matcher m = p.matcher(param.get("phone"));
+			if(m.matches()) {
+					
+			try {
+				check = joinService.existPhoneCheck(param.get("phone"));
+//				System.out.println("휴대폰 중복확인 false는 중복 : " + (check==null));	
+			} catch (Exception e) {
+					e.printStackTrace();
+			}
+				return check==null;
+			  }
+			  
+			  return check==null;
+		}
+	
+	@ResponseBody
+	@RequestMapping(path = "/myphoneCheck", method = RequestMethod.POST)
+	public boolean myphoneCheck(Model model, HttpSession session, @RequestParam Map<String, String> param,
+			HttpServletRequest req) {
+
+		HttpSession s = req.getSession();
+		Map logon = (Map) s.getAttribute("logon");
+		// System.out.println("세션의 로그온 값" + logon );
+		String phone = String.valueOf(logon.get("PHONE"));
+		String paramphone = String.valueOf(param.get("phone"));
+		// System.out.println("세션의 폰값 : " + phone);
+		// System.out.println("파람의 폰값 : "+ param.get("phone"));
+		Map check = new HashMap<>();
+		String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(param.get("phone"));
+
+		if (paramphone.equals(phone)) {
+			param.put("phone", phone);
+		} else {
+			if (m.matches()) {
+
+				try {
+					check = joinService.existPhoneCheck(param.get("phone"));
+					// System.out.println("휴대폰 중복확인 false는 중복 : " + (check==null));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return check == null;
+			}
+
+			return check == null;
+		}
+		return true;
+	}
 	
 	
 	}
