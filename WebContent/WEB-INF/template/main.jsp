@@ -27,8 +27,9 @@
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
-      background-color: #f1f1f1;
+      background-color: white;
       height: 100%;
+      
     }
     
     /* Set black background color, white text and some padding */
@@ -36,6 +37,9 @@
       background-color: #555;
       color: white;
       padding: 15px;
+/*       position:absolute; */
+      bottom:0;
+	  width:100%;      
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */

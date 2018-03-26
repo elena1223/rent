@@ -1,9 +1,10 @@
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%
+<% 
 	String type=((String)request.getAttribute( "javax.servlet.forward.request_uri")).split("/")[2];
 	request.setAttribute("type", type);
 	String typek=null;
@@ -16,6 +17,7 @@
 	}else{
 		response.sendRedirect("/index");
 	}
+	
 
 %>
  <c:set var="notice" value="notice"/>
@@ -43,7 +45,7 @@
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="b" items="${board }">
+    <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
       <tr>
       	<td>${b.NO }</td>
         <td><a href="/customer/${type}/${b.NO }">${b.TITLE } (${b.CNT }<c:if test="${b.CNT==null }">0</c:if>)</a></td>
@@ -52,11 +54,26 @@
         <td>${b.HIT }</td>
 	</c:forEach>
     </tbody>
-  </table>
+  </table> 
+  <div style="float:center">
+	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
+		<c:choose>
+		<c:when test="${page.page==i}">
+		<b>${i }</b>
+		</c:when>
+		<c:otherwise>
+		<a href="?page=${i }">${i }</a>
+		</c:otherwise>
+		</c:choose> 
+	</c:forEach>
+
+	</div> 
 
 <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
-  <button type="button" onclick="location.href='/customer/write?type=${type}'" style="position: absolute; right: 0; margin:10px" class="btn btn-primary">글쓰기</button>
+<p align="right">
+  <button type="button" onclick="location.href='/customer/write?type=${type}'" style="  right: 0; margin-right:150px" class="btn btn-primary">글쓰기</button>
+  </p>
   </c:if>
 </c:if>
 </div>
