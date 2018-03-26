@@ -143,7 +143,7 @@ th, td {
 
 			</table>
 		<button type="button" onclick="register()" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
-		회원가입</button>
+		확인</button>
 			
 		</div>
 	</form>
@@ -278,6 +278,10 @@ th, td {
 
     function phoneCheck(){
 		var phone =  $("#phone").val();
+    	if($("#phone").val()==""){
+    		alert("전화번호를 입력하세요!");
+    		return;
+    	}
 		
 		if(phone.length > 13){
 			alert("잘못된 휴대폰 번호입니다.");
