@@ -63,10 +63,9 @@ public class LoginOutController {
 			boolean b = false;
 			 
 			
-			System.out.println("찾아온 정보 : " + param);
+//			System.out.println("찾아온 정보 : " + param);
 			String phone = String.valueOf(param.get("phone"));
 			String email = String.valueOf(param.get("id"));
-			System.out.println("phone : " + phone +" / email :  " + email);
 			String pass = null;
 			Map map = loginOutService.findPass(param); 
 			System.out.println(map);
@@ -79,7 +78,6 @@ public class LoginOutController {
 					b = mailService.sendPassMail(email, pass);
 					System.out.println(b);
 					if(b) {
-//					System.out.println("메일수신성공 : " + b);
 						return "true";
 					}
 					
