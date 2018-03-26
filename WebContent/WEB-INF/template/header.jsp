@@ -24,7 +24,7 @@
         <li class="<%=uri.equals("mypage")?"active":""%>"><a href="<%=request.getContextPath() %>/mypage">회원정보</a></li>
         </c:if>
         <c:if test="${logon.LV==2}">
-        <li class="<%=uri.equals("manager")?"active":""%>"><a href="<%=request.getContextPath() %>/manager">관리자페이지</a></li>
+        <li class="<%=uri.equals("manager")?"active":""%>"><a href="<%=request.getContextPath() %>/manager/register">관리자페이지</a></li>
         </c:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
