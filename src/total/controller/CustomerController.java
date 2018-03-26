@@ -1,6 +1,6 @@
 package total.controller;
 
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,10 +22,28 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	@RequestMapping("/{type}")
-	public String qnaHandle(Model model,@PathVariable String type) {
+	public String qnaHandle(Model model,@PathVariable String type, @RequestParam(defaultValue= "1") int page) {
+
 		model.addAttribute("main","customer/qna.jsp");
-		model.addAttribute("board",customerService.readAllBoard(type));
+		List<Map> res=customerService.readAllBoard(type);
+		model.addAttribute("board",res);
+		Map<String,Integer> paging = new HashMap<String,Integer>();
+
+		paging.put("page", page);
+		paging.put("totalCount", res.size());
+		paging.put("countList", 10);
+		paging.put("countPage", 5);
+		paging.put("totalPage", res.size()%10>0?res.size()/10+1:res.size()/10);
+		if(page>paging.get("totalPage")) {
+			paging.put("page",paging.get("totalPage"));
+		}
+		paging.put("startPage",((paging.get("page") - 1) / 5) * 5 + 1);
+		paging.put("endPage", paging.get("startPage")+5-1>paging.get("totalPage")?paging.get("totalPage"):paging.get("startPage")+5-1);
+		model.addAttribute("page",paging);
 		return "default";
+		
+
+		
 	}
 	@RequestMapping("/{type}/{no}")
 	public String qnaNoHandle(Model model,@PathVariable String no,@PathVariable String type) {
