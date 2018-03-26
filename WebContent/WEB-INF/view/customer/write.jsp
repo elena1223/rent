@@ -12,9 +12,9 @@
 </div>
   
   <div  class="form-group">
-  <textarea class="form-control" name="contents" rows="5" id="content" style="height:300px" placeholder="본문"></textarea>
+  <textarea class="form-control" name="contents" rows="5" id="content" style="resize: none;height:300px" placeholder="본문"></textarea>
 </div>
- <button id="sub" style="position: absolute; right: 0; margin:10px" class="btn btn-default">글쓰기</button>
+ <button type="button" id="sub" style="position: absolute; right: 0; margin:10px" class="btn btn-default">작성완료</button>
 </form>
  <script>
  	$("#sub").click(function(){
