@@ -149,6 +149,7 @@
     
   </div>
 <br>
+<!-- Channel Plugin Scripts -->
 
 <footer class="container-fluid text-center">
   <tiles:insertAttribute name="footer"/>
