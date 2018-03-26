@@ -14,7 +14,9 @@
   <div  class="form-group">
   <textarea class="form-control" name="contents" rows="5" id="content" style="resize: none;height:300px" placeholder="본문"></textarea>
 </div>
- <button type="button" id="sub" style="position: absolute; right: 0; margin:10px" class="btn btn-default">작성완료</button>
+<p align="right">
+ <button type="button" id="sub" style="right: 0; margin:10px" class="btn btn-default">작성완료</button>
+ </p>
 </form>
  <script>
  	$("#sub").click(function(){

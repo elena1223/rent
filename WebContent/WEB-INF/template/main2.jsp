@@ -36,6 +36,37 @@
       display: none; 
     }
   }
+  
+  
+  .banner{
+    position: relative;
+    background-image: url(./img/banner3.jpg);                                                               
+    height: 15vh;  
+    background-size: cover;
+}
+  
+ .img-cover{
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background-color: rgba(0, 0, 0, 0.4);                                                                 
+
+   z-index:1;
+}
+ .banner .content{
+     position: absolute;
+     top:50%;
+     left:50%;
+     transform: translate(-50%, -50%);                                                                   
+
+     font-size:1rem;
+     color: black;
+     z-index: 2;
+     text-align: center;
+}
+  
+  
+  
   </style>
 </head>
 <body>
@@ -86,44 +117,41 @@
       <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
       <p>Project 2</p>    
     </div>
+    
     <div class="col-sm-4">
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-      <div class="well">
-       <p>Some text..</p>
-      </div>
+    
+     <div class="banner">
+        <div class="content">
+            <h4><b>보험유의사항</b></h4>
+             <p>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</p>
+             <a href="/service/indemnity" style="text-decoration: none;">상세보기</a>
+        </div>
+        <div class="banner-cover"></div>
     </div>
-  </div>
-</div><br>
-<!-- Channel Plugin Scripts -->
-<script>
-  window.channelPluginSettings = {
-    "pluginKey": "2d430381-a4c9-4620-bebc-c885356f0493"
-  };
-  (function() {
-    var node = document.createElement('div');
-    node.id = 'ch-plugin';
-    document.body.appendChild(node);
-    var async_load = function() {
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.async = true;
-      s.src = '//cdn.channel.io/plugin/ch-plugin-web.js';
-      s.charset = 'UTF-8';
-      var x = document.getElementsByTagName('script')[0];
-      x.parentNode.insertBefore(s, x);
-    };
-    if (window.attachEvent) {
-      window.attachEvent('onload', async_load);
-    } else {
-      window.addEventListener('DOMContentLoaded', async_load, false);
-    }
-  })();
-</script>
-<!-- End Channel Plugin -->
-<footer class="container-fluid text-center">
+</div>
 
+    <div class="col-sm-4">
+    
+      <div class="banner">
+        <div class="content">
+            <h4><b>보험유의사항</b></h4>
+             <p>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</p>
+             <a href="/service/indemnity" style="text-decoration: none;">상세보기</a>
+      	</div>
+      	
+     </div>
+     
+        <div class="banner-cover"></div>
+    </div>      
+      
+      
+    </div>
+    
+  </div>
+<br>
+
+<footer class="container-fluid text-center">
+  <tiles:insertAttribute name="footer"/>
 </footer>
 
 </body>

@@ -21,8 +21,8 @@
 	</c:when>
 	<c:when test="${uri==location[3]}">
 		<p><a href="/customer/qna">고객문의</a></p>
-		<p><a href="/customer/notice">공지</a></p>
 		<p><a href="/customer/review">후기</a></p>
+		<p><a href="/customer/notice">공지</a></p>
 	</c:when>
 	<c:when test="${uri==location[4]}">
 		<p><a href="/mypage/modify">정보수정</a></p>
@@ -35,4 +35,3 @@
 	<c:otherwise>
 	</c:otherwise>
 </c:choose>
-
