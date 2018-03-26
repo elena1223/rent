@@ -62,6 +62,7 @@ public class JoinController {
 			boolean rst = false;
 			if(lv.equals("")) {
 				param.put("lv", "0");
+
 				rst= joinService.addNewOne(param); 
 			}else {
 				param.put("lv", "1");
