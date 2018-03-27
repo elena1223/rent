@@ -43,7 +43,6 @@
 </div >
 
 <div style="float:center; margin-left:10px">
-	<h4>1일 <span style="color:#2E2E2E" id="price"></span>원</h4>
 </div>
 
 
@@ -76,10 +75,9 @@ window.onload = function () {
 			$("#cimg").html(html);
 				for(var i=0;i<rst.length;i++){
 					if(rst[i].NO==$("#sel2 option:selected").val()){
-					html='<tr><td style="text-align:center">'+rst[i].KILO+'km </td><td style="text-align:center">'+rst[i].OIL+'</td></tr>'+
-						'<tr><td colspan="2" style="text-align:center">'+rst[i].OPT+'<td></tr>'
+					html='<tr><td style="text-align:center">'+rst[i].KILO+'km </td><td style="text-align:center">'+rst[i].OIL+'</td><td style="text-align:center">1일 '+rst[i].PRICE+'원</td></tr>'+
+						'<tr><td style="text-align:center; width:15%">'+rst[i].MAX+'인승<td><td colspan="2" style="text-align:center">'+rst[i].OPT+'<td></tr>'
 						$("#info").html(html);
-						$("#price").html(rst[i].PRICE);
 					break;
 					}
 				}

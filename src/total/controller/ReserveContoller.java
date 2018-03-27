@@ -59,9 +59,15 @@ public class ReserveContoller {
 		Map res = reserveService.dateCheck(map);
 		return res;
 	}
+	@ResponseBody
+	@RequestMapping(path="/overlapCheck",method=RequestMethod.POST)
+	public List overlapHandle(Model model,@RequestParam Map map) {
+		List over=reserveService.overlapDate(map);
+		return over;
+	}
 	@RequestMapping(path="/result", method=RequestMethod.POST)
 	public String reservepHandle(Model model,@RequestParam Map map,HttpSession session) {
-		map.put("mno",((Map)session.getAttribute("logon")).get("NO") );
+		map.put("mno",((Map)session.getAttribute("logon")).get("NO"));
 		model.addAttribute("res",reserveService.newReserve(map));
 		model.addAttribute("main","reserve/reservep.jsp");
 		return "default";

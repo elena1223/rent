@@ -55,27 +55,34 @@
 	</c:forEach>
     </tbody>
   </table> 
-  <div style="float:center">
+  <div style="float:left">
 	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 		<c:choose>
 		<c:when test="${page.page==i}">
 		<b>${i }</b>
 		</c:when>
 		<c:otherwise>
-		<a href="?page=${i }">${i }</a>
+		<a href="?page=${i }&key=${key}">${i }</a>
 		</c:otherwise>
 		</c:choose> 
 	</c:forEach>
 
-	</div> 
-
+	</div>
+	<div style="position: absolute; right: 0; margin-right:20px">
+	<form>
+		<input type="hidden" name="page" value="${page.page }"/>
+		검색 <input type="text" name="key" value="${key }"/>
+	</form>
+	</div>
+<br/>
 <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
-<p align="right">
-  <button type="button" onclick="location.href='/customer/write?type=${type}'" style="  right: 0; margin-right:150px" class="btn btn-primary">글쓰기</button>
-  </p>
+  <button type="button" onclick="location.href='/customer/write?type=${type}'" style="position: absolute; right: 0; margin:18px" class="btn btn-primary">글쓰기</button>
   </c:if>
 </c:if>
 </div>
+<br/>
+<br/>
+<br/>
 
     

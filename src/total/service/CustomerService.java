@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
 	@Autowired
 	SqlSessionTemplate template;
-	public List<Map> readAllBoard(String type){
-		return template.selectList("board.readAll", type);
+	public List<Map> readAllBoard(Map map){
+		return template.selectList("board.readAll", map);
 	}
 	
 	public List<Map> readComments(String cno){
