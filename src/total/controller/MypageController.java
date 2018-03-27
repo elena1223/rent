@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import total.service.LoginOutService;
 import total.service.MypageService;
+import total.service.ReserveService;
 
 @Controller
 public class MypageController {
@@ -22,9 +23,8 @@ public class MypageController {
 	MypageService mypageService;
 	@Autowired
 	LoginOutService loginOutService;
-	
-	@RequestMapping(path = "/mypage")
 
+	@RequestMapping(path = "/mypage")
 	public String myPageHandle(Model model, HttpSession session, Map map, HttpServletRequest req) {
 
 		try {
@@ -162,6 +162,25 @@ public class MypageController {
 
 	}
 	
-	
+	@RequestMapping("/mypage/reserve")
+	public String readMyResevation(Model model, HttpSession session, HttpServletRequest req) {
+		
+		HttpSession s = req.getSession();
+		Map logon = (Map) s.getAttribute("logon");
+		if (logon == null) {
+			return "redirect:/";
+		}
+		String no = String.valueOf(logon.get("NO"));
+		Map reservation = mypageService.readMyResevation(no);
+		System.out.println("넘어온 파람값 " + reservation);
+		if(reservation!=null) {
+			model.addAttribute("my",reservation);
+			model.addAttribute("main","myreservation.jsp");
+			return "default";
+			
+		}else {
+			return "redirect:/reserve";
+		}
+	}
 	
 }

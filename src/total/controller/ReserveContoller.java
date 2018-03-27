@@ -66,5 +66,7 @@ public class ReserveContoller {
 		model.addAttribute("main","reserve/reservep.jsp");
 		return "default";
 	}
-
+	
+	
+	
 }

@@ -26,6 +26,21 @@
     </plugins>
   </build>
 <dependencies>
+
+<!-- 몽고 드라이버 -->
+<dependency>
+ <groupId>org.mongodb</groupId>
+ <artifactId>mongo-java-driver</artifactId>
+ <version>2.13.3</version>
+</dependency>
+
+<!-- 몽고에 쓰기위한 bson -->
+<dependency>
+ <groupId>org.mongodb</groupId>
+ <artifactId>bson</artifactId>
+ <version>2.13.3</version>
+</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 <dependency>
     <groupId>com.googlecode.json-simple</groupId>
