@@ -1,6 +1,7 @@
 package total.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -171,7 +172,7 @@ public class MypageController {
 			return "redirect:/";
 		}
 		String no = String.valueOf(logon.get("NO"));
-		Map reservation = mypageService.readMyResevation(no);
+		List reservation = mypageService.readMyResevation(no);
 		System.out.println("넘어온 파람값 " + reservation);
 		if(reservation!=null) {
 			model.addAttribute("my",reservation);

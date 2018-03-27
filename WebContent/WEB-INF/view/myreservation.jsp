@@ -22,6 +22,7 @@
         <th>${my.NAME }</th>
         <th>${my.START_DAY }</th>
         <th>${my.END_DAY }</th>
+        
       </tr>
     </thead>
     <tbody>
