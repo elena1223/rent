@@ -22,10 +22,13 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	@RequestMapping("/{type}")
-	public String qnaHandle(Model model,@PathVariable String type, @RequestParam(defaultValue= "1") int page) {
+	public String qnaHandle(Model model,@PathVariable String type, @RequestParam(defaultValue= "1") int page,@RequestParam(defaultValue= "") String key) {
 
 		model.addAttribute("main","customer/qna.jsp");
-		List<Map> res=customerService.readAllBoard(type);
+		Map map=new HashMap();
+		map.put("type", type);
+		map.put("key", "%"+key+"%");
+		List<Map> res=customerService.readAllBoard(map);
 		model.addAttribute("board",res);
 		Map<String,Integer> paging = new HashMap<String,Integer>();
 
