@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from rent_member left join 
 		(select * from rent_reserve left join rent_car 
 				on rent_reserve.cno = rent_car.no where mno = #{no } ) 
-			tmp on tmp.mno = rent_member.no where mno = #{no } 
+			tmp on tmp.mno = rent_member.no where mno = #{no } order by start_day asc
 	</select>
 	
 </mapper>

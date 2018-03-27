@@ -32,8 +32,9 @@ public class MypageService {
 		return rst;
 	}
 	
-	public Map readMyResevation(String no) {
-		return template.selectList("reserve.readMyResevation",no);
+	public List readMyResevation(String no) {
+		List<Map> list = template.selectList("reserve.readMyResevation",no);
+		 return list;
 	}
 	
 }
