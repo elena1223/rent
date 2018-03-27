@@ -67,7 +67,7 @@
 		</c:choose> 
 	</c:forEach>
 
-	</div> 
+	</div>
 	<div style="position: absolute; right: 0; margin-right:20px">
 	<form>
 		<input type="hidden" name="page" value="${page.page }"/>
