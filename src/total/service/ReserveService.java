@@ -1,5 +1,6 @@
 package total.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,22 @@ public class ReserveService {
 	public Map dateCheck(Map map) {
 		return template.selectOne("reserve.dateCheck",map);
 
+	}
+	
+	public List overlapDate(Map map){
+		List list=new ArrayList<>();
+		List<Map> date = template.selectList("reserve.overlapDate",map);
+		for(Map d:date) {
+			map.putAll(d);
+			List<Map> tmp=template.selectList("reserve.overlapDay",map);
+			for(Map m:tmp) {
+				if(!list.contains(m.get("DAY"))) {
+					list.add(m.get("DAY"));
+				}
+			}
+			System.out.println(list.toString());
+		}
+		return list;
 	}
 }
 
