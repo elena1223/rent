@@ -9,7 +9,7 @@
 	<div align="center">
 		<form action="/session" method="post">
 			<div>
-				<h2 style="margin-bottom: 50px;">Login</h2>
+				<h2 style="margin-bottom: 20px;">Login</h2> 
 			</div>
 			<div class="">
 				<div class="input-group" style="width: 50%">
@@ -27,7 +27,7 @@
 					<span style="color: red;">${err }</span>
 				</c:if>
 				<div class="input-group" style="width: 50%">
-					<button type="submit" class="btn" style="width: 100%">Login</button>
+					<button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Login</button>
 				</div>
 			</div>
 		</form>
@@ -36,7 +36,10 @@
 		</p>
 		<p style="margin-top: 10px;">
 		비밀번호를 잊으셨나요? &nbsp;<a href="#" style="text-decoration: none;" onclick="find()">비밀번호 찾기</a>
-		</p>		
+		</p>
+		<p style="margin-top: 50px;">
+		★&nbsp;<a href="/" style="text-decoration: none;">뒤로가기</a>
+		</p>				
 	</div>
 	
 	

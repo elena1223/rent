@@ -6,7 +6,7 @@
 <head>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 
 table, td, th {    
@@ -69,8 +69,8 @@ td	{
 }
 </style>
 <body>
+
 	<form id="editform" name="editform" method="post" autocomplete="off" >
-		
     <div id="sub_tit">
         <h2 id="ctn_title">회원정보</h2>
 		<div style="border-top:2px solid #ccc;"></div>
@@ -95,9 +95,11 @@ td	{
 						ID(E-mail)&nbsp;
 						<c:choose>
 			<c:when test="${mypage.LV==0}">
-						<br/><small><span style="color: red">이메일 미인증 상태입니다.</span></small>
+			<span style="color: red" class="glyphicon glyphicon-remove"></span>
+						<br/><small><span style="color: red"> 이메일 미인증 상태입니다.</span></small>
 			</c:when>
 			<c:otherwise>
+			<span style="color: green" class="glyphicon glyphicon-ok"></span>
 						<br/><small><span style="color: green">이메일 인증 상태입니다.</span></small>
 			</c:otherwise>
 			</c:choose>
@@ -118,7 +120,8 @@ td	{
 					</td>
 					<td>
 						<input type="text" name = "lv" id= "lv" /> &nbsp; 
-						<input type="button" id="t2" value="확인" onclick="authCheck()"> 
+						<input type="hidden" id = "lvv" name="lvv" >
+						<input type="button" id="t2"  value="확인" onclick="authCheck()"> 
 						<input type="button" id="t3" value="다시받기" onclick="mailcheck()"> 
 						 
 					</td>
@@ -195,7 +198,8 @@ td	{
 	function authCheck(){
 		
 		var lv =  $("#lv").val();
-		console.log(lv);
+		var lvv =  $("#lvv").val();
+// 		console.log(lv);
 		if(lv.length==0){
 			//인증번호 없는 경우
 			$(".msg_auth").html("(인증번호를 입력해주세요.)");
@@ -219,16 +223,19 @@ td	{
 					//인증값이 맞는경우
 					$(".msg_auth").html("확인되었습니다.");
 					$(".msg_auth").css("color", "green");
-					
+					$("#lvv").val(1);
 
 				} else {
 					//인증값이 틀린경우
 					$(".msg_auth").html("인증번호가 틀립니다.");
 					$(".msg_auth").css("color", "red");
-					
+					$("#lvv").val(0)
 
 				}
-				$("#lv").val(${param.LV});
+				console.log(lv);
+				console.log(lvv);
+				
+// 				$("#lv").val(${param.LV});
 			}
 		});
 	}

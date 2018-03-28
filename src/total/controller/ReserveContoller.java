@@ -34,7 +34,6 @@ public class ReserveContoller {
 			model.addAttribute("main","login.jsp");
 
 			return "default";
-			
 		}else {
 			model.addAttribute("main","reserve/reserve.jsp");
 			model.addAttribute("list",infoService.readAllCar());
@@ -75,5 +74,7 @@ public class ReserveContoller {
 		model.addAttribute("main","reserve/reservep.jsp");
 		return "default";
 	}
-
+	
+	
+	
 }
