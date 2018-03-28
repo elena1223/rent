@@ -19,14 +19,14 @@
 			<thead>
 				<tr align="center">
 					<td><input type="checkbox" id="checkAll" /></td>
-					<td><b>Name</b></td>
-					<td><b>Type</b></td>
-					<td><b>Price</b></td>
-					<td><b>Oil</b></td>
-					<td><b>Kilo</b></td>
-					<td><b>Option</b></td>
-					<td><b>Max</b></td>
-					<td><b>Cnt</b></td>
+					<td><b>이름</b></td>
+					<td><b>타입</b></td>
+					<td><b>가격<small>(1일)</small></b></td>
+					<td><b>유종</b></td>
+					<td><b>연비</b></td>
+					<td><b>옵션</b></td>
+					<td><b>정원</b></td>
+					<td><b>보유</b></td>
 				</tr>
 			</thead>
 			<c:forEach var="li" items="${car }">

@@ -42,7 +42,7 @@
 				<input type="number" min="0" max="1000000" step="1000" class="form-control"
 					id="price" placeholder="Price" name="price">
 				<div align="left">
-					<small>1일 기준 금액이며, 최대 금액은 1,000,000만원입니다.</small>
+					<small>1일 기준 금액이며, 최대 금액은 1,000,000원입니다.</small>
 				</div>
 			</div>
 
