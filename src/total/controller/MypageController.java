@@ -71,18 +71,22 @@ public class MypageController {
 			}
 //			 String lv =param.get("LV"); // lv == null
 //			String lv = String.valueOf(param.get("LV")); // lv == "null"
-			// String LV = String.valueOf(logon.get("LV"));
+			String lv = String.valueOf(logon.get("LV"));
 			String lvv =param.get("lvv"); 
 			String phone = String.valueOf(param.get("phone"));
 //			System.out.println("lvv : " + lvv);
-			if (lvv.equals("0")) {
-				param.put("lv", "0");
-				map.put("lv", "0");
-			} else {
-				param.put("lv", "1");
-				map.put("lv", "1");
+			if(lvv==null) {
+				param.put("lv", lv);
+				map.put("lv", lv);
+			}else {
+				if (lvv.equals("0")) {
+					param.put("lv", "0");
+					map.put("lv", "0");
+				} else {
+					param.put("lv", "1");
+					map.put("lv", "1");
+				}
 			}
-			
 			if (phone == null) {
 				param.put("phone", (String) logon.get("phone"));
 				map.put("phone", (String) logon.get("phone"));
