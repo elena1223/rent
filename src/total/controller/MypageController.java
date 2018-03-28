@@ -69,27 +69,20 @@ public class MypageController {
 			if (logon == null) {
 				return "redirect:/";
 			}
-			// String lv =param.get("LV"); // lv == null
-			String lv = String.valueOf(param.get("LV")); // lv == "null"
+//			 String lv =param.get("LV"); // lv == null
+//			String lv = String.valueOf(param.get("LV")); // lv == "null"
 			// String LV = String.valueOf(logon.get("LV"));
+			String lvv =param.get("lvv"); 
 			String phone = String.valueOf(param.get("phone"));
-			// System.out.println(lv);
-			// System.out.println("(마이페이지out)세션에 로그온 정보 맵" + logon);
-			if (lv == null) {
-				param.put("lv", lv);
-				map.put("lv", String.valueOf(logon.get("LV")));
-
+//			System.out.println("lvv : " + lvv);
+			if (lvv.equals("0")) {
+				param.put("lv", "0");
+				map.put("lv", "0");
 			} else {
-				if (logon.get("LV").equals("0")) {
-					if (lv.equals("")) {
-						param.put("lv", "0");
-						map.put("lv", "0");
-					} else {
-						param.put("lv", "1");
-						map.put("lv", "1");
-					}
-				}
+				param.put("lv", "1");
+				map.put("lv", "1");
 			}
+			
 			if (phone == null) {
 				param.put("phone", (String) logon.get("phone"));
 				map.put("phone", (String) logon.get("phone"));
@@ -99,7 +92,7 @@ public class MypageController {
 			map.put("password", param.get("password"));
 			map.put("phone", param.get("phone"));
 
-			// System.out.println("쿼리로 넘어가는 맵 = " + map);
+			 System.out.println("쿼리로 넘어가는 맵 = " + map);
 			boolean b = mypageService.editMypage(map);
 			// 수정되었는지 여부
 			if (b) {
@@ -108,6 +101,8 @@ public class MypageController {
 
 				Map logons = loginOutService.findByIdAndPass(editmap);
 				session.setAttribute("logon", logons);
+				System.out.println("(마이페이지out)세션에 로그온 정보 맵" + logon);
+
 			} else {
 
 				throw new Exception();

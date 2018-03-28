@@ -39,6 +39,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="readMyResevation" resultType="hashMap">
 	  select cname ,to_char(start_day,'YYYY-MM-DD') as sday, to_char(end_day,'YYYY-MM-DD') as eday from rent_reserve left join rent_car 
-      on rent_reserve.cno = rent_car.no where mno = #{no }
+      on rent_reserve.cno = rent_car.no where mno = #{no } order by sday asc, eday asc
 	</select>	
 </mapper>

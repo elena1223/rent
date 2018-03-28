@@ -20,9 +20,7 @@ table {
 
 td{
 	width: 25%;
-	height: 49px;
 	vertical-align: middle;
-	padding: 0px;
 	}
 	
 th{
@@ -35,11 +33,12 @@ th{
 
 <div class="container">
   <h2>예약관리</h2>
-  <p>?? 할말있음 쓰고..</p>
+  <div style="border-top:2px solid #ccc;"></div>
+  <p style="margin-top: 10px;"> <small>취소신청 시, 당일 취소라도 100% 환불가능하며, 차량을 이용하시다 취소 시 1일 요금을 제외한 나머지를 위약금 없이 환불해드립니다. </small></p>
   <table class="table table-bordered" style="width: 80%;">
    <thead>
       <tr class="active" >
-        <th>차이름</th>
+        <th>차종</th>
         <th>예약일</th>
         <th>반납일</th>
         <th>취소신청</th>
@@ -51,7 +50,7 @@ th{
 	        <td>${v.CNAME}</td>
 	        <td>${v.SDAY}</td>
 	        <td>${v.EDAY }</td>
-	        <td><button type="button" class="btn btn-warning btn-sm">취소신청</button></td>
+	        <td><a href="#"><span class="glyphicon glyphicon-remove"></span></a></td>
 	      </tr>
     	</c:forEach>
 	</tbody>
