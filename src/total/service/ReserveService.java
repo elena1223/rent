@@ -25,6 +25,17 @@ public class ReserveService {
 			return rst;
 		}	
 	}
+	public boolean delete(String no) {
+		boolean rst=false;
+		try {
+		rst= template.delete("reserve.delete",no)>0?true:false;
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}finally {
+			return rst;
+		}	
+	}
 	public Map dateCheck(Map map) {
 		return template.selectOne("reserve.dateCheck",map);
 
@@ -51,6 +62,12 @@ public class ReserveService {
 			
 		}
 		return list;
+	}
+	public List<Map> readAll(String key){
+		return template.selectList("reserve.readAll",key);
+	}
+	public List<Map> endReserve(String key){
+		return template.selectList("reserve.endReserve",key);
 	}
 }
 

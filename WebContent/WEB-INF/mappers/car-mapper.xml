@@ -21,4 +21,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="add">
 		insert into rent_car values(rent_car_seq.nextval,#{cname},#{type},#{img},#{price},#{oil },#{kilo },#{opt },#{max },#{cnt })
 	</insert>
+	<select id="readSelect" resultType="hashMap">
+		select * from rent_car where no=#{no}
+	</select>
+	<update id="updateCar" parameterType="hashMap">
+		update rent_car 
+		<trim prefix="set" suffix="" prefixOverrides="" suffixOverrides=",">
+			<if test="cname != null">cname = #{cname},</if>
+			<if test="type != null">type = #{type},</if>
+			<if test="img != null">img = #{img},</if>
+			<if test="price != null">price = #{price},</if>
+			<if test="oil != null">oil = #{oil},</if>
+			<if test="kilo != null">kilo = #{kilo},</if>
+			<if test="opt != null">opt = #{opt},</if>
+			<if test="max != null">max = #{max},</if>
+			<if test="cnt != null">cnt = #{cnt},</if>
+		</trim>		
+		where no = #{no}
+	</update>
 </mapper>
