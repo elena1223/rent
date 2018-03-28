@@ -15,10 +15,10 @@
 					<tr>
 						<td colspan="3">&nbsp;<b style="font-size: 20px;"><input type="text" style="width: 30%" value="${li.CNAME}"/>
 						</b><small>(<input type="number" min="0" max="45" value="${li.MAX}" style="width: 6%"/>인승)</small>
-						<label class="radio-inline"><input type="radio" name="type" value="소형" class="type">소형</label>
-						<label class="radio-inline"><input type="radio" name="type" value="중형" class="type">중형</label>
-						<label class="radio-inline"><input type="radio" name="type" value="대형" class="type">대형</label>
-						<label class="radio-inline"><input type="radio" name="type" value="외제" class="type">외제</label>
+						<label class="radio-inline"><input type="radio" name="type" value="소형" class="${li.NO }">소형</label>
+						<label class="radio-inline"><input type="radio" name="type" value="중형" class="${li.NO }">중형</label>
+						<label class="radio-inline"><input type="radio" name="type" value="대형" class="${li.NO }">대형</label>
+						<label class="radio-inline"><input type="radio" name="type" value="외제" class="${li.NO }">외제</label>
 						</td>
 					</tr>
 					<tr>

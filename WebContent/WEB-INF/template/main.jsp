@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +27,9 @@
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
-      background-color: #f1f1f1;
+      background-color: white;
       height: 100%;
+      
     }
     
     /* Set black background color, white text and some padding */
@@ -33,6 +37,9 @@
       background-color: #555;
       color: white;
       padding: 15px;
+/*       position:absolute; */
+      bottom:0;
+	  width:100%;      
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */

@@ -36,6 +36,37 @@
       display: none; 
     }
   }
+  
+  
+  .banner{
+    position: relative;
+    background-image: url(./img/banner3.jpg);                                                               
+    height: 15vh;  
+    background-size: cover;
+}
+  
+ .img-cover{
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background-color: rgba(0, 0, 0, 0.4);                                                                 
+
+   z-index:1;
+}
+ .banner .content{
+     position: absolute;
+     top:50%;
+     left:50%;
+     transform: translate(-50%, -50%);                                                                   
+
+     font-size:1rem;
+     color: black;
+     z-index: 2;
+     text-align: center;
+}
+  
+  
+  
   </style>
 </head>
 <body>
@@ -86,18 +117,42 @@
       <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
       <p>Project 2</p>    
     </div>
+    
     <div class="col-sm-4">
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-      <div class="well">
-       <p>Some text..</p>
-      </div>
+    
+     <div class="banner">
+        <div class="content">
+            <h4><b>보험유의사항</b></h4>
+             <p>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</p>
+             <a href="/service/indemnity" style="text-decoration: none;">상세보기</a>
+        </div>
+        <div class="banner-cover"></div>
     </div>
+</div>
+
+    <div class="col-sm-4">
+    
+      <div class="banner">
+        <div class="content">
+            <h4><b>보험유의사항</b></h4>
+             <p>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</p>
+             <a href="/service/indemnity" style="text-decoration: none;">상세보기</a>
+      	</div>
+      	
+     </div>
+     
+        <div class="banner-cover"></div>
+    </div>      
+      
+      
+    </div>
+    
   </div>
-</div><br>
+<br>
+<!-- Channel Plugin Scripts -->
 
 <footer class="container-fluid text-center">
+  <tiles:insertAttribute name="footer"/>
 </footer>
 
 </body>

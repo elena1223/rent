@@ -33,4 +33,14 @@ public class ManagerURService {
 		return list;
 	}
 	
+	public boolean remove(MultiValueMap<String,String> no){
+		int remove = 0;
+		for (List<String> n : no.values()) {
+			for(int i=0; i<n.size(); i++) {
+				remove = template.delete("car.delete",n.get(i));
+			}
+		}
+		return remove >= 1;
+	}
+	
 }

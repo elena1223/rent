@@ -21,6 +21,11 @@ table {
 
 th, td {
     padding: 10px;
+    
+}
+td	{
+ width: 100px;
+
 }
 
 .button {
@@ -64,57 +69,64 @@ th, td {
 }
 </style>
 <body>
-    <input type="hidden" name="w" value="">
-	<form id="registerform" name="registerform" method="post" autocomplete="off" >
+	<form id="editform" name="editform" method="post" autocomplete="off" >
 		
     <div id="sub_tit">
-        <h2 id="ctn_title">회원가입</h2>
+        <h2 id="ctn_title">회원정보</h2>
 		<div style="border-top:2px solid #ccc;"></div>
     </div>
     <p  style="margin-top: 10px;">
-		<small >(*)항목은 필수 입력사항입니다.</small><br/>
-		<span><small>이메일 인증 후 렌트카 예약 가능</small></span>
+		<span><small>이메일 인증을 하시면 렌트카 예약이 가능합니다.</small></span>
 	</p>
 		<div align="center">
 			<table style="margin-top: 20px;">
 				<tr>
 					<td >
-						(*) 이름 &nbsp;
+						이름 &nbsp;
 					</td>
 					
 					<td>
-						 <input type="text" name= "name" id="name" value="${param.NAME}" 
-						 pattern = "[가-힣]{2,4}" onblur="nameCheck()"/>
+						 <label>${mypage.NAME}</label>
 						  &nbsp;<small><span class="msg_name" ></span></small>
 					</td>
 				</tr >
 				<tr>
 					<td >
-						(*) ID(E-mail)&nbsp;
-						
+						ID(E-mail)&nbsp;
+						<c:choose>
+			<c:when test="${mypage.LV==0}">
+						<br/><small><span style="color: red">이메일 미인증 상태입니다.</span></small>
+			</c:when>
+			<c:otherwise>
+						<br/><small><span style="color: green">이메일 인증 상태입니다.</span></small>
+			</c:otherwise>
+			</c:choose>
 					</td>
 					<td>
-						<input type="text" name = "id" id= "id" value="${param.ID}" 
-						onblur="idCheck()"/> &nbsp;
+						 <label>${mypage.ID}</label>
+						<input type="hidden" id="id" name="id" value="${mypage.ID}"/> &nbsp;
 						<small><span class="msg_id"></span></small> 
-						<input type="button" id="t1" value="인증" onclick="mailcheck()"> 
-						 
+						<c:if test="${mypage.LV == 0}">
+						<input type="button" id="t1" value="인증" onclick="mailcheck()">
+						</c:if> 
 					</td>
 				</tr>	
+				<c:if test="${mypage.LV==0}">
 				<tr>
 					<td >
 						인증번호&nbsp;<small><span class="msg_auth"></span></small>
 					</td>
 					<td>
-						<input type="text" name = "lv" id= "lv"/> &nbsp; 
+						<input type="text" name = "lv" id= "lv" /> &nbsp; 
 						<input type="button" id="t2" value="확인" onclick="authCheck()"> 
-						<input type="button" id="t1" value="다시받기" onclick="mailcheck()"> 
+						<input type="button" id="t3" value="다시받기" onclick="mailcheck()"> 
 						 
 					</td>
 				</tr>	
+				</c:if>
 				<tr>
 					<td >
-						(*) 비밀번호 &nbsp;<br/>
+						비밀번호 &nbsp;<br/>
 					</td>
 					<td>
 						<input type="password" name = "password" id="password" value="${param.PASSWORD}"/>
@@ -122,7 +134,7 @@ th, td {
 				</tr>
 				<tr >
 					<td >
-						(*) 비밀번호 확인 &nbsp;<br/>
+						비밀번호 확인 &nbsp;<br/>
 					</td>
 					<td>
 						<input type="password" id="password_re" onblur="passCheck()"/>
@@ -131,63 +143,50 @@ th, td {
 				</tr>
 				<tr >
 					<td >
-						(*) 핸드폰 번호&nbsp;<br/>
+						핸드폰 번호&nbsp;<br/>
 					</td> 
 					<td>
+
 						<input type="text" name= "phone" id="phone" autocomplete="off" maxlength="13"
-						placeholder="xxx-xxxx-xxxx" value="${param.PHONE}" onblur="phoneCheck()"
-						style="padding: 2px;" />
+						value="${mypage.PHONE}" onblur="myphoneCheck()" class="p"
+						style="padding: 2px;"disabled/>
+						<button type="button" id="t4">변경하기</button>
 						&nbsp;<small><span class="msg_phone"></span></small>
 					</td>
 				</tr>
 
 			</table>
-		<button type="button" onclick="register()" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
+		<p  align="right" >
+		<button type="button" onclick="outMember()"style=" vertical-align:middle; margin-top: 10px; margin-bottom: 10px;color:grey; ">
+		회원탈퇴</button>
+		</p>
+		<br/>
+		<button type="button" onclick="edit()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
 		확인</button>
-			
+		<button type="button" onclick="home()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
+		취소</button>	
 		</div>
 	</form>
+
 <script>
-	function nameCheck(){
-		var name =  $("#name").val();
-		if(name == ""){
-			$(".msg_name").html("이름을 입력하세요.");
-			$(".msg_name").css("color", "red");
-
-		} else {
-			$(".msg_name").html("");
-		}
-	}
-
-	function idCheck(){
+	function mailcheck() {
 		
-		var id =  $("#id").val();
-		if(id.length==0){
-			//아이디가 없는 경우
-			$(".msg_id").html("아이디를 입력해주세요.");
-			$(".msg_id").css("color", "red");
-			return false;
-		}
-
+		var email = $("#id").val();
+		
 		$.ajax({
-			url: "/idCheck",
+			url: "/email",
 			type: "POST",
 			async:false,
 			data : {
-				"id" : id
+				"email" : email
 			},
 			success: function(rst){
-				var result = rst;
-				if(result == ""){
-					//아이디가 없는 경우
-					$(".msg_id").html("사용가능합니다.");
-					$(".msg_id").css("color", "green");
-
+				if(rst == true){
+					//인증메일 전송완료
+					alert("인증메일이 전송되었습니다.");
 				} else {
-					//아이디가 있는 경우
-					$(".msg_id").html("이미 사용중인 ID입니다.");
-					$(".msg_id").css("color", "red");
-
+					//인증메일 전송실패
+					alert("ERROR");
 				}
 			}
 		});
@@ -199,13 +198,14 @@ th, td {
 		console.log(lv);
 		if(lv.length==0){
 			//인증번호 없는 경우
-			$(".msg_auth").html("인증번호를 입력해주세요.");
+			$(".msg_auth").html("(인증번호를 입력해주세요.)");
 			$(".msg_auth").css("color", "red");
 			return false;
 		}
 		if(lv==null){
 			return lv = 0;
 		} else {
+			
 		$.ajax({
 			url: "/authCheck",
 			type: "POST",
@@ -214,19 +214,21 @@ th, td {
 				"lv" : lv
 			},
 			success: function(rst){
+
 				if(rst == true){
 					//인증값이 맞는경우
 					$(".msg_auth").html("확인되었습니다.");
 					$(".msg_auth").css("color", "green");
-					$("#lv").val() =  1;
+					
 
 				} else {
 					//인증값이 틀린경우
 					$(".msg_auth").html("인증번호가 틀립니다.");
 					$(".msg_auth").css("color", "red");
-					$("#lv").val() =  0;
+					
 
 				}
+				$("#lv").val(${param.LV});
 			}
 		});
 	}
@@ -251,73 +253,10 @@ th, td {
 		}
 	}
 	
-	
-	function mailcheck() {
-		
-		var email = $("#id").val();
-		
-		$.ajax({
-			url: "/email",
-			type: "POST",
-			async:false,
-			data : {
-				"email" : email
-			},
-			success: function(rst){
-				var result = rst;
-				if(result == true){
-					//인증메일 전송완료
-					alert("인증메일이 전송되었습니다.");
-				} else {
-					//인증메일 전송실패
-					alert("ERROR");
-				}
-			}
-		});
-	}
-
-    function phoneCheck(){
-		var phone =  $("#phone").val();
-    	if($("#phone").val()==""){
-    		alert("전화번호를 입력하세요!");
-    		return;
-    	}
-		
-		if(phone.length > 13){
-			alert("잘못된 휴대폰 번호입니다.");
-			$("#phone").val("");
-		
-    		return false;
-		}
-		
-		$.ajax({
-			url: "/phoneCheck",
-			type: "POST",
-			async:false,
-			data : {
-				"phone" : phone
-			},
-			success: function(rst){
-				if(rst == true){
-					//폰번호 중복 아닌 경우
-					$(".msg_phone").html("사용가능합니다.");
-					$(".msg_phone").css("color", "green");
-
-				} else {
-					//폰번호 중복인 경우
-					$(".msg_phone").html("이미 사용중인 번호입니다.");
-					$("#phone").val("");
-					$(".msg_phone").css("color", "red");
-
-				}
-			}
-		});
-    }
-     
     function apply(str){
         str = str.replace(/[^0-9]/g, '');
-        console.log(str);
         var tmp = '';
+
         if( str.length < 4){
             return str;
         }else if(str.length < 7){
@@ -340,6 +279,7 @@ th, td {
             tmp += str.substr(7);
             return tmp;
         }
+
         return str;
     }
 
@@ -350,11 +290,47 @@ th, td {
     	this.value = apply(s) ;
     }
 	
-    function register(){
-    	if($("#name").val()==""){
-    		alert("이름을 입력하세요!");
-    		return;
-    	}
+    function myphoneCheck(){
+		var phone =  $("#phone").val();
+		
+		if(phone.length > 13){
+			alert("잘못된 휴대폰 번호입니다.");
+			$("#phone").val("");
+		
+    		return false;
+		}
+		
+		$.ajax({
+			url: "/myphoneCheck",
+			type: "POST",
+			async:false,
+			data : {
+				"phone" : phone
+			},
+			success: function(rst){
+				if(rst == true){
+					//폰번호 중복 아닌 경우
+					$(".msg_phone").html("사용가능합니다.");
+					$(".msg_phone").css("color", "green");
+
+				} else {
+					//폰번호 중복인 경우
+					$(".msg_phone").html("이미 사용중인 번호입니다.");
+					$("#phone").val("");
+					$(".msg_phone").css("color", "red");
+
+				}
+			}
+		});
+    }
+
+	
+	$("#t4").click(function() {
+		$(".p").attr("disabled", false);	// t4를 누르면 disabled 걸린걸 풀게 만들어줌..
+	})
+    
+    
+    function edit(){
     	
     	if($("#id").val()==""){
     		alert("아이디을 입력하세요!");
@@ -378,12 +354,26 @@ th, td {
     		return;
     	}
     	
-    	var form = document.getElementById("registerform");
-    	form.action = "register";
+    	var form = document.getElementById("editform");
+    	form.action = "mypageInfo";
+    	form.submit();
+    }
+    
+    
+    function home(){
+    	var form = document.getElementById("editform");
+    	form.action = "/";
     	form.submit();
     }
 
-
+    //회원탈퇴 만드는중!
+    function outMember() {
+		 
+		var t= window.open("/target", "m", "width=500, height=500");
+		t.resizeTo(500,500);  
+    }
+		
+	
 </script>
 </body>
 </html>

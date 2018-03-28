@@ -3,12 +3,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-	<insert id="create">
+	<insert id="create"  parameterType="hashMap">
 		insert into rent_member values(rent_member_seq.nextval,#{id},#{name},#{password},#{phone},#{lv })
 	</insert>
-<!-- 	<insert id="acreate"> -->
-<!-- 		insert into rent_member values(rent_member_seq.nextval,#{id},#{name},#{password},#{phone},1) -->
-<!-- 	</insert>	 -->
 	<select id="loginCheck" resultType="hashMap">
 		select * from rent_member where id=#{id} and password=#{password}
 	</select>
@@ -24,4 +21,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getById" resultType="hashMap">
 		select * from rent_member where id=#{id}
 	</select>
+	<select id="getByPhone" resultType="hashMap">
+		select * from rent_member where phone=#{phone}
+	</select>	
+	<update id="editMypage" parameterType="hashMap">
+		update rent_member 
+		<trim prefix="set" suffix="" prefixOverrides="" suffixOverrides=",">
+			<if test="phone != null">phone = #{phone},</if>
+			<if test="password != null">password = #{password },</if>
+			<if test="lv != null">lv = #{lv }</if>
+		</trim>		
+		where id = #{id}
+	</update>
+	<select id="findPass" resultType="hashMap">
+		select * from rent_member where id=#{id} and phone=#{phone }
+	</select>
+	<delete id="outMember">
+	delete from rent_member where id=#{id} and password = #{password }
+	</delete>
 </mapper>

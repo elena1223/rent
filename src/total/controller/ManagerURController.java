@@ -44,4 +44,13 @@ public class ManagerURController {
 		return "default";
 	}
 	
+	@RequestMapping(path = "/manager/remove", method = RequestMethod.POST)
+	public String managerRemoveHandle(@RequestParam MultiValueMap<String,String> param, Model model) {
+		boolean result = urService.remove(param);
+		List<Map> list = urService.readAllCar();
+		model.addAttribute("car", list);
+		model.addAttribute("main", "managerUpdateRemove.jsp");
+		return "default";
+	}
+	
 }

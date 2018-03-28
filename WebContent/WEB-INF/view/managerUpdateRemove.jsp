@@ -46,7 +46,7 @@
 			</c:forEach>
 		</table>
 		<button type="submit" class="btn btn-success" style="width: 20%" formaction="/manager/update">수정</button>
-		<button type="submit" class="btn btn-danger" style="width: 20%" formaction="/manager/remove">삭제</button>
+		<button type="submit" class="btn btn-danger" style="width: 20%" formaction="/manager/remove" onclick="remove()">삭제</button>
 		</form>
 
 	</div>
@@ -83,6 +83,9 @@
 			});
 
 		})
+		function remove(){
+			window.alert("삭제가 완료되었습니다.");
+		}
 	</script>
 </body>
 </html>

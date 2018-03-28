@@ -17,11 +17,6 @@ public class JoinService {
 	}
 	
 	
-//	public boolean addNewAuth(Map map) {
-//		System.out.println(map);
-//		return template.insert("member.acreate", map)==1;
-//	}
-	
 	public HashMap existIdCheck(String id) {
 		HashMap map = new HashMap<>();
 		map = template.selectOne("member.getById", id);
@@ -31,26 +26,14 @@ public class JoinService {
 	public boolean existEmailCheck(String email) {
 		return template.selectOne("member.getByEmail", email)!=null;
 	}
-	
-//	public boolean login(String id, String password) {
-//		Map map=new HashMap<>();
-//		map.put("id", id);
-//		map.put("password", password);
-//		try {
-//		 boolean res = template.selectOne("member.loginCheck", map)!=null?true:false;
-//			return res;
-//		}catch(Exception e){
-//			e.printStackTrace();
-//			return false;
-//		}
-//		
-//	}
-		
-		public Map read(String id) {
-			return template.selectOne("member.readMember", id);
-			
-		}
-		
+	public HashMap existPhoneCheck(String phone) {
+		HashMap map = new HashMap<>();
+		map = template.selectOne("member.getByPhone", phone);
+		return map;
+
+	}
+
+
 }
 
 

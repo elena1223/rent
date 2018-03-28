@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reserve">
+	<insert id="add">
+	insert into rent_reserve values(rent_reserve_seq.nextval,#{no},#{start},#{end},${mno})
+	</insert>
+	<select id="readAll" resultType="hashMap">
+		select * from rent_reserve
+	</select>
+	<select id="readByMember" resultType="hashMap">
+		select * from rent_reserve where mno=#{mno}
+	</select>
+	<select id="readByCar" resultType="hashMap">
+		select * from rent_reserve where cno=#{cno}
+	</select>
+	
+	<select id="dateCheck" resultType="hashMap">
+	select * from rent_car left join (select cno,count(*) as rcnt from rent_reserve where 
+	(((start_day &lt; #{start} and end_day > #{start})or(start_day &lt; #{end} and end_day > #{end}) or (start_day between #{start} and #{end}) or (end_day between #{start} and #{end})) 
+	and sysdate &lt; end_day ) group by cno) tmp on rent_car.no=tmp.cno where no=#{no}
+	</select>
+	<select id="overlapDate" resultType="hashMap">
+	select to_char(start_day,'YYYY-MM-DD') as start_day,to_char(end_day,'YYYY-MM-DD') as end_day from rent_reserve where ((start_day &lt; #{start} and end_day > #{start})or(start_day &lt; #{end} and end_day > #{end}) or 
+	(start_day between #{start} and #{end}) or (end_day between #{start} and #{end})) and cno=#{no} order by start_day asc
+	</select>
+	
+	<select id="overlapDay" resultType="hashMap">
+	SELECT TO_CHAR(A.A_DATE,'YYYY-MM-DD') as DAY FROM  (
+    SELECT     TO_DATE (#{start},'YYYY-MM-DD') + LEVEL - 1 AS A_DATE
+          FROM DUAL
+    CONNECT BY LEVEL &lt;= TO_DATE (#{end},'YYYY-MM-DD') - TO_DATE (#{start},'YYYY-MM-DD') + 1) A
+	JOIN (
+    SELECT     TO_DATE (#{START_DAY},'YYYY-MM-DD') + LEVEL - 1 AS B_DATE
+          FROM DUAL
+    CONNECT BY LEVEL &lt;= TO_DATE (#{END_DAY},'YYYY-MM-DD') - TO_DATE (#{START_DAY},'YYYY-MM-DD') + 1) B ON A.A_DATE = B.B_DATE
+	</select>
+	
+	
+</mapper>

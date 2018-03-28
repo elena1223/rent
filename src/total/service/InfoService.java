@@ -16,5 +16,11 @@ public class InfoService {
 		List list = template.selectList("car.readAllCar");
 		return list;
 	}
+	public Map readOneCar(String no){
+		return template.selectOne("car.readOne",no);
+	}
+	public List<Map> readByType(String type) {
+		return template.selectList("car.readByType",type);
+	}
 	
 }

@@ -19,8 +19,10 @@
         <li class="<%=uri.equals("info")?"active":""%>"><a href="<%=request.getContextPath() %>/info?type=소형">차량정보</a></li>
         <li class="<%=uri.equals("reserve")?"active":""%>"><a href="<%=request.getContextPath() %>/reserve">렌트예약</a></li>
         <li class="<%=uri.equals("service")?"active":""%>"><a href="<%=request.getContextPath() %>/service/way">이용안내</a></li>
-        <li class="<%=uri.equals("costomer")?"active":""%>"><a href="<%=request.getContextPath() %>/costomer/qna">고객센터</a></li>
+        <li class="<%=uri.equals("customer")?"active":""%>"><a href="<%=request.getContextPath() %>/customer/qna">고객센터</a></li>
+        <c:if test="${logon!=null}">
         <li class="<%=uri.equals("mypage")?"active":""%>"><a href="<%=request.getContextPath() %>/mypage">회원정보</a></li>
+        </c:if>
         <c:if test="${logon.LV==2}">
         <li class="<%=uri.equals("manager")?"active":""%>"><a href="<%=request.getContextPath() %>/manager/register">관리자페이지</a></li>
         </c:if>
@@ -36,4 +38,29 @@
        </c:choose>
       </ul>
     </div>
-    
+  <!-- Channel Plugin Scripts -->
+<script>
+  window.channelPluginSettings = {
+    "pluginKey": "2d430381-a4c9-4620-bebc-c885356f0493"
+  };
+  (function() {
+    var node = document.createElement('div');
+    node.id = 'ch-plugin';
+    document.body.appendChild(node);
+    var async_load = function() {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = '//cdn.channel.io/plugin/ch-plugin-web.js';
+      s.charset = 'UTF-8';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    };
+    if (window.attachEvent) {
+      window.attachEvent('onload', async_load);
+    } else {
+      window.addEventListener('DOMContentLoaded', async_load, false);
+    }
+  })();
+</script>
+<!-- End Channel Plugin -->  
