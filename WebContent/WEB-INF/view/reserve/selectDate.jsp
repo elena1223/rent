@@ -64,10 +64,11 @@
 						data : {
 							"start" : $('#from').val(),
 							"end" : $('#to').val(),
-							"no" : '${car.NO}'
+							"no" : '${car.NO}',
+							"cnt" : ${car.CNT} 
 						},
 						success: function(res){
-							var html="선택한 날짜중 예약불가능한 날짜<br/><br/>"
+							var html="선택한 날짜중 예약불가능한 날짜 (${car.CNT}대 운영중)<br/><br/>"
 							for(var i=0;res.length>i;i++){
 								html+=res[i]
 								if(res.length==i+1||(i+1)%3==0){

@@ -110,12 +110,12 @@
   <h3>최신 차량</h3><br>
   <div class="row">
     <div class="col-sm-4">
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Current Project</p>
+      <a href="/reserve/${car[0].NO}"><img src="/imgCar/${car[0].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
+      <p>${car[0].CNAME }</p>
     </div>
     <div class="col-sm-4"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Project 2</p>    
+      <a href="/reserve/${car[1].NO}"><img src="/imgCar/${car[1].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
+      <p>${car[1].CNAME }</p>    
     </div>
     
     <div class="col-sm-4">

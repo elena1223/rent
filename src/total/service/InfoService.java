@@ -22,5 +22,8 @@ public class InfoService {
 	public List<Map> readByType(String type) {
 		return template.selectList("car.readByType",type);
 	}
+	public List<Map> readNewCar(){
+		return template.selectList("car.readNewCar");
+	}
 	
 }
