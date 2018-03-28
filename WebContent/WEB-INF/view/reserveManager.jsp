@@ -40,6 +40,39 @@
   <button type="button" id="cancel" style="position: absolute; right: 0; margin:12px" class="btn btn-danger">예약취소</button>
   
   </form>
+  <br/>
+  <br/>
+  <h3>예약취소요청</h3>
+    <form id="cancelAdmit" action="/manager/cancelp" method="post">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>예약자</th>
+        <th>차량</th>
+        <th>시작일</th>
+        <th>반납일</th>
+        <th>이메일</th>
+        <th>연락처</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="r" items="${cancel }">     
+      <tr class="warning">
+        <td>${r.NAME }</td>
+        <td>${r.CNAME }</td>
+        <td>${r.START_DAY }</td>
+        <td>${r.END_DAY }</td>
+        <td>${r.ID }</td>
+        <td>${r.PHONE }</td>
+        <td><input type="checkbox" name="no" value="${r.RNO }"/></td>
+      </tr>
+     </c:forEach>
+  	</tbody>
+  </table>
+  <button type="button" id="admit" style="position: absolute; right: 0; margin:12px" class="btn btn-success">취소승인</button>
+  
+  </form>
 <br/>
   <br/>
   <br/>
@@ -73,6 +106,11 @@
   $("#cancel").click(function(){
 	if(window.confirm("선택한 예약을 취소하시겠습니까?")){
 		$("#cancelForm").submit();
+	} 
+  })
+  $("#admit").click(function(){
+	if(window.confirm("선택한 예약을 취소하시겠습니까?")){
+		$("#cancelAdmit").submit();
 	} 
   })
   </script>

@@ -59,6 +59,7 @@ public class ManagerController {
 		model.addAttribute("main","reserveManager.jsp");
 		model.addAttribute("reserve",reserveService.readAll(key));
 		model.addAttribute("end",reserveService.endReserve(key));
+		model.addAttribute("cancel",reserveService.cancelReserve(key));
 		
 		return "default";
 	}
