@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav">
         <li class="<%=uri.equals("index")?"active":""%>"><a href="<%=request.getContextPath() %>/index">메인</a></li>
         <li class="<%=uri.equals("info")?"active":""%>"><a href="<%=request.getContextPath() %>/info?type=소형">차량정보</a></li>
-        <li class="<%=uri.equals("reserve")?"active":""%>"><a href="<%=request.getContextPath() %>/reserve">렌트예약</a></li>
+        <li class="<%=uri.equals("reserve")?"active":""%> needLogin" id=""><a href="<%=request.getContextPath() %>/reserve">렌트예약</a></li>
         <li class="<%=uri.equals("service")?"active":""%>"><a href="<%=request.getContextPath() %>/service/way">이용안내</a></li>
         <li class="<%=uri.equals("customer")?"active":""%>"><a href="<%=request.getContextPath() %>/customer/qna">고객센터</a></li>
         <c:if test="${logon!=null}">
@@ -40,6 +40,15 @@
     </div>
   <!-- Channel Plugin Scripts -->
 <script>
+	$(".needLogin").click(function(){
+		if(${login==null}){
+			window.alert("로그인후 이용가능한 서비스입니다. 로그인페이지로 이동합니다.")
+		}
+	})
+
+	
+
+
   window.channelPluginSettings = {
     "pluginKey": "2d430381-a4c9-4620-bebc-c885356f0493"
   };

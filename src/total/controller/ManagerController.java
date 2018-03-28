@@ -39,7 +39,6 @@ public class ManagerController {
 		param.put("img", fileName);
 		managerService.addCar(param);
 		
-		// �뙆�씪 �뾽濡쒕뱶
 		File saveFile = new File(realPath+"/"+fileName);
 		try {
 			img.transferTo(saveFile);
