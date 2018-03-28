@@ -17,19 +17,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import total.service.ManagerService;
+import total.service.ReserveService;
 
 @Controller
+@RequestMapping("/manager")
 public class ManagerController {
 	@Autowired
 	ManagerService	managerService;
+	@Autowired
+	ReserveService reserveService;
 	
-	@RequestMapping(path="/manager/register", method=RequestMethod.GET)
+	@RequestMapping(path="/register", method=RequestMethod.GET)
 	public String infoGetHandle(Model model) {
 		model.addAttribute("main","managerRegister.jsp");
 		return "default";
 	}
 	
-	@RequestMapping(path="/manager/addCar", method=RequestMethod.POST)
+	@RequestMapping(path="/addCar", method=RequestMethod.POST)
 	public String addCarHandle(HttpServletRequest req, @RequestParam Map<String,String> param, Model model,@RequestParam(name = "img") MultipartFile img) {
 		ServletContext sc = req.getServletContext();
 		String realPath = sc.getRealPath("/imgCar");
@@ -48,5 +52,22 @@ public class ManagerController {
 		
 		model.addAttribute("main","managerRegister.jsp");
 		return "default";
+	}
+	@RequestMapping("/reserve")
+	public String managerReserveHandle(Model model, @RequestParam(defaultValue="") String key) {
+		key="%"+key+"%";
+		model.addAttribute("main","reserveManager.jsp");
+		model.addAttribute("reserve",reserveService.readAll(key));
+		model.addAttribute("end",reserveService.endReserve(key));
+		
+		return "default";
+	}
+	@RequestMapping(path="/cancelp",method=RequestMethod.POST)
+	public String cancelpHandle(Model model, @RequestParam String[] no) {
+		for(String each:no) {
+			reserveService.delete(each);
+		}
+		
+		return "redirect:/manager/reserve";
 	}
 }
