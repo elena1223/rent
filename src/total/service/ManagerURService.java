@@ -21,16 +21,13 @@ public class ManagerURService {
 		return list;
 	}
 	
-	public List<Map> readSelect(MultiValueMap<String,String> no){
-		List<Map> list = new ArrayList<>();
-		List<Map> list2 = null;
-		for (List<String> n : no.values()) {
-			for(int i=0; i<n.size(); i++) {
-				list2 = template.selectList("car.readSelect",n.get(i));
-				list.addAll(list2);
-			}
-		}
+	public List<Map> readSelect(Map<String,String> no){
+		List<Map> list = template.selectList("car.readSelect",no);
 		return list;
+	}
+	
+	public boolean updateCar(Map<String,String> data) {
+		return template.update("car.updateCar", data) == 1;
 	}
 	
 	public boolean remove(MultiValueMap<String,String> no){
@@ -42,5 +39,6 @@ public class ManagerURService {
 		}
 		return remove >= 1;
 	}
+
 	
 }

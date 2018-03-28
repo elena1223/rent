@@ -14,7 +14,7 @@
 <body>
 	<div align="center">
 		<h2>차량 목록</h2>
-		<form name="form" method="post">
+		<form name="form" method="post" id="form" onsubmit="return update();">
 		<table class="table table-condensed table-hover">
 			<thead>
 				<tr align="center">
@@ -31,7 +31,7 @@
 			</thead>
 			<c:forEach var="li" items="${car }">
 				<tbody>
-					<tr>
+					<tr class="trr">
 						<td><input type="checkbox" name="no" class="check" value="${li.NO }"/></td>
 						<td>${li.CNAME }</td>
 						<td>${li.TYPE }</td>
@@ -51,6 +51,12 @@
 
 	</div>
 	<script>
+		// 테이블 선택시 해당 라인 체크/해제
+		$(".trr").click(function(){
+			var old = $(this).find("input:checkbox").prop("checked");
+			$(this).find("input:checkbox").prop("checked", !old);
+		});
+	
 		var chkObj = document.getElementsByName("no");
 		var rowCnt = chkObj.length;
 		var ck;
@@ -85,6 +91,20 @@
 		})
 		function remove(){
 			window.alert("삭제가 완료되었습니다.");
+		}
+		function update(){
+			var cnt = 0;
+			for (var i = 0; i < rowCnt; i++) {
+				if (chkObj[i].checked) {
+					cnt++;
+				}
+			}
+			if(cnt >= 2){
+				window.alert("수정 항복은 하나만 선택해주세요.");
+				return false;
+			}else{
+				return true;
+			}
 		}
 	</script>
 </body>
