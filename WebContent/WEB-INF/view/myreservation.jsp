@@ -18,12 +18,15 @@
   <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
   <table class="table">
     <thead>
-      <tr>
-        <th>${my.NAME }</th>
-        <th>${my.START_DAY }</th>
-        <th>${my.END_DAY }</th>
-        
-      </tr>
+    	<c:forEach var="v" items="${my}" varStatus="vs">
+	      <tr>
+	        <td><th>${v.CNAME}</th></td>
+	        <td><th>${v.START_DAY}</th></td>
+	        <td><th>${v.END_DAY}</th></td>
+	        
+	      </tr>
+    	</c:forEach>
+
     </thead>
     <tbody>
       <tr>

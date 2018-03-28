@@ -32,7 +32,7 @@
  a:visited { color: gray; text-decoration: none;}
  a:hover { color: black; text-decoration: underline;}
 </style>
-<div class="container">
+<div class="container" style="margin-bottom: 25px;">
   <h2 style="color:#2E64FE"><%=typek %></h2> 
   <table class="table" style="width:90%">
     <thead>

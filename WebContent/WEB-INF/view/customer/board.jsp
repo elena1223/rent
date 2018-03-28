@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <div class="container">
+<div class="container" style="margin-bottom: 25px;">
  <c:set var="notice" value="notice"/>
   <h2><%=typek %></h2>
   <p style="position: absolute; right: 0; margin-right:130px">

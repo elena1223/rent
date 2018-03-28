@@ -31,7 +31,9 @@ public class ReserveContoller {
 	@RequestMapping("")
 	public String reserveHandle(Model model,HttpSession session) {
 		if(session.getAttribute("logon")==null) {
-			return "redirect:/";
+			model.addAttribute("main","login.jsp");
+
+			return "default";
 		}else {
 			model.addAttribute("main","reserve/reserve.jsp");
 			model.addAttribute("list",infoService.readAllCar());
