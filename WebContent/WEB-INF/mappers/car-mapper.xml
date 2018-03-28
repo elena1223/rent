@@ -6,6 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="readAllCar" resultType="hashMap">
 		select * from rent_car
 	</select>
+	<select id="readNewCar" resultType="hashMap"> 
+	select no,cname,img from rent_car order by no desc
+	</select>
 	<select id="readOne" resultType="hashMap">
 		select * from rent_car where no=#{no}
 	</select>

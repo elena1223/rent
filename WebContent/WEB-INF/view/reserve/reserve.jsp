@@ -71,10 +71,10 @@ window.onload = function () {
 	})
 	
 	$("#sel2").change(function(){
-			var html='<img src="/imgCar/'+$("#sel2 option:selected").val()+'.JPG" style="width: 400px;">'
-			$("#cimg").html(html);
 				for(var i=0;i<rst.length;i++){
 					if(rst[i].NO==$("#sel2 option:selected").val()){
+						var html='<img src="/imgCar/'+rst[i].IMG+'" style="width: 400px;">'
+						$("#cimg").html(html);
 					html='<tr><td style="text-align:center">'+rst[i].KILO+'km </td><td style="text-align:center">'+rst[i].OIL+'</td><td style="text-align:center">1일 '+rst[i].PRICE+'원</td></tr>'+
 						'<tr><td style="text-align:center; width:15%">'+rst[i].MAX+'인승<td><td colspan="2" style="text-align:center">'+rst[i].OPT+'<td></tr>'
 						$("#info").html(html);

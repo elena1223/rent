@@ -1,6 +1,7 @@
 package total.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,16 +32,23 @@ public class ReserveService {
 	
 	public List overlapDate(Map map){
 		List list=new ArrayList<>();
+		Map<Object,Integer> cnt = new HashMap<Object,Integer>();
 		List<Map> date = template.selectList("reserve.overlapDate",map);
 		for(Map d:date) {
 			map.putAll(d);
 			List<Map> tmp=template.selectList("reserve.overlapDay",map);
 			for(Map m:tmp) {
-				if(!list.contains(m.get("DAY"))) {
-					list.add(m.get("DAY"));
+				if(!cnt.containsKey(m.get("DAY"))) {
+					cnt.put(m.get("DAY"),0);
+				}
+				cnt.put(m.get("DAY"), cnt.get(m.get("DAY"))+1);
+				if(cnt.get(m.get("DAY"))>=Integer.parseInt((String) map.get("cnt"))) {
+					if(!list.contains(m.get("DAY"))) {
+						list.add(m.get("DAY"));
+					}
 				}
 			}
-			System.out.println(list.toString());
+			
 		}
 		return list;
 	}
