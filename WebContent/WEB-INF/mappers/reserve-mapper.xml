@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="readMyResevation" resultType="hashMap">
-	  select * from rent_reserve left join rent_car 
+	  select cname ,to_char(start_day,'YYYY-MM-DD') as sday, to_char(end_day,'YYYY-MM-DD') as eday from rent_reserve left join rent_car 
       on rent_reserve.cno = rent_car.no where mno = #{no }
 	</select>	
 </mapper>

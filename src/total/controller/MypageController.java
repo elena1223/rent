@@ -175,7 +175,7 @@ public class MypageController {
 		List reservation = mypageService.readMyResevation(no);
 		System.out.println("넘어온 파람값 " + reservation);
 		if(reservation!=null) {
-			model.addAttribute("my",reservation);
+			model.addAttribute("my", reservation);
 			model.addAttribute("main","myreservation.jsp");
 			return "default";
 			

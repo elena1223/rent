@@ -11,55 +11,50 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<style>
+table { 
+	table-layout:fixed;
+	border: 2px; 
+	text-align : center;
+	}
+
+td{
+	width: 25%;
+	height: 49px;
+	vertical-align: middle;
+	padding: 0px;
+	}
+	
+th{
+	text-align: center;
+	}
+	
+</style>
 <body>
 
+
 <div class="container">
-  <h2>Contextual Classes</h2>
-  <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
-  <table class="table">
-    <thead>
+  <h2>예약관리</h2>
+  <p>?? 할말있음 쓰고..</p>
+  <table class="table table-bordered" style="width: 80%;">
+   <thead>
+      <tr class="active" >
+        <th>차이름</th>
+        <th>예약일</th>
+        <th>반납일</th>
+        <th>취소신청</th>
+      </tr>
+   </thead>
+     <tbody>
     	<c:forEach var="v" items="${my}" varStatus="vs">
-	      <tr>
-	        <td><th>${v.CNAME}</th></td>
-	        <td><th>${v.START_DAY}</th></td>
-	        <td><th>${v.END_DAY}</th></td>
-	        
+	      <tr class="success">
+	        <td>${v.CNAME}</td>
+	        <td>${v.SDAY}</td>
+	        <td>${v.EDAY }</td>
+	        <td><button type="button" class="btn btn-warning btn-sm">취소신청</button></td>
 	      </tr>
     	</c:forEach>
-
-    </thead>
-    <tbody>
-      <tr>
-        <td>Default</td>
-        <td>Defaultson</td>
-        <td>def@somemail.com</td>
-      </tr>      
-      <tr class="success">
-        <td>Success</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr class="danger">
-        <td>Danger</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr class="info">
-        <td>Info</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-      <tr class="warning">
-        <td>Warning</td>
-        <td>Refs</td>
-        <td>bo@example.com</td>
-      </tr>
-      <tr class="active">
-        <td>Active</td>
-        <td>Activeson</td>
-        <td>act@example.com</td>
-      </tr>
-    </tbody>
+	</tbody>
   </table>
 </div>
 
