@@ -45,7 +45,7 @@
 				</tbody>
 			</c:forEach>
 		</table>
-		<button type="submit" class="btn btn-primary" style="width: 20%" formaction="/manager/update">수정</button>
+		<button type="submit" class="btn btn-success" style="width: 20%" formaction="/manager/update">수정</button>
 		<button type="submit" class="btn btn-danger" style="width: 20%" formaction="/manager/remove">삭제</button>
 		</form>
 

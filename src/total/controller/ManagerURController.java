@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import total.service.ManagerUDService;
+import total.service.ManagerURService;
 
 @Controller
-public class ManagerUDController {
+public class ManagerURController {
 	
 	@Autowired
-	ManagerUDService udService;
+	ManagerURService urService;
 
 	@RequestMapping(path = "/manager/updateremove", method = RequestMethod.GET)
 	public String managerHandle(Model model) {
-		List<Map> list = udService.readAllCar();
+		List<Map> list = urService.readAllCar();
 		model.addAttribute("car", list);
 		model.addAttribute("main", "managerUpdateRemove.jsp");
 		return "default";
@@ -29,10 +29,19 @@ public class ManagerUDController {
 	
 	@RequestMapping(path = "/manager/update", method = RequestMethod.POST)
 	public String managerUpdateHandle(@RequestParam MultiValueMap<String,String> param, Model model) {
-		udService.readSelect(param);
+		List<Map> list = urService.readSelect(param);
+		model.addAttribute("up",list);
 		model.addAttribute("main", "managerUpdatep.jsp");
 		return "default";
 	}
-
+	
+	@RequestMapping(path = "/manager/updateremove", method = RequestMethod.POST)
+	public String managerUpdateCompleteHandle(Model model, @RequestParam Map<String,String> param) {
+		System.out.println(param);
+		List<Map> list = urService.readAllCar();
+		model.addAttribute("car", list);
+		model.addAttribute("main", "managerUpdateRemove.jsp");
+		return "default";
+	}
 	
 }
