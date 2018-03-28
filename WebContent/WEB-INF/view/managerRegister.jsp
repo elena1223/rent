@@ -39,7 +39,7 @@
 				<div align="left">
 					<label for="price">Price</label>
 				</div>
-				<input type="number" min="0" max="1000000" step="50000" class="form-control"
+				<input type="number" min="0" max="1000000" step="1000" class="form-control"
 					id="price" placeholder="Price" name="price">
 				<div align="left">
 					<small>1일 기준 금액이며, 최대 금액은 1,000,000만원입니다.</small>
@@ -71,7 +71,7 @@
 					<label for="opt">Option</label>
 				</div>
 				<input type="text" class="form-control" id="opt"
-					placeholder="Option" name="opt">
+					placeholder="Option" name="opt" autocomplete="off">
 				<div align="left">
 					<small>옵션은 ','를 사용하여 구분합니다. 예)후방카메라,네비게이션</small>
 				</div>
@@ -108,6 +108,7 @@
 	</div>
 
 	<script>
+		
 		var InputImage = (function loadImageFile() {
 			if (window.FileReader) {
 				var ImagePre;
@@ -141,7 +142,7 @@
 		})();
 		
 		function add(){
-	    	if($("#cName").val()==""){
+	    	if($("#cname").val()==""){
 	    		alert("차량 이름을 입력하세요.");
 	    		return false;
 	    	}
@@ -179,6 +180,9 @@
 	    	if($("#image").val()==""){
 	    		alert("이미지를 선택하세요.");
 	    		return false;
+	    	}else{
+	    		alert("등록되었습니다.");
+	    		return true;
 	    	}
 	    	
 	    }
