@@ -126,4 +126,11 @@ public class CustomerController {
 		}
 		return "redirect:/customer/"+type+"/"+cno;
 	}
+	@RequestMapping(path="/delete2", method=RequestMethod.POST)
+	public String delete2Handle (Model model,@RequestParam String[] no,@RequestParam String type) {
+		for(String each:no) {
+			customerService.deleteBoard(each);
+		}
+		return "redirect:/customer/"+type;
+	}
 }

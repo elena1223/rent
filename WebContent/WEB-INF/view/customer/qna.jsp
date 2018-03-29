@@ -34,14 +34,17 @@
 </style>
 <div class="container" style="margin-bottom: 25px;">
   <h2 style="color:#2E64FE"><%=typek %></h2> 
+  <form id="del" action="/customer/delete2" method="post">
+  <input type="hidden" name="type" value="${type}">
   <table class="table" style="width:90%">
     <thead>
       <tr>
       	<th style="width:5%"></th>
-        <th>제목</th>
+        <th style="width:55%">제목</th>
         <th style="width:10%">작성자</th>
         <th style="width:20%">작성일자</th>
         <th style="width:10%">조회수</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -52,9 +55,12 @@
         <td>${b.NAME }</td>
         <td><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
         <td>${b.HIT }</td>
+        <c:if test="${logon.LV eq '2' }"><td><input class="check" type="checkbox" name="no" value="${b.NO}"/></td></c:if>
 	</c:forEach>
     </tbody>
   </table> 
+  </form>
+  <c:if test="${logon.LV eq '2' }"><p align="right" style=" margin-right:133px"><a href="javascript:del();">선택삭제</a> <input id="checkAll" type="checkbox"/></p></c:if>
   <div style="float:left">
 	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 		<c:choose>
@@ -84,5 +90,30 @@
 <br/>
 <br/>
 <br/>
+<script>
+function del(){
+	if(window.confirm("선택한 게시물을 삭제하시겠습니까?")){
+		$("#del").submit();
+	}
+	
+}
+$("#checkAll").change(function(){
+	if( $("#checkAll").is(':checked') ){
+	    $(".check").prop("checked", true);
+	  }else{
+	    $(".check").prop("checked", false);
+	  }
+})
+$(".check").change(function(){
+	var state=true;
+	$(".check").each(function(){
+		if(!$(this).is(':checked')){
+			state=false;
+			return false;
+		}
+	})
+	$("#checkAll").prop("checked", state);
+})
 
+</script>
     
