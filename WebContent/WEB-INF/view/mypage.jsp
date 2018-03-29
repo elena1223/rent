@@ -72,7 +72,7 @@ td	{
 
 	<form id="editform" name="editform" method="post" autocomplete="off" >
     <div id="sub_tit">
-        <h2 id="ctn_title">회원정보</h2>
+        <h2 id="ctn_title" style="color: #2E64FE">정보수정</h2>
 		<div style="border-top:2px solid #ccc;"></div>
     </div>
     <p  style="margin-top: 10px;">

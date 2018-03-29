@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div align="center">
-		<h2>차량 등록</h2>
+		<h2 style="color: #2E64FE">차량 등록</h2>
 		<form action="/manager/addCar" id="addform" name="addform" method="post" enctype="multipart/form-data" onsubmit="return add();">
 			모든 항목은 필수 입력사항입니다.
 			<div class="form-group" align="center" style="width: 50%">

@@ -7,7 +7,6 @@
   <title>나의 예약관리</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -32,7 +31,7 @@ th{
 
 
 <div class="container">
-  <h2>예약관리</h2>
+  <h2 style="color: #2E64FE">예약관리</h2>
   <div style="border-top:2px solid #ccc;"></div>
   <p style="margin-top: 10px;"> <small>취소신청 시, 당일 취소라도 100% 환불가능하며, 차량을 이용하시다 취소 시 1일 요금을 제외한 나머지를 위약금 없이 환불해드립니다. </small></p>
   <table class="table table-bordered" style="width: 80%;">

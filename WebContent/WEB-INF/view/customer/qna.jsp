@@ -23,7 +23,6 @@
  <c:set var="notice" value="notice"/>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
@@ -48,7 +47,7 @@
     <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
       <tr>
       	<td>${b.NO }</td>
-        <td><a href="/customer/${type}/${b.NO }">${b.TITLE } (${b.CNT }<c:if test="${b.CNT==null }">0</c:if>)</a></td>
+        <td><a href="/customer/${type}/${b.NO }" >${b.TITLE } (${b.CNT }<c:if test="${b.CNT==null }">0</c:if>)</a></td>
         <td>${b.NAME }</td>
         <td><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
         <td>${b.HIT }</td>

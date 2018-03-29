@@ -3,15 +3,17 @@
        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <h3 style="text-align:left">진행중인 예약</h3>
+  <div align="center">
+ 	 <h2  style="color: #2E64FE">예약 내역</h2>
+  </div>
+  <h3 style="text-align:left;" >진행중인 예약</h3>
   <form style="position: absolute; right: 0; margin:10px">
   <input name="key" value="${key}"/> <span style="text-align:right" class="glyphicon glyphicon-search"></span>
   </form> <br/><br/>
   <form id="cancelForm" action="/manager/cancelp" method="post">
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>예약자</th>
@@ -25,7 +27,7 @@
     </thead>
     <tbody>
     <c:forEach var="r" items="${reserve }">     
-      <tr class="success">
+      <tr class="success" class="">
         <td>${r.NAME }</td>
         <td>${r.CNAME }</td>
         <td>${r.START_DAY }</td>
@@ -44,7 +46,7 @@
   <br/>
   <br/>
   <h3>종료된 예약</h3>
-    <table class="table">
+    <table class="table table-hover">
     <thead>
       <tr>
         <th>예약자</th>

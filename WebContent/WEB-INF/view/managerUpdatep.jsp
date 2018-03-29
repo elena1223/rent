@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div align="center">
-		<h2>수정 목록</h2>
+		<h2 style="color: #2E64FE">수정 목록</h2>
 		<form name="form" method="post" enctype="multipart/form-data">
 			<c:forEach var="li" items="${up }">
 				<table>

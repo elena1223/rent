@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div align="center">
-		<h2>차량 목록</h2>
+		<h2 style="color: #2E64FE">차량 목록</h2>
 		<form name="form" method="post" id="form" onsubmit="return update();">
 		<table class="table table-condensed table-hover">
 			<thead>
