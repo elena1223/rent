@@ -47,7 +47,7 @@
     <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
       <tr>
       	<td>${b.NO }</td>
-        <td><a href="/customer/${type}/${b.NO }" >${b.TITLE } (${b.CNT }<c:if test="${b.CNT==null }">0</c:if>)</a></td>
+        <td><a href="/customer/${type}/${b.NO }">${b.TITLE } (${b.CNT }<c:if test="${b.CNT==null }">0</c:if>)</a></td>
         <td>${b.NAME }</td>
         <td><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
         <td>${b.HIT }</td>
@@ -70,7 +70,7 @@
 	<div style="position: absolute; right: 0; margin-right:20px">
 	<form>
 		<input type="hidden" name="page" value="${page.page }"/>
-		검색 <input type="text" name="key" value="${key }"/>
+		<span class="glyphicon glyphicon-search"></span> <input type="text" name="key" value="${key }" placeholder="작성자 or 제목 or 내용"/>
 	</form>
 	</div>
 <br/>

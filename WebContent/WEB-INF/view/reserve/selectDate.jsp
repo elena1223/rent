@@ -1,42 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap/css/datepicker3.css" />
-<script type="text/javascript" src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.kr.js"></script>
-<div style="float:left">
-  
-  
-  
-  <h2 style="color:#2E64FE">예약 날짜 선택</h2>
-  <h4 style="color:gray">${car.CNAME}</h4>
-<form id="form" action="/reserve/result" method="post">
-<input type="hidden" name="no" value="${car.NO }">
-  <table>
-  <tr><td><input type="text" name="start" readonly class="input-group input-append date" id="from"/></td>
-  <td> ~ </td>
-  <td><input type="text" name="end" readonly class="input-group input-append date" id="to"/></td></tr>
-  </table>
-  
-</form>
-
-  총 <span id="day">1</span>일 / <span id="price"></span>원<br/>
-  <span id="msg"></span><br/>
-  <button type="button" id="sub" style= "margin-left:315px" class="btn btn-primary">예약하기</button>
-  </div>
-<div style="float:center"> 
-  <div id ="days">
-  
-  </div>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/bootstrap/css/datepicker3.css" />
+<script type="text/javascript"
+	src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.kr.js"></script>
+<div style="float: left; width: 100%" align="center">
+	<h2 style="color: #2E64FE">예약 날짜 선택</h2>
+	<h4 style="color: gray">${car.CNAME}</h4>
+		<div style="width: 50%">
+	<form id="form" action="/reserve/result" method="post">
+		<input type="hidden" name="no" value="${car.NO }">
+			<img src="/imgCar/${car.IMG }" style="width: 300px; height: 200px;">
+			<table class="table table-condensed">
+				<tbody align="center">
+					<tr>
+						<td>${car.KILO }km</td>
+						<td>${car.OIL }</td>
+						<td>${car.MAX }인승</td>
+						<td><fmt:formatNumber pattern="#,###">${car.PRICE }</fmt:formatNumber>원</td>
+					</tr>
+					<tr>
+						<td colspan="4">${car.OPT }</td>
+					</tr>
+			</table>
+		<table>
+			<tr>
+				<td><input type="text" name="start" readonly
+					class="input-group input-append date" id="from" style="width: 100%" /></td>
+				<td>~</td>
+				<td><input type="text" name="end" readonly
+					class="input-group input-append date" id="to" style="width: 100%" /></td>
+			</tr>
+		</table>
+	</form>
+			<div align="right">
+			총 <span id="day">1</span>일 / <span id="price"></span>원<br />
+			</div>
+			<div align="center">
+			<span id="msg"></span>
+			</div>
+	<br />
+	<div align="right">
+	<button type="button" id="sub"
+		class="btn btn-primary">예약하기</button>
+		</div>
+		</div>
+</div>
+<div style="float: center">
+	<div id="days"></div>
 </div>
 
-  
- <script>
+
+<script>
  	var dateCheck=false;
  window.onload = function () {
 		bw()
@@ -146,4 +172,3 @@
  
  
  </script>
-  

@@ -32,7 +32,7 @@ table {
 					<tbody>
 						<tr>
 							<td rowspan="5" style="width: 50%"><img
-								src="/imgCar/${li.IMG }" style="width: 400px;"></td>
+								src="/imgCar/${li.IMG }" style="width: 400px; height: 250px;"></td>
 							<td align="center" style="width: 18%;">1일</td>
 							<td align="right"><fmt:formatNumber type="number"
 									value="${li.PRICE }" pattern="#,###" />원&nbsp;</td>
