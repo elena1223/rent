@@ -32,6 +32,7 @@
 		<p><a href="/manager/register">차량등록</a></p>
 		<p><a href="/manager/updateremove">수정/삭제</a></p>
 		<p><a href="/manager/reserve">예약내역</a></p>
+		<p><a href="/manager/member">회원관리</a></p>
 	</c:when>
 	<c:otherwise>
 	</c:otherwise>

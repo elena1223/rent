@@ -15,6 +15,7 @@ public class MypageService {
 		return template.selectOne("member.readOne", id);
 		
 	}
+
 	
 	public boolean editMypage(Map map) {
 		return template.update("member.editMypage", map) == 1 ;

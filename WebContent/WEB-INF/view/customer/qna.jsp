@@ -71,7 +71,7 @@
 	<div style="position: absolute; right: 0; margin-right:20px">
 	<form>
 		<input type="hidden" name="page" value="${page.page }"/>
-		검색 <input type="text" name="key" value="${key }"/>
+		<span class="glyphicon glyphicon-search"></span> <input type="text" name="key" value="${key }" placeholder="작성자 or 제목 or 내용"/>
 	</form>
 	</div>
 <br/>

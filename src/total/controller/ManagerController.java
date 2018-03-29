@@ -71,4 +71,17 @@ public class ManagerController {
 		
 		return "redirect:/manager/reserve";
 	}
+	@RequestMapping("/member")
+	public String memberHandle (Model model, @RequestParam(defaultValue="") String key ) {
+		model.addAttribute("main","memberManager.jsp");
+		model.addAttribute("member",managerService.readMember("%"+key+"%"));
+		return "default";
+	}
+	@RequestMapping(path="/delete",method=RequestMethod.POST)
+	public String deleteHandle(Model model, @RequestParam String[] no) {
+		for(String each:no) {
+			managerService.delMember(each);
+		}
+		return "redirect:/manager/member";
+	}
 }
