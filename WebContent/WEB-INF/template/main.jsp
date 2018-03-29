@@ -54,7 +54,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <tiles:insertAttribute name="header"/>
   </div>
