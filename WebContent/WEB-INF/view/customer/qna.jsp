@@ -60,7 +60,7 @@
     </tbody>
   </table> 
   </form>
-  <c:if test="${logon.LV eq '2' }"><p align="right" style=" margin-right:133px"><a href="javascript:del();">선택삭제</a> <input id="checkAll" type="checkbox"/></p></c:if>
+  <c:if test="${logon.LV eq '2' }"><p align="right" style=" margin-right:235px"><a href="javascript:del();">선택삭제</a> <input id="checkAll" type="checkbox"/></p></c:if>
   <div style="float:left">
 	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 		<c:choose>
@@ -74,21 +74,18 @@
 	</c:forEach>
 
 	</div>
-	<div style="position: absolute; right: 0; margin-right:20px">
 	<form>
+	<p align="right" style="margin-right:225px">
 		<input type="hidden" name="page" value="${page.page }"/>
 		<span class="glyphicon glyphicon-search"></span> <input type="text" name="key" value="${key }" placeholder="작성자 or 제목 or 내용"/>
+		</p>
 	</form>
-	</div>
-<br/>
 <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
-  <button type="button" onclick="location.href='/customer/write?type=${type}'" style="position: absolute; right: 0; margin:18px" class="btn btn-primary">글쓰기</button>
+  <p align="right" style="margin-right:225px"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">글쓰기</button></p>
   </c:if>
 </c:if>
 </div>
-<br/>
-<br/>
 <br/>
 <script>
 function del(){
