@@ -14,6 +14,7 @@
   
   
   <h2 style="color:#2E64FE">예약 날짜 선택</h2>
+  <small style="color:gray">당일은 예약할 수 없으며  내일날짜부터 예약하실 수 있습니다.</small>
   <h4 style="color:gray">${car.CNAME}</h4>
 <form id="form" action="/reserve/result" method="post">
 <input type="hidden" name="no" value="${car.NO }">
@@ -39,7 +40,8 @@
  <script>
  	var dateCheck=false;
  window.onload = function () {
-		bw()
+		bw();
+		check();
 	}
  	
  	function check(){
@@ -109,18 +111,21 @@
 		
 	});
  
+	var day = new Date();
+	day.setDate(day.getDate() + 1);
+	
  $('#from').datepicker({
 	 format: "yyyy-mm-dd",
 	 language: "kr",
-	 startDate: new Date()
-	 }).datepicker("setDate", new Date() );
+	 startDate: day
+	 }).datepicker("setDate", day );
  
  $('#to').datepicker({
 	 format: "yyyy-mm-dd",
 	 language: "kr",
-	startDate: new Date()
+	startDate: day
  		
-	 }).datepicker("setDate", new Date() );
+	 }).datepicker("setDate", day );
 	 
  $('#from').change(function(){
 	 if($('#from').val()>$('#to').val()){

@@ -36,5 +36,11 @@ public class MypageService {
 		List<Map> list = template.selectList("reserve.readMyResevation",no);
 		 return list;
 	}
+	public List<Map> cacelMyReserve(String no){
+		return template.selectList("reserve.cancelMyReserve",no);
+	}
+	public List<Map> endMyReserve(String no){
+		return template.selectList("reserve.endMyReserve",no);
+	}
 	
 }
