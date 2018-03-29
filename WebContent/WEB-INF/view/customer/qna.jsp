@@ -36,7 +36,7 @@
   <h2 style="color:#2E64FE"><%=typek %></h2> 
   <form id="del" action="/customer/delete2" method="post">
   <input type="hidden" name="type" value="${type}">
-  <table class="table" style="width:90%">
+  <table class="table" style="width:80%">
     <thead>
       <tr>
       	<th style="width:5%"></th>
@@ -44,7 +44,7 @@
         <th style="width:10%">작성자</th>
         <th style="width:20%">작성일자</th>
         <th style="width:10%">조회수</th>
-        <th></th>
+        <th style="width:5%"></th>
       </tr>
     </thead>
     <tbody>
