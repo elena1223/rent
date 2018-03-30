@@ -37,12 +37,11 @@ public class MypageController {
 			if (logon == null) {
 				return "redirect:/";
 			}
-			// System.out.println("(���������� in)���ǿ� �α׿� ���� ��" + logon);
 
 			String id = (String) logon.get("ID");
 
 			map = mypageService.readOne(id);
-			System.out.println("ȸ������ �� : " + map);
+			System.out.println("마이페이지 로딩 시 회원정보 : " + map);
 			model.addAttribute("main", "mypage.jsp");
 			model.addAttribute("mypage", map);
 
@@ -99,16 +98,16 @@ public class MypageController {
 			map.put("password", param.get("password"));
 			map.put("phone", param.get("phone"));
 
-			 System.out.println("������ �Ѿ�� �� = " + map);
+			 System.out.println("회원정보파람1 = " + map);
 			boolean b = mypageService.editMypage(map);
-			// �����Ǿ����� ����
+			// 수정되었는지 여부
 			if (b) {
 				editmap.put("id", param.get("id"));
 				editmap.put("password", param.get("password"));
 
 				Map logons = loginOutService.findByIdAndPass(editmap);
 				session.setAttribute("logon", logons);
-				System.out.println("(����������out)���ǿ� �α׿� ���� ��" + logon);
+				System.out.println("(회원정보 수정 후) 세션에 넣는 로그온 값" + logon);
 
 			} else {
 
@@ -139,7 +138,7 @@ public class MypageController {
 			boolean rst = false;
 			rst= mypageService.outMember(param); 
 
-			System.out.println("ȸ��Ż�� ���� =  " + rst);
+			System.out.println("탈퇴회원 정보 =  " + rst);
 			
 			if(rst) {
 				session.removeAttribute("logon");
@@ -148,7 +147,7 @@ public class MypageController {
 			throw new Exception();
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("err", "ȸ�� Ż�𿡼� ������ �־����ϴ�.");
+			model.addAttribute("err", "에러.");
 			model.addAttribute("main","error.jsp" );
 
 			return "default";
@@ -178,6 +177,8 @@ public class MypageController {
 			model.addAttribute("main","myreservation.jsp");
 			return "default";
 	}
+	
+	
 	@RequestMapping(path="/mypage/cancel",method=RequestMethod.POST)
 	public String cancelHandle(Model model,@RequestParam String[] no,@RequestParam String c) {
 		for(String each:no) {

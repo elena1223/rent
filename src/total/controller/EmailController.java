@@ -37,7 +37,7 @@ public class EmailController {
 //		System.out.println( " / session = " + authkey );
 		
 		boolean b = mailService.sendWelcomeMail(email, authkey);
-		System.out.println("¸ŞÀÏ Àü¼Û °á°ú = " + b);
+		System.out.println("ì´ë©”ì¼ ì „ì†¡ì—¬ë¶€  = " + b);
 			if(b) {
 //				map.put("auth", authkey);
 //				map.put("send", true);
