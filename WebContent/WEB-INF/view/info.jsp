@@ -13,7 +13,6 @@ table {
 	border: 1px;
 	width: 100%;
 	height: 170px;
-	vertical-align: middle;
 
 }
 </style>
@@ -32,20 +31,20 @@ table {
 					<tbody>
 						<tr>
 							<td rowspan="5" style="width: 50%"><img
-								src="/imgCar/${li.IMG }" style="width: 400px; height: 250px;"></td>
-							<td align="center" style="width: 18%;">1일</td>
-							<td align="right"><fmt:formatNumber type="number"
+								src="/imgCar/${li.IMG }" style="width: 400px; height: 250px; vertical-align: middle;"></td>
+							<td align="center" style="width: 18%; vertical-align: middle;">1일</td>
+							<td align="right" style="vertical-align: middle;"><fmt:formatNumber type="number"
 									value="${li.PRICE }" pattern="#,###" />원&nbsp;</td>
 						</tr>
 						<tr align="center">
-							<td>${li.OIL }</td>
-							<td>연비 ${li.KILO }Km</td>
+							<td style="vertical-align: middle;">${li.OIL }</td>
+							<td style="vertical-align: middle;">연비 ${li.KILO }Km</td>
 						</tr>
 						<tr align="center">
-							<td colspan="2">옵션</td>
+							<td colspan="2" style="vertical-align: middle;">옵션</td>
 						</tr>
 						<tr align="center">
-							<td colspan="2">${li.OPT }</td>
+							<td colspan="2" style="vertical-align: middle;">${li.OPT }</td>
 						</tr>
 						<tr>
 							<td colspan="2" style="height: 50px"><button
