@@ -29,6 +29,13 @@ public class CustomerController {
 		map.put("type", type);
 		map.put("key", "%"+key+"%");
 		List<Map> res=customerService.readAllBoard(map);
+		if(!type.equals("notice")&&key.length()<1) {
+			Map notice=new HashMap();
+			notice.put("type", type);
+			map.put("key", "%%");
+		model.addAttribute("notice",notice);
+		}
+		
 		model.addAttribute("board",res);
 		Map<String,Integer> paging = new HashMap<String,Integer>();
 
