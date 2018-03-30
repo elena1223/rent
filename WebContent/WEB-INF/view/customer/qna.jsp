@@ -44,7 +44,9 @@
         <th style="width:10%">작성자</th>
         <th style="width:20%">작성일자</th>
         <th style="width:10%">조회수</th>
-        <th style="width:5%"></th>
+          <c:if test="${logon.LV eq '2' }">
+        <th style="width:5%"><input id="checkAll" type="checkbox"/></th>
+        </c:if>
       </tr>
     </thead>
     <tbody>
@@ -60,7 +62,10 @@
     </tbody>
   </table> 
   </form>
-  <c:if test="${logon.LV eq '2' }"><p align="right" style=" margin-right:235px"><a href="javascript:del();">선택삭제</a> <input id="checkAll" type="checkbox"/></p></c:if>
+  <c:if test="${logon.LV eq '2' }"><p align="right" style=" margin-right:235px">
+<!-- 	전체선택<input id="checkAll" type="checkbox"/> <br/> -->
+	<a href="javascript:del();">[삭제]</a></p>
+	</c:if>
   <div style="float:left">
 	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 		<c:choose>
@@ -77,7 +82,8 @@
 	<form>
 	<p align="right" style="margin-right:225px">
 		<input type="hidden" name="page" value="${page.page }"/>
-		<span class="glyphicon glyphicon-search"></span> <input type="text" name="key" value="${key }" placeholder="작성자 or 제목 or 내용"/>
+		<span class="glyphicon glyphicon-search"></span> 
+		&nbsp;<input type="text" name="key" value="${key }" placeholder="작성자 or 제목 or 내용"/>
 		</p>
 	</form>
 <c:if test="${logon!=null}">
