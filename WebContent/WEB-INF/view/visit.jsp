@@ -43,9 +43,10 @@ textarea {
                 <c:forEach var="v" items="${requestScope.list}" varStatus="vs"> 
                     <hr size="1" width="700">
                     <label>${v.name}</label>   
-                    <label><small>${v.date}</small></label>    
+                    <label><small>${v.date}</small></label>
+                    <input type="hidden" id = "id" name="id" value= "${v.id }">    
 					<c:if test="${logon.LV==2}">
-                    <span><small><a href="#">&nbsp;&nbsp;[삭제]</a></small></span><br>
+                    <span><small><a href="del()">&nbsp;&nbsp;[삭제]</a></small></span><br>
                     </c:if>                    
                     <br/> ${v.comment} <br/>
                      <p style="color: grey;" align="right">tag.&nbsp;
@@ -59,7 +60,6 @@ textarea {
 
 <script>
 	function visit(){
-    	var form = document.getElementById("visitform");
     	var comment = $("#comment").val();
 		$.ajax({
 			url: "/visitw",
@@ -82,9 +82,40 @@ textarea {
 				
 			}
 		});
-    	
+	}
+	
+	function del(){
+		
+		var id =  $("#id").val();
+		console.log(id);
+		$.ajax({
+			url: "/delVisit",
+			type: "POST",
+			async:false,
+			data : {
+				"id" : id
+			},
+			success: function(rst){
+
+				if(rst == true){
+					//인증값이 맞는경우
+					alert("삭제되었습니다.");
+					location.reload(); 
+
+				} else {
+					alert("삭제실패.");
+					location.reload(); 
+				}
+				
+			}
+		});		
+		
+		
+		
 		
 	}
+	
+	
 
 </script>
 

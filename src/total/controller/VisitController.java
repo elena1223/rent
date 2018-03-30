@@ -28,17 +28,21 @@ public class VisitController {
 	
 	@Autowired
 	VisitService visitService;
+	
+	@ResponseBody
+	@RequestMapping(path="/delVisit", method = RequestMethod.POST)
+	public boolean delvisitController(Model model, HttpSession session, 
+			@RequestParam Map<String, String> param, HttpServletRequest req){
+		
+		
+		Map query = new HashMap();
+		query.put("id", param.get("id"));
+	
+		boolean b = visitService.writeVisit(query);
 
-//	@RequestMapping(path="/visit", method = RequestMethod.GET)
-//	public String visitController(Model model, HttpSession session, 
-//			@RequestParam Map<String, String> param, HttpServletRequest req){
-//		
-//
-//	
-//		model.addAttribute("main","visit.jsp");
-//		return "default";
-//	}
-//	
+		return false;
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(path="/visitw", method = RequestMethod.POST)
@@ -96,7 +100,7 @@ public class VisitController {
 		List<Map> list;
 		
 		list = visitService.listVisit();
-		
+		System.out.println("list  = " + list);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("main","visit.jsp");		
