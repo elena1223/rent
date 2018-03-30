@@ -56,9 +56,7 @@ public class JoinController {
 									@RequestParam Map<String, String> param) {
 		try {
 
-			System.out.println("param =  " + param);
 			String lv = param.get("lv");
-			System.out.println("ÀÎÁõ¾È¹ÞÀ½? " + lv.equals(""));
 			boolean rst = false;
 			if(lv.equals("")) {
 				param.put("lv", "0");
@@ -68,7 +66,6 @@ public class JoinController {
 				param.put("lv", "1");
 				rst= joinService.addNewOne(param); 
 			}
-			System.out.println("ÀÎÁõ ¿©ºÎ =  " + rst);
 			if(rst) {
 				Map info = loginOutService.findByIdAndPass(param);
 				session.setAttribute("logon", info);
@@ -77,7 +74,7 @@ public class JoinController {
 			throw new Exception();
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("err", "°èÁ¤»ý¼º¿¡¼­ ¹®Á¦°¡ ÀÖ¾ú½À´Ï´Ù.");
+			model.addAttribute("err", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			model.addAttribute("main","joinp.jsp" );
 
 			return "default";
@@ -119,7 +116,6 @@ public class JoinController {
 					
 			try {
 				check = joinService.existPhoneCheck(param.get("phone"));
-//				System.out.println("ÈÞ´ëÆù Áßº¹È®ÀÎ false´Â Áßº¹ : " + (check==null));	
 			} catch (Exception e) {
 					e.printStackTrace();
 			}
@@ -136,11 +132,11 @@ public class JoinController {
 
 		HttpSession s = req.getSession();
 		Map logon = (Map) s.getAttribute("logon");
-		// System.out.println("¼¼¼ÇÀÇ ·Î±×¿Â °ª" + logon );
+		// System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±×¿ï¿½ ï¿½ï¿½" + logon );
 		String phone = String.valueOf(logon.get("PHONE"));
 		String paramphone = String.valueOf(param.get("phone"));
-		// System.out.println("¼¼¼ÇÀÇ Æù°ª : " + phone);
-		// System.out.println("ÆÄ¶÷ÀÇ Æù°ª : "+ param.get("phone"));
+		// System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + phone);
+		// System.out.println("ï¿½Ä¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : "+ param.get("phone"));
 		Map check = new HashMap<>();
 		String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
 		Pattern p = Pattern.compile(regex);
@@ -153,7 +149,7 @@ public class JoinController {
 
 				try {
 					check = joinService.existPhoneCheck(param.get("phone"));
-					// System.out.println("ÈÞ´ëÆù Áßº¹È®ÀÎ false´Â Áßº¹ : " + (check==null));
+					// System.out.println("ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ßºï¿½È®ï¿½ï¿½ falseï¿½ï¿½ ï¿½ßºï¿½ : " + (check==null));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
