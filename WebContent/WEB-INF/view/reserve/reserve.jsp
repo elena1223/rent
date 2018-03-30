@@ -37,19 +37,17 @@
 </table>
 <br/>
 <span id="cimg"></span>
-<table class="table table-bordered" id="info" style="width:400px">
-</table>
-<button type="button" id="sub" style= "margin-left:315px" class="btn btn-primary">날짜선택</button>
+
 </div >
-
 <div style="float:center; margin-left:10px">
+<table class="table table-bordered" id="info" style="width:400px;margin-top:140px">
+</table>
+<p style="margin-right:215px" align="right"><button type="button" id="sub" style="width:400px" class="btn btn-primary">날짜선택</button></p>
 </div>
-
-
 <script>
 
 window.onload = function () {
-	$("#sel2").trigger('change');
+	$("#sel1").trigger('change');
 }
 	
 	
@@ -75,8 +73,9 @@ window.onload = function () {
 					if(rst[i].NO==$("#sel2 option:selected").val()){
 						var html='<img src="/imgCar/'+rst[i].IMG+'" style="width: 400px;">'
 						$("#cimg").html(html);
-					html='<tr><td style="text-align:center">'+rst[i].KILO+'km </td><td style="text-align:center">'+rst[i].OIL+'</td><td style="text-align:center">1일 '+rst[i].PRICE+'원</td></tr>'+
-						'<tr><td style="text-align:center; width:15%">'+rst[i].MAX+'인승<td><td colspan="2" style="text-align:center">'+rst[i].OPT+'<td></tr>'
+					html='<tr height=50px><td style="text-align:center" colspan="3"><h2>'+rst[i].CNAME+'</h2></td></tr>'+
+						'<tr height=50px><td style="text-align:center">'+rst[i].KILO+'km </td><td style="text-align:center">'+rst[i].OIL+'</td><td style="text-align:center">1일 '+rst[i].PRICE+'원</td></tr>'+
+						'<tr height=50px><td style="text-align:center; width:15%">'+rst[i].MAX+'인승<td><td colspan="2" style="text-align:center">'+rst[i].OPT+'</td></tr>'
 						$("#info").html(html);
 					break;
 					}

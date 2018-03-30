@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +28,30 @@ public class ManagerController {
 	@Autowired
 	ReserveService reserveService;
 	
+	public boolean lvCheck(HttpSession session) {
+		if(session.getAttribute("logon")==null) {
+			return false;
+		}else {
+			Map logon = (Map)session.getAttribute("logon");
+			return String.valueOf(logon.get("LV")).equals("2");
+		}
+		
+	}
+	
 	@RequestMapping(path="/register", method=RequestMethod.GET)
-	public String infoGetHandle(Model model) {
+	public String infoGetHandle(Model model,HttpSession session) {
+		if(!lvCheck(session)) {
+			return "redirect:/";
+		}
 		model.addAttribute("main","managerRegister.jsp");
 		return "default";
 	}
 	
 	@RequestMapping(path="/addCar", method=RequestMethod.POST)
-	public String addCarHandle(HttpServletRequest req, @RequestParam Map<String,String> param, Model model,@RequestParam(name = "img") MultipartFile img) {
+	public String addCarHandle(HttpServletRequest req,HttpSession session, @RequestParam Map<String,String> param, Model model,@RequestParam(name = "img") MultipartFile img) {
+		if(!lvCheck(session)) {
+			return "redirect:/";
+		}
 		ServletContext sc = req.getServletContext();
 		String realPath = sc.getRealPath("/imgCar");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -54,7 +71,10 @@ public class ManagerController {
 		return "default";
 	}
 	@RequestMapping("/reserve")
-	public String managerReserveHandle(Model model, @RequestParam(defaultValue="") String key) {
+	public String managerReserveHandle(HttpSession session,Model model, @RequestParam(defaultValue="") String key) {
+		if(!lvCheck(session)) {
+			return "redirect:/";
+		}
 		key="%"+key+"%";
 		model.addAttribute("main","reserveManager.jsp");
 		model.addAttribute("reserve",reserveService.readAll(key));
@@ -64,7 +84,10 @@ public class ManagerController {
 		return "default";
 	}
 	@RequestMapping(path="/cancelp",method=RequestMethod.POST)
-	public String cancelHandle(Model model,@RequestParam String[] no,@RequestParam String c) {
+	public String cancelHandle(HttpSession session,Model model,@RequestParam String[] no,@RequestParam String c) {
+		if(!lvCheck(session)) {
+			return "redirect:/";
+		}
 		for(String each:no) {
 			reserveService.cancellation(each,c);
 		}
@@ -72,14 +95,20 @@ public class ManagerController {
 		return "redirect:/manager/reserve";
 	}
 	@RequestMapping("/member")
-	public String memberHandle (Model model, @RequestParam(defaultValue="") String key ) {
+	public String memberHandle (HttpSession session,Model model, @RequestParam(defaultValue="") String key ) {
+		if(!lvCheck(session)) {
+			return "redirect:/";
+		}
 		model.addAttribute("main","memberManager.jsp");
 		model.addAttribute("member",managerService.readMember("%"+key+"%"));
 		return "default";
 	}
 
 	@RequestMapping(path="/delete",method=RequestMethod.POST)
-	public String deleteHandle(Model model, @RequestParam String[] no) {
+	public String deleteHandle(HttpSession session,Model model, @RequestParam String[] no) {
+		if(!lvCheck(session)) {
+			return "redirect:/";
+		}
 		for(String each:no) {
 			managerService.delMember(each);
 		}
