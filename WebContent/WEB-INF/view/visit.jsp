@@ -43,7 +43,7 @@ textarea {
 		<c:forEach var="v" items="${requestScope.list}" varStatus="vs" 
 		begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
 			<hr size="1" width="700">
-			<label>${vs.count}</label><br/>
+<%-- 			<label>${vs.count}</label><br/> --%>
 			<label>${v.name}</label>
 			<label><small>${v.date}</small></label>
 			<c:if test="${logon.LV==2}">
