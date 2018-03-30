@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,8 @@ public class MypageController {
 	MypageService mypageService;
 	@Autowired
 	LoginOutService loginOutService;
+	@Autowired
+	ReserveService reserveService;
 
 	@RequestMapping(path = "/mypage")
 	public String myPageHandle(Model model, HttpSession session, Map map, HttpServletRequest req) {
@@ -34,12 +37,11 @@ public class MypageController {
 			if (logon == null) {
 				return "redirect:/";
 			}
-			// System.out.println("(¸¶ÀÌÆäÀÌÁö in)¼¼¼Ç¿¡ ·Î±×¿Â Á¤º¸ ¸Ê" + logon);
 
 			String id = (String) logon.get("ID");
 
 			map = mypageService.readOne(id);
-			System.out.println("È¸¿øÁ¤º¸ ¸Ê : " + map);
+			System.out.println("ë§ˆì´í˜ì´ì§€ ë¡œë”© ì‹œ íšŒì›ì •ë³´ : " + map);
 			model.addAttribute("main", "mypage.jsp");
 			model.addAttribute("mypage", map);
 
@@ -96,16 +98,16 @@ public class MypageController {
 			map.put("password", param.get("password"));
 			map.put("phone", param.get("phone"));
 
-			 System.out.println("Äõ¸®·Î ³Ñ¾î°¡´Â ¸Ê = " + map);
+			 System.out.println("íšŒì›ì •ë³´íŒŒëŒ1 = " + map);
 			boolean b = mypageService.editMypage(map);
-			// ¼öÁ¤µÇ¾ú´ÂÁö ¿©ºÎ
+			// ìˆ˜ì •ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
 			if (b) {
 				editmap.put("id", param.get("id"));
 				editmap.put("password", param.get("password"));
 
 				Map logons = loginOutService.findByIdAndPass(editmap);
 				session.setAttribute("logon", logons);
-				System.out.println("(¸¶ÀÌÆäÀÌÁöout)¼¼¼Ç¿¡ ·Î±×¿Â Á¤º¸ ¸Ê" + logon);
+				System.out.println("(íšŒì›ì •ë³´ ìˆ˜ì • í›„) ì„¸ì…˜ì— ë„£ëŠ” ë¡œê·¸ì˜¨ ê°’" + logon);
 
 			} else {
 
@@ -132,13 +134,11 @@ public class MypageController {
 			System.out.println("param =  " + param);
 			String password = param.get("password");
 			String id = param.get("id");
-
-//			System.out.println("ÀÎÁõ¾È¹ŞÀ½? " );
 			
 			boolean rst = false;
 			rst= mypageService.outMember(param); 
 
-			System.out.println("È¸¿øÅ»Åğ ¿©ºÎ =  " + rst);
+			System.out.println("íƒˆí‡´íšŒì› ì •ë³´ =  " + rst);
 			
 			if(rst) {
 				session.removeAttribute("logon");
@@ -147,7 +147,7 @@ public class MypageController {
 			throw new Exception();
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("err", "È¸¿ø Å»Åğ¿¡¼­ ¹®Á¦°¡ ÀÖ¾ú½À´Ï´Ù.");
+			model.addAttribute("err", "ì—ëŸ¬.");
 			model.addAttribute("main","error.jsp" );
 
 			return "default";
@@ -171,16 +171,20 @@ public class MypageController {
 			return "redirect:/";
 		}
 		String no = String.valueOf(logon.get("NO"));
-		List reservation = mypageService.readMyResevation(no);
-		System.out.println("³Ñ¾î¿Â ÆÄ¶÷°ª " + reservation);
-		if(reservation!=null) {
-			model.addAttribute("my", reservation);
+			model.addAttribute("my", mypageService.readMyResevation(no));
+			model.addAttribute("end",mypageService.endMyReserve(no));
+			model.addAttribute("cancel",mypageService.cacelMyReserve(no));
 			model.addAttribute("main","myreservation.jsp");
 			return "default";
-			
-		}else {
-			return "redirect:/reserve";
+	}
+	
+	
+	@RequestMapping(path="/mypage/cancel",method=RequestMethod.POST)
+	public String cancelHandle(Model model,@RequestParam String[] no,@RequestParam String c) {
+		for(String each:no) {
+			reserveService.cancellation(each,c);
 		}
+		return "redirect:/mypage/reserve";
 	}
 	
 }

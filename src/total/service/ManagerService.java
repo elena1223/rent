@@ -1,5 +1,6 @@
 package total.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,5 +16,18 @@ public class ManagerService {
 		int map = template.insert("car.add", data);
 		return map == 1;
 	}
-	
+	public List<Map> readMember(String key) {
+		return template.selectList("member.readAll",key);
+	}
+	public boolean delMember(String no) {
+		boolean rst=false;
+		try {
+		rst= template.insert("member.deleteMember",no)>0?true:false;
+		}catch(Exception e){
+			e.printStackTrace();
+			
+		}finally {
+			return rst;
+		}	
+	}
 }

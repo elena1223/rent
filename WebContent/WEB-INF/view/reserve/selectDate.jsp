@@ -1,27 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/bootstrap/css/datepicker3.css" />
-<script type="text/javascript"
-	src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript"
-	src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.kr.js"></script>
-<div style="float: left; width: 100%" align="center">
-	<h2 style="color: #2E64FE">예약 날짜 선택</h2>
-	<h4 style="color: gray">${car.CNAME}</h4>
-		<div style="width: 50%">
-	<form id="form" action="/reserve/result" method="post">
-		<input type="hidden" name="no" value="${car.NO }">
-			<img src="/imgCar/${car.IMG }" style="width: 300px; height: 200px;">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap/css/datepicker3.css" />
+<script type="text/javascript" src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.kr.js"></script>
+
+<div style="float:left  width: 100%" align="center">
+  <h2 style="color:#2E64FE">예약 날짜 선택</h2>
+  <small style="color:gray">당일은 예약할 수 없으며  내일날짜부터 예약하실 수 있습니다.</small>
+  <h4 style="color:gray">${car.CNAME}</h4>
+<form id="form" action="/reserve/result" method="post">
+<input type="hidden" name="no" value="${car.NO }">
+<img src="/imgCar/${car.IMG }" style="width: 300px; height: 200px;">
 			<table class="table table-condensed">
 				<tbody align="center">
 					<tr>
@@ -34,38 +28,30 @@
 						<td colspan="4">${car.OPT }</td>
 					</tr>
 			</table>
-		<table>
-			<tr>
-				<td><input type="text" name="start" readonly
-					class="input-group input-append date" id="from" style="width: 100%" /></td>
-				<td>~</td>
-				<td><input type="text" name="end" readonly
-					class="input-group input-append date" id="to" style="width: 100%" /></td>
-			</tr>
-		</table>
-	</form>
-			<div align="right">
-			총 <span id="day">1</span>일 / <span id="price"></span>원<br />
-			</div>
-			<div align="center">
-			<span id="msg"></span>
-			</div>
-	<br />
-	<div align="right">
-	<button type="button" id="sub"
-		class="btn btn-primary">예약하기</button>
-		</div>
-		</div>
-</div>
-<div style="float: center">
-	<div id="days"></div>
+  <table>
+  <tr><td><input type="text" name="start" readonly class="input-group input-append date" id="from"  style="width: 100%"/></td>
+  <td> ~ </td>
+  <td><input type="text" name="end" readonly class="input-group input-append date" id="to"  style="width: 100%"/></td></tr>
+  </table>
+  
+</form>
+
+  총 <span id="day">1</span>일 / <span id="price"></span>원<br/>
+  <span id="msg"></span><br/>
+  <button type="button" id="sub" style= "margin-left:315px" class="btn btn-primary">예약하기</button>
+  </div>
+<div style="float:center"> 
+  <div id ="days">
+  
+  </div>
 </div>
 
 
 <script>
  	var dateCheck=false;
  window.onload = function () {
-		bw()
+		bw();
+		check();
 	}
  	
  	function check(){
@@ -135,18 +121,21 @@
 		
 	});
  
+	var day = new Date();
+	day.setDate(day.getDate() + 1);
+	
  $('#from').datepicker({
 	 format: "yyyy-mm-dd",
 	 language: "kr",
-	 startDate: new Date()
-	 }).datepicker("setDate", new Date() );
+	 startDate: day
+	 }).datepicker("setDate", day );
  
  $('#to').datepicker({
 	 format: "yyyy-mm-dd",
 	 language: "kr",
-	startDate: new Date()
+	startDate: day
  		
-	 }).datepicker("setDate", new Date() );
+	 }).datepicker("setDate", day );
 	 
  $('#from').change(function(){
 	 if($('#from').val()>$('#to').val()){

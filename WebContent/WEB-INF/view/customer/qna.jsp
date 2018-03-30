@@ -33,14 +33,17 @@
 </style>
 <div class="container" style="margin-bottom: 25px;">
   <h2 style="color:#2E64FE"><%=typek %></h2> 
-  <table class="table" style="width:90%">
+  <form id="del" action="/customer/delete2" method="post">
+  <input type="hidden" name="type" value="${type}">
+  <table class="table" style="width:80%">
     <thead>
       <tr>
       	<th style="width:5%"></th>
-        <th>제목</th>
+        <th style="width:55%">제목</th>
         <th style="width:10%">작성자</th>
         <th style="width:20%">작성일자</th>
         <th style="width:10%">조회수</th>
+        <th style="width:5%"></th>
       </tr>
     </thead>
     <tbody>
@@ -51,9 +54,12 @@
         <td>${b.NAME }</td>
         <td><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
         <td>${b.HIT }</td>
+        <c:if test="${logon.LV eq '2' }"><td><input class="check" type="checkbox" name="no" value="${b.NO}"/></td></c:if>
 	</c:forEach>
     </tbody>
   </table> 
+  </form>
+  <c:if test="${logon.LV eq '2' }"><p align="right" style=" margin-right:235px"><a href="javascript:del();">선택삭제</a> <input id="checkAll" type="checkbox"/></p></c:if>
   <div style="float:left">
 	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 		<c:choose>
@@ -67,21 +73,43 @@
 	</c:forEach>
 
 	</div>
-	<div style="position: absolute; right: 0; margin-right:20px">
 	<form>
+	<p align="right" style="margin-right:225px">
 		<input type="hidden" name="page" value="${page.page }"/>
 		<span class="glyphicon glyphicon-search"></span> <input type="text" name="key" value="${key }" placeholder="작성자 or 제목 or 내용"/>
+		</p>
 	</form>
-	</div>
-<br/>
 <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
-  <button type="button" onclick="location.href='/customer/write?type=${type}'" style="position: absolute; right: 0; margin:18px" class="btn btn-primary">글쓰기</button>
+  <p align="right" style="margin-right:225px"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">글쓰기</button></p>
   </c:if>
 </c:if>
 </div>
 <br/>
-<br/>
-<br/>
+<script>
+function del(){
+	if(window.confirm("선택한 게시물을 삭제하시겠습니까?")){
+		$("#del").submit();
+	}
+	
+}
+$("#checkAll").change(function(){
+	if( $("#checkAll").is(':checked') ){
+	    $(".check").prop("checked", true);
+	  }else{
+	    $(".check").prop("checked", false);
+	  }
+})
+$(".check").change(function(){
+	var state=true;
+	$(".check").each(function(){
+		if(!$(this).is(':checked')){
+			state=false;
+			return false;
+		}
+	})
+	$("#checkAll").prop("checked", state);
+})
 
+</script>
     

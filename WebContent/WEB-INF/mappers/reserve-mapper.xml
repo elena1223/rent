@@ -4,22 +4,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reserve">
 	<insert id="add">
-	insert into rent_reserve values(rent_reserve_seq.nextval,#{no},#{start},#{end},${mno})
+	insert into rent_reserve values(rent_reserve_seq.nextval,#{no},#{start},#{end},${mno},0)
 	</insert>
 	
 	<delete id="delete">
 	delete from rent_reserve where no=#{no}
 	</delete>
-	
+	<update id="cancellation">
+	update rent_reserve set cancel=#{c} where no=#{no}
+	</update>
+	<select id="readCancel" resultType="hashMap">
+	select * from rent_member right join (select cancel,rent_reserve.no as rno,mno,cname,to_char(start_day,'YYYY-MM-DD') as start_day,to_char(end_day,'YYYY-MM-DD') 
+		as end_day from rent_reserve left join rent_car on rent_reserve.cno = rent_car.no) 
+		tmp on tmp.mno = rent_member.no where end_day >= sysdate and (name like #{key} or cname like #{key} or id like #{key}) and cancel=1 order by start_day desc
+	</select>
 	<select id="readAll" resultType="hashMap">
 		select * from rent_member right join (select rent_reserve.no as rno,mno,cname,to_char(start_day,'YYYY-MM-DD') as start_day,to_char(end_day,'YYYY-MM-DD') 
 		as end_day from rent_reserve left join rent_car on rent_reserve.cno = rent_car.no) 
 		tmp on tmp.mno = rent_member.no where end_day >= sysdate and (name like #{key} or cname like #{key} or id like #{key}) order by start_day desc
 	</select>
 	<select id="endReserve" resultType="hashMap">
-		select * from rent_member right join (select rent_reserve.no as rno,mno,cname,to_char(start_day,'YYYY-MM-DD') as start_day,to_char(end_day,'YYYY-MM-DD') 
+		select * from rent_member right join (select cancel,rent_reserve.no as rno,mno,cname,to_char(start_day,'YYYY-MM-DD') as start_day,to_char(end_day,'YYYY-MM-DD') 
 		as end_day from rent_reserve left join rent_car on rent_reserve.cno = rent_car.no) 
-		tmp on tmp.mno = rent_member.no where end_day &lt; sysdate and (name like #{key} or cname like #{key} or id like #{key}) order by end_day desc
+		tmp on tmp.mno = rent_member.no where (end_day &lt; sysdate or cancel=3) and (name like #{key} or cname like #{key} or id like #{key}) order by end_day desc
 	</select>
 	<select id="readByMember" resultType="hashMap">
 		select * from rent_reserve where mno=#{mno}
@@ -29,13 +36,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="dateCheck" resultType="hashMap">
-	select * from rent_car left join (select cno,count(*) as rcnt from rent_reserve where 
-	(((start_day &lt; #{start} and end_day > #{start})or(start_day &lt; #{end} and end_day > #{end}) or (start_day between #{start} and #{end}) or (end_day between #{start} and #{end})) 
-	) group by cno) tmp on rent_car.no=tmp.cno where no=#{no}
+	select * from rent_car right join (select cancel,cno,count(*) as rcnt from rent_reserve where 
+	(((start_day &lt; #{start} and end_day > #{start})or(start_day &lt; #{end} and end_day > #{end}) or (start_day between #{start} and #{end}) or (end_day between #{start} and #{end})) and cancel!=3 
+	) group by cno,cancel) tmp on rent_car.no=tmp.cno where no=#{no}
 	</select>
 	<select id="overlapDate" resultType="hashMap">
-	select to_char(start_day,'YYYY-MM-DD') as start_day,to_char(end_day,'YYYY-MM-DD') as end_day from rent_reserve where ((start_day &lt;= #{start} and end_day >= #{start})or(start_day &lt;= #{end} and end_day >= #{end}) or 
-	(start_day between #{start} and #{end}) or (end_day between #{start} and #{end})) and cno=#{no} order by start_day asc
+	select cancel,to_char(start_day,'YYYY-MM-DD') as start_day,to_char(end_day,'YYYY-MM-DD') as end_day from rent_reserve where ((start_day &lt;= #{start} and end_day >= #{start})or(start_day &lt;= #{end} and end_day >= #{end}) or 
+	(start_day between #{start} and #{end}) or (end_day between #{start} and #{end})) and cno=#{no} and cancel!=3 order by start_day asc
 	</select>
 	
 	<select id="overlapDay" resultType="hashMap">
@@ -58,7 +65,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="readMyResevation" resultType="hashMap">
-	  select cname ,to_char(start_day,'YYYY-MM-DD') as sday, to_char(end_day,'YYYY-MM-DD') as eday from rent_reserve left join rent_car 
-      on rent_reserve.cno = rent_car.no where mno = #{no } order by sday asc, eday asc
+	  select cname,rent_reserve.no,to_char(start_day,'YYYY-MM-DD') as sday, to_char(end_day,'YYYY-MM-DD') as eday from rent_reserve left join rent_car 
+      on rent_reserve.cno = rent_car.no where mno = #{no } and end_day >= sysdate and cancel=0 order by sday asc
+	</select>	
+	<select id="endMyReserve" resultType="hashMap">
+		 select cancel,cname,rent_reserve.no,to_char(start_day,'YYYY-MM-DD') as sday, to_char(end_day,'YYYY-MM-DD') as eday from rent_reserve left join rent_car 
+      on rent_reserve.cno = rent_car.no where mno = #{no } and (end_day &lt; sysdate or cancel=3) order by eday desc
+	</select>
+	<select id="cancelMyReserve" resultType="hashMap">
+	  select cname,rent_reserve.no,to_char(start_day,'YYYY-MM-DD') as sday, to_char(end_day,'YYYY-MM-DD') as eday from rent_reserve left join rent_car 
+      on rent_reserve.cno = rent_car.no where mno = #{no } and end_day >= sysdate and cancel=1 order by sday asc
 	</select>	
 </mapper>

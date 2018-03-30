@@ -25,10 +25,10 @@ public class MailService {
 		
 		message.setRecipient(RecipientType.TO, new InternetAddress(email));
 
-		message.setSubject("[¿¡ÄÚ·»Æ®Ä«] È¸¿ø¿ë ÀÎÁõ ¸ŞÀÏ ÀÔ´Ï´Ù.", "text/html;charset=utf-8");
+		message.setSubject("[ì—ì½”ë ŒíŠ¸ì¹´] íšŒì›ìš© ì¸ì¦ ë©”ì¼ ì…ë‹ˆë‹¤.");
 
-		String content = "°¡ÀÔÀ» <b>ÃàÇÏ</b>µå¸³´Ï´Ù.<br/> ÀÎÁõÅ° :" + authkey +" ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä."
-				+ "<br/>»ç¿ë¿¡ ºÒÆíÇÏ½ÅÁ¡ÀÌ ÀÖÀ¸¸é °í°´¼¾ÅÍ¿¡ ±ÛÀ» ³²°ÜÁÖ¼¼¿ä.";
+		String content = "ê°€ì…ì„ <b>ì¶•í•˜</b>ë“œë¦½ë‹ˆë‹¤.<br/> ì¸ì¦í‚¤  [  " + authkey +"  ] ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”."
+				+ "<br/>ì‚¬ìš©ì— ë¶ˆí¸í•˜ì‹ ì ì´ ìˆìœ¼ë©´ ê³ ê°ì„¼í„°ì— ê¸€ì„ ë‚¨ê²¨ì£¼ì„¸ìš”.";
 		
 
 		message.setContent(content, "text/html;charset=utf-8");
@@ -51,10 +51,10 @@ public class MailService {
 		
 		message.setRecipient(RecipientType.TO, new InternetAddress(email));
 
-		message.setSubject("[¿¡ÄÚ·»Æ®Ä«] ºñ¹Ğ¹øÈ£ È®ÀÎ ¸ŞÀÏ ÀÔ´Ï´Ù.");
+		message.setSubject("[ì—ì½”ë ŒíŠ¸ì¹´] ë¹„ë°€ë²ˆí˜¸ í™•ì¸ ë©”ì¼ ì…ë‹ˆë‹¤.");
 
-		String content = "°í°´´ÔÀÇ ºñ¹Ğ¹øÈ£´Â <b>" + pass +"</b> ÀÔ´Ï´Ù.<br/>"
-				+ "<br/> ·Î±×ÀÎ ÈÄ ºñ¹Ğ¹øÈ£¸¦ º¯°æÇØÁÖ¼¼¿ä.";
+		String content = "ê³ ê°ë‹˜ì˜ ë¹„ë°€ë²ˆí˜¸ëŠ” <b> [  " + pass +"  ] </b> ì…ë‹ˆë‹¤.<br/>"
+				+ "<br/> ë¡œê·¸ì¸ í›„ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•´ì£¼ì„¸ìš”.";
 		
 
 		message.setContent(content, "text/html;charset=utf-8");
