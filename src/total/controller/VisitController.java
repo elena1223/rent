@@ -36,7 +36,6 @@ public class VisitController {
 		
 		
 		String id = param.get("id");
-		System.out.println("넘어온 objectID : " + id );
 		boolean b = visitService.delVisit(id);
 
 		return b;
@@ -96,7 +95,6 @@ public class VisitController {
 		List<Map> list;
 	
 		list = visitService.listVisit();
-		System.out.println("list size =  " + list.size());
 		
 		Map<String,Integer> paging = new HashMap<String,Integer>();
 		int size = list.size();

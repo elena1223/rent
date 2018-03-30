@@ -121,9 +121,12 @@ public class ManagerController {
 		if (!lvCheck(session)) {
 			return "redirect:/";
 		}
+		//강퇴되었는지 여부를 알려주면 좋겠는데..
+		boolean b = false;
 		for (String each : no) {
-			managerService.delMember(each);
+			b = managerService.delMember(each);
 		}
+		
 		return "redirect:/manager/member";
 	}
 }
