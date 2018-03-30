@@ -35,12 +35,11 @@ public class VisitController {
 			@RequestParam Map<String, String> param, HttpServletRequest req){
 		
 		
-		Map query = new HashMap();
-		query.put("id", param.get("id"));
-		System.out.println("넘어온 objectID : " + param.get("id") );
-		boolean b = visitService.delVisit(query);
+		String id = param.get("id");
+		System.out.println("넘어온 objectID : " + id );
+		boolean b = visitService.delVisit(id);
 
-		return false;
+		return b;
 	}
 	
 	
