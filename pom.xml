@@ -28,18 +28,30 @@
 <dependencies>
 
 <!-- 몽고 드라이버 -->
+<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
 <dependency>
- <groupId>org.mongodb</groupId>
- <artifactId>mongo-java-driver</artifactId>
- <version>2.13.3</version>
+    <groupId>org.mongodb</groupId>
+    <artifactId>mongo-java-driver</artifactId>
+    <version>3.6.2</version>
 </dependency>
 
-<!-- 몽고에 쓰기위한 bson -->
+
+<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
 <dependency>
- <groupId>org.mongodb</groupId>
- <artifactId>bson</artifactId>
- <version>2.13.3</version>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-mongodb</artifactId>
+    <version>2.0.5.RELEASE</version>
 </dependency>
+
+
+<!-- 몽고에 쓰기위한 bson -->
+<!-- https://mvnrepository.com/artifact/org.mongodb/bson -->
+<dependency>
+    <groupId>org.mongodb</groupId>
+    <artifactId>bson</artifactId>
+    <version>3.6.2</version>
+</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 <dependency>

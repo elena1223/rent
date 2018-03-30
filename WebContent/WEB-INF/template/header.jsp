@@ -26,6 +26,8 @@
         <c:if test="${logon.LV==2}">
         <li class="<%=uri.equals("manager")?"active":""%>"><a href="<%=request.getContextPath() %>/manager/register">관리자페이지</a></li>
         </c:if>
+        <li class="<%=uri.equals("visit")?"active":""%>">
+        <a href="<%=request.getContextPath() %>/visit">방명록</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <c:choose>

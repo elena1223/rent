@@ -34,12 +34,11 @@ public class MypageController {
 			if (logon == null) {
 				return "redirect:/";
 			}
-			// System.out.println("(¸¶ÀÌÆäÀÌÁö in)¼¼¼Ç¿¡ ·Î±×¿Â Á¤º¸ ¸Ê" + logon);
 
 			String id = (String) logon.get("ID");
 
 			map = mypageService.readOne(id);
-			System.out.println("È¸¿øÁ¤º¸ ¸Ê : " + map);
+			System.out.println("(in)íšŒì›ì •ë³´ ê°’: " + map);
 			model.addAttribute("main", "mypage.jsp");
 			model.addAttribute("mypage", map);
 
@@ -96,16 +95,15 @@ public class MypageController {
 			map.put("password", param.get("password"));
 			map.put("phone", param.get("phone"));
 
-			 System.out.println("Äõ¸®·Î ³Ñ¾î°¡´Â ¸Ê = " + map);
+			 System.out.println("ë°”ë€” íšŒì›ì •ë³´ ë§µ = " + map);
 			boolean b = mypageService.editMypage(map);
-			// ¼öÁ¤µÇ¾ú´ÂÁö ¿©ºÎ
 			if (b) {
 				editmap.put("id", param.get("id"));
 				editmap.put("password", param.get("password"));
 
 				Map logons = loginOutService.findByIdAndPass(editmap);
 				session.setAttribute("logon", logons);
-				System.out.println("(¸¶ÀÌÆäÀÌÁöout)¼¼¼Ç¿¡ ·Î±×¿Â Á¤º¸ ¸Ê" + logon);
+				System.out.println("(out)íšŒì›ì •ë³´ ìˆ˜ì • í›„ ì„¸ì…˜ì— ë‹¤ì‹œ ë„£ëŠ” ê°’" + logon);
 
 			} else {
 
@@ -133,12 +131,10 @@ public class MypageController {
 			String password = param.get("password");
 			String id = param.get("id");
 
-//			System.out.println("ÀÎÁõ¾È¹ŞÀ½? " );
 			
 			boolean rst = false;
 			rst= mypageService.outMember(param); 
 
-			System.out.println("È¸¿øÅ»Åğ ¿©ºÎ =  " + rst);
 			
 			if(rst) {
 				session.removeAttribute("logon");
@@ -147,7 +143,6 @@ public class MypageController {
 			throw new Exception();
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("err", "È¸¿ø Å»Åğ¿¡¼­ ¹®Á¦°¡ ÀÖ¾ú½À´Ï´Ù.");
 			model.addAttribute("main","error.jsp" );
 
 			return "default";
@@ -172,7 +167,7 @@ public class MypageController {
 		}
 		String no = String.valueOf(logon.get("NO"));
 		List reservation = mypageService.readMyResevation(no);
-		System.out.println("³Ñ¾î¿Â ÆÄ¶÷°ª " + reservation);
+		System.out.println("ï¿½Ñ¾ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ " + reservation);
 		if(reservation!=null) {
 			model.addAttribute("my", reservation);
 			model.addAttribute("main","myreservation.jsp");
