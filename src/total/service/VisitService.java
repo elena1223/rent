@@ -15,6 +15,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -37,7 +39,15 @@ public class VisitService {
 		try {
 
 			Query query = new Query();
-			FindIterable<Document> finds = collection.find(new Document());
+//			FindIterable<Document> finds = collection.find(new Document());
+	        BasicDBObject orderBy = new BasicDBObject("date", -1);
+
+	        
+
+	        FindIterable<Document> finds= collection.find(new Document()).sort(orderBy);
+
+	 
+
 
 			if (finds != null) {
 
