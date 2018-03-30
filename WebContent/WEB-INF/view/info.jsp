@@ -43,10 +43,14 @@ table {
 						<td colspan="2">${li.OPT }</td>
 					</tr>
 					<tr>
-						<td colspan="2" style="height: 50px"><button onclick="location.href='/reserve/${li.NO}'" class="btn"
+						<c:if test="${logon != null }">
+						<td colspan="2" style="height: 50px">
+						<button onclick="location.href='/reserve/${li.NO}'" class="btn"
 								style="width: 100%; height: 100%; background-color: #ff6000;">
 								<b style="font-size: 15px; color: white;">선택</b>
-							</button></td>
+							</button>
+							</td>
+						</c:if>
 					</tr>
 				</table>
 				<br />
