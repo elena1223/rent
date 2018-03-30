@@ -58,25 +58,22 @@ public class VisitController {
 			} else {
 				name = (String)logon.get("NAME");
 			}		
-//		System.out.println("이름 : " + name);
 		String comments = null;
 		List<String> tags = new ArrayList();
 		
 
-		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
+		SimpleDateFormat mSimpleDateFormat = 
+				new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
 		Date currentTime = new Date ();
 		String date = mSimpleDateFormat.format ( currentTime );
-//		System.out.println ( "글쓴 날짜" +  date );
 
 		String comment = param.get("comment");
-//		System.out.println("내용 : " + comment);
 		comments = comment;
 		String[] words = comment.split(" ");
 		
 			for (String word : words) {
 				if (word.startsWith("#")){
 					String str = word.replaceAll("#", "");
-//					System.out.println("태그 : " + str + " / ");
 					tags.add(str);
 				}
 			}
@@ -94,13 +91,29 @@ public class VisitController {
 	
 
 	@RequestMapping(path="/visit", method = RequestMethod.GET)
-	public String visitGETController(Model model, HttpSession session, 
-			@RequestParam Map<String, String> param, HttpServletRequest req){
+	public String visitGETController(Model model, HttpSession session, HttpServletRequest req, 
+			@RequestParam Map<String, String> param, @RequestParam(defaultValue= "1") int page){
 		List<Map> list;
-		
+	
 		list = visitService.listVisit();
-		System.out.println("list  = " + list);
+		System.out.println("list size =  " + list.size());
 		
+		Map<String,Integer> paging = new HashMap<String,Integer>();
+		int size = list.size();
+		
+		paging.put("page", page);
+		paging.put("totalCount", size);
+		paging.put("countList", 10);
+		paging.put("countPage", 5);
+		paging.put("totalPage", list.size()%10 > 0 ? list.size()/10+1 : list.size()/10 );
+		if(page > paging.get("totalPage")) {
+			paging.put("page",paging.get("totalPage"));
+		}
+		paging.put("startPage",((paging.get("page")-1)/5)*5+1);
+		paging.put("endPage", paging.get("startPage")+5-1 > paging.get("totalPage")?
+				paging.get("totalPage") : paging.get("startPage")+5-1);
+		
+		model.addAttribute("page",paging);
 		model.addAttribute("list", list);
 		model.addAttribute("main","visit.jsp");		
 		

@@ -34,13 +34,14 @@ textarea {
 <form style="margin-top: 30px;" id="visitform" name="visitform" method="post" autocomplete="off">
   <textarea  name= "comment" id="comment"></textarea>
   <p align="right">
-		<button type="button" onclick="visit()"style="vertical-align:middle; margin-top: 10px; margin-bottom: 20px;">
-		확인</button>  
+		<button type="button" onclick="visit()"
+		style="vertical-align:middle; margin-top: 10px; margin-bottom: 20px;">확인</button>  
 </form>
 
             <!-- 방명록 내용 부분 -->
 	<div id="comment">
-		<c:forEach var="v" items="${requestScope.list}" varStatus="vs">
+		<c:forEach var="v" items="${requestScope.list}" varStatus="vs" 
+		begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
 			<hr size="1" width="700">
 			<label>${v.name}</label>
 			<label><small>${v.date}</small></label>
@@ -49,19 +50,27 @@ textarea {
 				<br>
 			</c:if>
 			<br /> ${v.comment} <br />
-<%-- 			<c:if test="${!empty v.tags} "> --%>
 				<p style="color: grey;" align="right">
 					tag.&nbsp;
 					<c:forEach var="t" items="${v.tags}" varStatus="vs">
 						<a href="#">#${t}</a>&nbsp;
 					</c:forEach>
 				</p>
-<%-- 			</c:if> --%>
 		</c:forEach>
 		<hr size="1" width="700">
 	</div>
-
-
+	<div style="float:left; margin-bottom: 30px;">
+	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
+		<c:choose>
+		<c:when test="${page.page==i}">
+		<b>${i }</b>
+		</c:when>
+		<c:otherwise>
+		<a href="?page=${i }&key=${key}">${i }</a>
+		</c:otherwise>
+		</c:choose> 
+	</c:forEach>
+	</div>
 	<script>
 		function visit() {
 			var comment = $("#comment").val();

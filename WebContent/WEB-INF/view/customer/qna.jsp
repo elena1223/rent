@@ -50,21 +50,25 @@
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
+    <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" 
+    end="${(page.page-1)*page.countList+page.countList-1}">
       <tr>
       	<td>${b.NO }</td>
-        <td><a href="/customer/${type}/${b.NO }">${b.TITLE } (${b.CNT }<c:if test="${b.CNT==null }">0</c:if>)</a></td>
+        <td><a href="/customer/${type}/${b.NO }">${b.TITLE } (${b.CNT }
+        <c:if test="${b.CNT==null }">0</c:if>)</a>
+        </td>
         <td>${b.NAME }</td>
         <td><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
         <td>${b.HIT }</td>
-        <c:if test="${logon.LV eq '2' }"><td><input class="check" type="checkbox" name="no" value="${b.NO}"/></td></c:if>
+        <c:if test="${logon.LV eq '2' }">
+        <td><input class="check" type="checkbox" name="no" value="${b.NO}"/></td>
+        </c:if>
 	</c:forEach>
     </tbody>
   </table> 
   </form>
-  <c:if test="${logon.LV eq '2' }"><p align="right" style=" margin-right:235px">
-<!-- 	전체선택<input id="checkAll" type="checkbox"/> <br/> -->
-	<a href="javascript:del();">[삭제]</a></p>
+	<c:if test="${logon.LV eq '2' }">
+	<p align="right" style=" margin-right:235px"> <a href="javascript:del();">[삭제]</a></p>
 	</c:if>
   <div style="float:left">
 	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
@@ -88,35 +92,40 @@
 	</form>
 <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
-  <p align="right" style="margin-right:225px"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">글쓰기</button></p>
+  <p align="right" style="margin-right:225px">
+  <button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">
+  글쓰기</button></p>
   </c:if>
 </c:if>
 </div>
 <br/>
 <script>
-function del(){
-	if(window.confirm("선택한 게시물을 삭제하시겠습니까?")){
-		$("#del").submit();
+	function del(){
+		
+		if(window.confirm("선택한 게시물을 삭제하시겠습니까?")){
+			$("#del").submit();
+		}
+		
 	}
 	
-}
-$("#checkAll").change(function(){
-	if( $("#checkAll").is(':checked') ){
-	    $(".check").prop("checked", true);
-	  }else{
-	    $(".check").prop("checked", false);
-	  }
-})
-$(".check").change(function(){
-	var state=true;
-	$(".check").each(function(){
-		if(!$(this).is(':checked')){
-			state=false;
-			return false;
-		}
+	$("#checkAll").change(function(){
+		if( $("#checkAll").is(':checked') ){
+		    $(".check").prop("checked", true);
+		  }else{
+		    $(".check").prop("checked", false);
+		  }
 	})
-	$("#checkAll").prop("checked", state);
-})
+	
+	$(".check").change(function(){
+		var state=true;
+		$(".check").each(function(){
+			if(!$(this).is(':checked')){
+				state=false;
+				return false;
+			}
+		})
+		$("#checkAll").prop("checked", state);
+	})
 
 </script>
     

@@ -41,7 +41,6 @@ public class MypageController {
 			String id = (String) logon.get("ID");
 
 			map = mypageService.readOne(id);
-//			System.out.println("마이페이지 로딩 시 회원정보 : " + map);
 			model.addAttribute("main", "mypage.jsp");
 			model.addAttribute("mypage", map);
 
@@ -65,18 +64,16 @@ public class MypageController {
 		try {
 			Map map = new HashMap();
 			Map editmap = new HashMap();
-			// System.out.println("param = " + param);
 			HttpSession s = req.getSession();
 			Map logon = (Map) s.getAttribute("logon");
 			if (logon == null) {
 				return "redirect:/";
 			}
-//			 String lv =param.get("LV"); // lv == null
+//			String lv =param.get("LV"); // lv == null
 //			String lv = String.valueOf(param.get("LV")); // lv == "null"
 			String lv = String.valueOf(logon.get("LV"));
 			String lvv =param.get("lvv"); 
 			String phone = String.valueOf(param.get("phone"));
-//			System.out.println("lvv : " + lvv);
 			if(lvv==null) {
 				param.put("lv", lv);
 				map.put("lv", lv);
@@ -98,7 +95,6 @@ public class MypageController {
 			map.put("password", param.get("password"));
 			map.put("phone", param.get("phone"));
 
-//			 System.out.println("바뀔 회원정보 맵 = " + map);
 			boolean b = mypageService.editMypage(map);
 			// 수정되었는지 여부
 			if (b) {
@@ -107,7 +103,6 @@ public class MypageController {
 
 				Map logons = loginOutService.findByIdAndPass(editmap);
 				session.setAttribute("logon", logons);
-//				System.out.println("(out)회원정보 수정 후 세션에 다시 넣는 값" + logon);
 
 			} else {
 
@@ -138,7 +133,6 @@ public class MypageController {
 			boolean rst = false;
 			rst= mypageService.outMember(param); 
 
-//			System.out.println("탈퇴회원 정보 =  " + rst);
 			
 			if(rst) {
 				session.removeAttribute("logon");
@@ -156,7 +150,6 @@ public class MypageController {
 	@RequestMapping(path = "/target")
 	public String popupHandle(Model model, HttpSession session, HttpServletRequest req,
 			@RequestParam Map<String, String> param) {
-//		model.addAttribute("main","target.jsp" );
 		return "target";
 
 	}

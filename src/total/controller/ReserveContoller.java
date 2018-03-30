@@ -27,54 +27,55 @@ public class ReserveContoller {
 	InfoService infoService;
 	@Autowired
 	ReserveService reserveService;
-	
+
 	@RequestMapping("")
-	public String reserveHandle(Model model,HttpSession session) {
-		if(session.getAttribute("logon")==null) {
-			model.addAttribute("main","login.jsp");
+	public String reserveHandle(Model model, HttpSession session) {
+		if (session.getAttribute("logon") == null) {
+			model.addAttribute("main", "login.jsp");
 
 			return "default";
-		}else {
-			model.addAttribute("main","reserve/reserve.jsp");
-			model.addAttribute("list",infoService.readAllCar());
+		} else {
+			model.addAttribute("main", "reserve/reserve.jsp");
+			model.addAttribute("list", infoService.readAllCar());
 			return "default";
 		}
-		
+
 	}
+
 	@RequestMapping("/{no}")
 	public String noHandle(Model model, @PathVariable String no) {
 		Map car = infoService.readOneCar(no);
-		if(car.get("NO")!=null) {
-			model.addAttribute("car",car);
-			model.addAttribute("main","reserve/selectDate.jsp");
+		if (car.get("NO") != null) {
+			model.addAttribute("car", car);
+			model.addAttribute("main", "reserve/selectDate.jsp");
 			return "default";
-			
-		}else {
+
+		} else {
 			return "redirect:/reserve";
 		}
-		
-		
+
 	}
+
 	@ResponseBody
-	@RequestMapping(path="/dateCheck",method=RequestMethod.POST)
-	public Map dateCheckHandle(Model model,@RequestParam Map<String,String> map) {
+	@RequestMapping(path = "/dateCheck", method = RequestMethod.POST)
+	public Map dateCheckHandle(Model model, @RequestParam Map<String, String> map) {
 		Map res = reserveService.dateCheck(map);
 		return res;
 	}
+
 	@ResponseBody
-	@RequestMapping(path="/overlapCheck",method=RequestMethod.POST)
-	public List overlapHandle(Model model,@RequestParam Map map) {
-		List over=reserveService.overlapDate(map);
+	@RequestMapping(path = "/overlapCheck", method = RequestMethod.POST)
+	public List overlapHandle(Model model, @RequestParam Map map) {
+		List over = reserveService.overlapDate(map);
 		return over;
 	}
-	@RequestMapping(path="/result", method=RequestMethod.POST)
-	public String reservepHandle(Model model,@RequestParam Map map,HttpSession session) {
-		map.put("mno",((Map)session.getAttribute("logon")).get("NO"));
-		model.addAttribute("res",reserveService.newReserve(map));
-		model.addAttribute("main","reserve/reservep.jsp");
+
+	@RequestMapping(path = "/result", method = RequestMethod.POST)
+	public String reservepHandle(Model model, @RequestParam Map map, HttpSession session) {
+		map.put("mno", ((Map) session.getAttribute("logon")).get("NO"));
+		model.addAttribute("res", reserveService.newReserve(map));
+		model.addAttribute("main", "reserve/reservep.jsp");
 		return "default";
 	}
-	
-	
-	
+
 }

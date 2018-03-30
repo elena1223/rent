@@ -26,108 +26,103 @@ public class JoinController {
 	JoinService joinService;
 	@Autowired
 	LoginOutService loginOutService;
-	
-	@RequestMapping({"/join"})
+
+	@RequestMapping({ "/join" })
 
 	public String joinHandle(Model model) {
-		model.addAttribute("main","join.jsp" );
-		
+		model.addAttribute("main", "join.jsp");
+
 		return "default";
 	}
-	
-	@RequestMapping(path="/joinp", method = RequestMethod.GET)
+
+	@RequestMapping(path = "/joinp", method = RequestMethod.GET)
 
 	public String joinpGetHandle(Model model) {
 		return "redirect:/";
 	}
-	
-	
-	@RequestMapping(path="/joinp", method = RequestMethod.POST)
+
+	@RequestMapping(path = "/joinp", method = RequestMethod.POST)
 
 	public String joinpHandle(Model model) {
-		model.addAttribute("main","joinp.jsp" );
-		
+		model.addAttribute("main", "joinp.jsp");
+
 		return "default";
 	}
-	
-	@RequestMapping(path="/register", method = RequestMethod.POST)
 
-	public String registerHandle(Model model, HttpSession session, Map map,
-									@RequestParam Map<String, String> param) {
+	@RequestMapping(path = "/register", method = RequestMethod.POST)
+
+	public String registerHandle(Model model, HttpSession session, Map map, @RequestParam Map<String, String> param) {
 		try {
 
 			String lv = param.get("lv");
-//			System.out.println("lv의 변경이 있었는지? " + lv.equals(""));
 			boolean rst = false;
-			if(lv.equals("")) {
+			if (lv.equals("")) {
 				param.put("lv", "0");
 
-				rst= joinService.addNewOne(param); 
-			}else {
+				rst = joinService.addNewOne(param);
+			} else {
 				param.put("lv", "1");
-				rst= joinService.addNewOne(param); 
+				rst = joinService.addNewOne(param);
 			}
-//			System.out.println("회원가입여부 =  " + rst);
-			if(rst) {
+			if (rst) {
 				Map info = loginOutService.findByIdAndPass(param);
 				session.setAttribute("logon", info);
 				return "redirect:/";
 			}
 			throw new Exception();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("err", "ERROR.");
-			model.addAttribute("main","joinp.jsp" );
+			model.addAttribute("main", "joinp.jsp");
 
 			return "default";
 		}
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(path="/idCheck", method= RequestMethod.POST)
+	@RequestMapping(path = "/idCheck", method = RequestMethod.POST)
 	public Map idCheck(Model model, HttpSession session, @RequestParam Map<String, String> param) {
-		
-			  String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";   
-			  Pattern p = Pattern.compile(regex);
-			  Matcher m = p.matcher(param.get("id"));
-			  Map check = new HashMap<>();
-			  if(m.matches()) {
-					
-					try {
-						check = joinService.existIdCheck(param.get("id"));
-							
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					return check;
-			  }
-			  return check;
-			  
+
+		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(param.get("id"));
+		Map check = new HashMap<>();
+		if (m.matches()) {
+
+			try {
+				check = joinService.existIdCheck(param.get("id"));
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return check;
 		}
-	
+		return check;
+
+	}
+
 	@ResponseBody
-	@RequestMapping(path="/phoneCheck", method= RequestMethod.POST)
-	public boolean phoneCheck(Model model, HttpSession session, 
-			@RequestParam Map<String, String> param, HttpServletRequest req) {
-		
-		  Map check = new HashMap<>();
-		  String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";   
-		  Pattern p = Pattern.compile(regex);
-		  Matcher m = p.matcher(param.get("phone"));
-			if(m.matches()) {
-					
+	@RequestMapping(path = "/phoneCheck", method = RequestMethod.POST)
+	public boolean phoneCheck(Model model, HttpSession session, @RequestParam Map<String, String> param,
+			HttpServletRequest req) {
+
+		Map check = new HashMap<>();
+		String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(param.get("phone"));
+		if (m.matches()) {
+
 			try {
 				check = joinService.existPhoneCheck(param.get("phone"));
-//				System.out.println("휴대폰번호가 존재하는지? : " + (check==null));	
 			} catch (Exception e) {
-					e.printStackTrace();
+				e.printStackTrace();
 			}
-				return check==null;
-			  }
-			  
-			  return check==null;
+			return check == null;
 		}
-	
+
+		return check == null;
+	}
+
 	@ResponseBody
 	@RequestMapping(path = "/myphoneCheck", method = RequestMethod.POST)
 	public boolean myphoneCheck(Model model, HttpSession session, @RequestParam Map<String, String> param,
@@ -137,8 +132,6 @@ public class JoinController {
 		Map logon = (Map) s.getAttribute("logon");
 		String phone = String.valueOf(logon.get("PHONE"));
 		String paramphone = String.valueOf(param.get("phone"));
-		// System.out.println("기존 회원정보 폰값 : " + phone);
-		// System.out.println("새로 입력한 폰값 : "+ param.get("phone"));
 		Map check = new HashMap<>();
 		String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
 		Pattern p = Pattern.compile(regex);
@@ -161,6 +154,5 @@ public class JoinController {
 		}
 		return true;
 	}
-	
-	
-	}
+
+}

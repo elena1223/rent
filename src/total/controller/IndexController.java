@@ -13,13 +13,13 @@ import total.service.InfoService;
 public class IndexController {
 	@Autowired
 	InfoService infoService;
-	
-	@RequestMapping({"/index","/"})
+
+	@RequestMapping({ "/index", "/" })
 
 	public String indexHandle(Model model) {
-		model.addAttribute("main","index.jsp" );
-		model.addAttribute("car",infoService.readNewCar());
+		model.addAttribute("main", "index.jsp");
+		model.addAttribute("car", infoService.readNewCar());
 		return "index";
 	}
-	
+
 }

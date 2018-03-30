@@ -23,29 +23,27 @@ import com.mongodb.client.result.DeleteResult;
 
 import total.controller.VisitController;
 
-
 @Service
 public class VisitService {
 
 	public List listVisit() {
-		
+
 		MongoClient client = new MongoClient("13.125.168.55", 27017);
 		MongoDatabase db = client.getDatabase("board");
 		MongoCollection collection = db.getCollection("visit");
-		
+
 		List<Map> list = new ArrayList<>();
-		
+
 		try {
-			
+
 			Query query = new Query();
 			FindIterable<Document> finds = collection.find(new Document());
-//			System.out.println("finds : " + finds);
-	
-			if(finds != null) {
-			
-				for(Document doc : finds) {
-					Map visit = new HashMap<>(); 
-					
+
+			if (finds != null) {
+
+				for (Document doc : finds) {
+					Map visit = new HashMap<>();
+
 					visit.put("name", doc.get("name"));
 					visit.put("comment", doc.get("comment"));
 					visit.put("tags", doc.get("tags"));
@@ -54,69 +52,61 @@ public class VisitService {
 
 					list.add(visit);
 				}
-				
-//				System.out.println("리스트 : " + list);
-				
+
 				client.close();
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return list;
-		
+
 	}
-	
-	
+
 	public boolean writeVisit(Map data) {
-		
+
 		MongoClient client = new MongoClient("13.125.168.55", 27017);
 		MongoDatabase db = client.getDatabase("board");
 		MongoCollection collection = db.getCollection("visit");
-		
+
 		Document doc2 = new Document(data);
-//		System.out.println("제이슨으로 바꾼 문장  :" + doc2.toJson());
-		boolean rst=false;
+		boolean rst = false;
 		try {
-			collection.insertMany(Arrays.asList(doc2));		
+			collection.insertMany(Arrays.asList(doc2));
 			rst = true;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		client.close();	
+		client.close();
 		return rst;
-		
+
 	}
-	
+
 	public boolean delVisit(String id) {
-		
+
 		MongoClient client = new MongoClient("13.125.168.55", 27017);
 		MongoDatabase db = client.getDatabase("board");
 		MongoCollection collection = db.getCollection("visit");
-		
+
 		List<Map> list = new ArrayList<>();
 		boolean rst = false;
-			Document bd = new Document("_id", new ObjectId(id));
-//			System.out.println("서비스oid : " + new ObjectId(id));
+		Document bd = new Document("_id", new ObjectId(id));
 		try {
-			
+
 			DeleteResult dr = collection.deleteMany(bd);
-			System.out.println("dr.getDeletedCount() : "  + dr.getDeletedCount());
-			if (dr.getDeletedCount()==1) {
-				rst= true;
+			System.out.println("dr.getDeletedCount() : " + dr.getDeletedCount());
+			if (dr.getDeletedCount() == 1) {
+				rst = true;
 			}
-				client.close();
-			
+			client.close();
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}					
-					
+		}
+
 		return rst;
-		
+
 	}
-		
-	
-	
 
 }

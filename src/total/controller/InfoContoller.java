@@ -16,16 +16,16 @@ import total.service.InfoService;
 
 @Controller
 public class InfoContoller {
-	
+
 	@Autowired
 	InfoService infoService;
 
-	@RequestMapping(path="/info", method=RequestMethod.GET)
+	@RequestMapping(path = "/info", method = RequestMethod.GET)
 	public String infoGetHandle(Model model) {
 		List<Map> list = infoService.readAllCar();
 		model.addAttribute("car", list);
-		model.addAttribute("main","info.jsp");
+		model.addAttribute("main", "info.jsp");
 		return "default";
 	}
-	
+
 }

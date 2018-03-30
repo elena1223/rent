@@ -10,22 +10,22 @@ import org.springframework.stereotype.Service;
 public class JoinService {
 	@Autowired
 	SqlSessionTemplate template;
-	
+
 	public boolean addNewOne(Map map) {
 		System.out.println(map);
-		return template.insert("member.create", map)==1;
+		return template.insert("member.create", map) == 1;
 	}
-	
-	
+
 	public HashMap existIdCheck(String id) {
 		HashMap map = new HashMap<>();
 		map = template.selectOne("member.getById", id);
 		return map;
 	}
-	
+
 	public boolean existEmailCheck(String email) {
-		return template.selectOne("member.getByEmail", email)!=null;
+		return template.selectOne("member.getByEmail", email) != null;
 	}
+
 	public HashMap existPhoneCheck(String phone) {
 		HashMap map = new HashMap<>();
 		map = template.selectOne("member.getByPhone", phone);
@@ -33,17 +33,4 @@ public class JoinService {
 
 	}
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
