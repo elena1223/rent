@@ -32,6 +32,7 @@ public class EmailController {
 		HttpSession s = req.getSession();
 		String auth = uuidService.authUUID();
 		authkey = auth;
+		System.out.println(authkey);
 		if (s != null) {
 
 			boolean b = mailService.sendWelcomeMail(email, authkey);

@@ -36,7 +36,6 @@ public class VisitController {
 		
 		
 		String id = param.get("id");
-		System.out.println("넘어온 objectID : " + id );
 		boolean b = visitService.delVisit(id);
 
 		return b;
