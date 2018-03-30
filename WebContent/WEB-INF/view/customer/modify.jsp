@@ -21,11 +21,11 @@
 </form>
  <script>
  	$("#sub").click(function(){
- 		if($("#title").val().length<5){
- 			window.alert("제목을 5글자 이상 입력해주세요.");
+ 		if($("#title").val().length<1){
+ 			window.alert("제목을 입력해주세요.");
  			$("#title").focus();
- 		}else if($("#content").val().length<10){
- 			window.alert("본문내용을 10글자 이상 입력해주세요.");
+ 		}else if($("#content").val().length<5){
+ 			window.alert("본문내용을 5글자 이상 입력해주세요.");
  			$("#content").focus();
  		}else{
  			console.log("?")

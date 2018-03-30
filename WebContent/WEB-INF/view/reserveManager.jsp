@@ -11,6 +11,7 @@
   <input name="key" value="${key}"/> <span style="text-align:right" class="glyphicon glyphicon-search"></span>
   </form> <br/><br/>
   <form id="cancelForm" action="/manager/cancelp" method="post">
+  <input type="hidden" name="c" value="3">
   <table class="table">
     <thead>
       <tr>
@@ -44,6 +45,7 @@
   <br/>
   <h3>예약취소요청</h3>
     <form id="cancelAdmit" action="/manager/cancelp" method="post">
+    <input type="hidden" name="c" value="3">
   <table class="table">
     <thead>
       <tr>
@@ -58,7 +60,7 @@
     </thead>
     <tbody>
     <c:forEach var="r" items="${cancel }">     
-      <tr class="warning">
+      <tr class="danger">
         <td>${r.NAME }</td>
         <td>${r.CNAME }</td>
         <td>${r.START_DAY }</td>
@@ -86,6 +88,7 @@
         <th>반납일</th>
         <th>이메일</th>
         <th>연락처</th>
+        <th>비고</th>
       </tr>
     </thead>
     <tbody>
@@ -97,6 +100,7 @@
         <td>${r.END_DAY }</td>
         <td>${r.ID }</td>
         <td>${r.PHONE }</td>
+        <td><c:if test="${r.CANCEL eq '3' }"><span style="color:red">취소</span></c:if></td>
       </tr>
      </c:forEach>
   	</tbody>

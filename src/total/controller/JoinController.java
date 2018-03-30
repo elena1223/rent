@@ -56,9 +56,8 @@ public class JoinController {
 									@RequestParam Map<String, String> param) {
 		try {
 
-			System.out.println("param =  " + param);
 			String lv = param.get("lv");
-			System.out.println("lv의 변경이 있었는지? " + lv.equals(""));
+//			System.out.println("lv의 변경이 있었는지? " + lv.equals(""));
 			boolean rst = false;
 			if(lv.equals("")) {
 				param.put("lv", "0");
@@ -68,7 +67,7 @@ public class JoinController {
 				param.put("lv", "1");
 				rst= joinService.addNewOne(param); 
 			}
-			System.out.println("회원가입여부 =  " + rst);
+//			System.out.println("회원가입여부 =  " + rst);
 			if(rst) {
 				Map info = loginOutService.findByIdAndPass(param);
 				session.setAttribute("logon", info);

@@ -89,13 +89,14 @@ th{
   </form>
  </div>
  <div class="container">
-  <h3>완료된 예약</h3>
+  <h3>종료된 예약</h3>
   <table class="table table-bordered" style="width: 80%;">
    <thead>
       <tr class="active" >
         <th>차종</th>
         <th>예약일</th>
         <th>반납일</th>
+        <th>비고</th>
       </tr>
    </thead>
      <tbody>
@@ -104,6 +105,7 @@ th{
 	        <td>${v.CNAME}</td>
 	        <td>${v.SDAY}</td>
 	        <td>${v.EDAY }</td>
+	        <td><c:if test="${v.CANCEL eq '3' }"><span style="color:red">취소</span></c:if></td>
 	      </tr>
     	</c:forEach>
 	</tbody>
