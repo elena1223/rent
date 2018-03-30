@@ -41,7 +41,7 @@ public class MypageController {
 			String id = (String) logon.get("ID");
 
 			map = mypageService.readOne(id);
-			System.out.println("마이페이지 로딩 시 회원정보 : " + map);
+//			System.out.println("마이페이지 로딩 시 회원정보 : " + map);
 			model.addAttribute("main", "mypage.jsp");
 			model.addAttribute("mypage", map);
 
@@ -98,7 +98,7 @@ public class MypageController {
 			map.put("password", param.get("password"));
 			map.put("phone", param.get("phone"));
 
-			 System.out.println("회원정보파람1 = " + map);
+//			 System.out.println("바뀔 회원정보 맵 = " + map);
 			boolean b = mypageService.editMypage(map);
 			// 수정되었는지 여부
 			if (b) {
@@ -107,7 +107,7 @@ public class MypageController {
 
 				Map logons = loginOutService.findByIdAndPass(editmap);
 				session.setAttribute("logon", logons);
-				System.out.println("(회원정보 수정 후) 세션에 넣는 로그온 값" + logon);
+//				System.out.println("(out)회원정보 수정 후 세션에 다시 넣는 값" + logon);
 
 			} else {
 
@@ -138,7 +138,7 @@ public class MypageController {
 			boolean rst = false;
 			rst= mypageService.outMember(param); 
 
-			System.out.println("탈퇴회원 정보 =  " + rst);
+//			System.out.println("탈퇴회원 정보 =  " + rst);
 			
 			if(rst) {
 				session.removeAttribute("logon");
@@ -147,7 +147,6 @@ public class MypageController {
 			throw new Exception();
 		}catch(Exception e) {
 			e.printStackTrace();
-			model.addAttribute("err", "에러.");
 			model.addAttribute("main","error.jsp" );
 
 			return "default";
