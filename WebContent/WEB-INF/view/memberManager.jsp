@@ -40,13 +40,13 @@ th, td{
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="m" items="${member }">
+    <c:forEach var="m" items="${member }" varStatus="vs">
     <c:choose>
     <c:when test="${m.LV eq '2'}"><tr class="success"></c:when>
     <c:when test="${m.LV eq '1' }"><tr class="info"></c:when>
     <c:otherwise><tr class="active"></c:otherwise>
     </c:choose>
-      	<td>${m.NO }</td>
+      	<td>${vs.count }</td>
         <td>${m.NAME }</td>
         <td>${m.ID}</td>
         <td>${m.PASSWORD }</td>

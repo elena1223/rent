@@ -51,9 +51,9 @@
     </thead>
     <tbody>
     <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" 
-    end="${(page.page-1)*page.countList+page.countList-1}">
+    end="${(page.page-1)*page.countList+page.countList-1}" varStatus="vs">
       <tr>
-      	<td>${b.NO }</td>
+      	<td>${vs.count }</td>
         <td><a href="/customer/${type}/${b.NO }">${b.TITLE } (${b.CNT }
         <c:if test="${b.CNT==null }">0</c:if>)</a>
         </td>

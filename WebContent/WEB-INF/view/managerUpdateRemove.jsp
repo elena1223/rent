@@ -17,16 +17,16 @@
 		<form name="form" method="post" id="form" onsubmit="return update();">
 		<table class="table table-condensed table-hover">
 			<thead>
-				<tr align="center">
+				<tr>
 					<td><input type="checkbox" id="checkAll" /></td>
 					<td><b>이름</b></td>
 					<td><b>타입</b></td>
-					<td><b>가격<small>(1일)</small></b></td>
-					<td><b>유종</b></td>
-					<td><b>연비</b></td>
-					<td><b>옵션</b></td>
-					<td><b>정원</b></td>
-					<td><b>보유</b></td>
+					<td align="center"><b>가격<small>(1일)</small></b></td>
+					<td align="center"><b>유종</b></td>
+					<td align="center"><b>연비</b></td>
+					<td align="center"><b>옵션</b></td>
+					<td align="center"><b>정원</b></td>
+					<td align="center"><b>보유</b></td>
 				</tr>
 			</thead>
 			<c:forEach var="li" items="${car }">
@@ -35,18 +35,20 @@
 						<td><input type="checkbox" name="no" class="check" value="${li.NO }"/></td>
 						<td>${li.CNAME }</td>
 						<td>${li.TYPE }</td>
-						<td align="right"><fmt:formatNumber pattern="#,###">${li.PRICE }</fmt:formatNumber>원</td>
+						<td align="center"><fmt:formatNumber pattern="#,###">${li.PRICE }</fmt:formatNumber>원</td>
 						<td align="center">${li.OIL }</td>
-						<td align="right">${li.KILO }</td>
-						<td>${li.OPT }</td>
+						<td align="center">${li.KILO }</td>
+						<td>${li.OPT }</td> 
 						<td align="center">${li.MAX }</td>
 						<td align="center">${li.CNT }</td>
 					</tr>
 				</tbody>
 			</c:forEach>
 		</table>
-		<button type="submit" class="btn btn-success" style="width: 20%" formaction="/manager/update">수정</button>
-		<button type="submit" class="btn btn-danger" style="width: 20%" formaction="/manager/remove" onclick="remove()">삭제</button>
+		<button type="submit" class="btn btn-success" 
+		style="width: 20%; margin-bottom: 30px;" formaction="/manager/update">수정</button>
+		<button type="submit" class="btn btn-danger" 
+		style="width: 20%; margin-bottom: 30px;" formaction="/manager/remove" onclick="remove()">삭제</button>
 		</form>
 
 	</div>
