@@ -36,9 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="dateCheck" resultType="hashMap">
-	select * from rent_car right join (select cancel,cno,count(*) as rcnt from rent_reserve where 
+	select * from rent_car left join (select cno,count(*) as rcnt from rent_reserve where 
 	(((start_day &lt; #{start} and end_day > #{start})or(start_day &lt; #{end} and end_day > #{end}) or (start_day between #{start} and #{end}) or (end_day between #{start} and #{end})) and cancel!=3 
-	) group by cno,cancel) tmp on rent_car.no=tmp.cno where no=#{no}
+	) group by cno) tmp on rent_car.no=tmp.cno where no=#{no}
 	</select>
 	<select id="overlapDate" resultType="hashMap">
 	select cancel,to_char(start_day,'YYYY-MM-DD') as start_day,to_char(end_day,'YYYY-MM-DD') as end_day from rent_reserve where ((start_day &lt;= #{start} and end_day >= #{start})or(start_day &lt;= #{end} and end_day >= #{end}) or 
