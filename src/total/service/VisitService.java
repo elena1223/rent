@@ -95,6 +95,7 @@ public class VisitService {
 		MongoCollection collection = db.getCollection("visit");
 		
 		List<Map> list = new ArrayList<>();
+		
 		boolean rst = false;
 		
 		try {

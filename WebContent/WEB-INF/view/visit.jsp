@@ -44,9 +44,9 @@ textarea {
                     <hr size="1" width="700">
                     <label>${v.name}</label>   
                     <label><small>${v.date}</small></label>
-                    <input type="hidden" id = "id" name="id" value= "${v.id }">    
+                    <input type="hidden" id = "id" name="id" value= "${v.id}">    
 					<c:if test="${logon.LV==2}">
-                    <span><small><a href="del()">&nbsp;&nbsp;[삭제]</a></small></span><br>
+                    <span><small><a href="javascript:del()">&nbsp;&nbsp;[삭제]</a></small></span><br>
                     </c:if>                    
                     <br/> ${v.comment} <br/>
                      <p style="color: grey;" align="right">tag.&nbsp;
@@ -61,6 +61,7 @@ textarea {
 <script>
 	function visit(){
     	var comment = $("#comment").val();
+    	
 		$.ajax({
 			url: "/visitw",
 			type: "POST",
@@ -87,6 +88,7 @@ textarea {
 	function del(){
 		
 		var id =  $("#id").val();
+		
 		console.log(id);
 		$.ajax({
 			url: "/delVisit",

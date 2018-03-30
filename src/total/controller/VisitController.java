@@ -37,8 +37,8 @@ public class VisitController {
 		
 		Map query = new HashMap();
 		query.put("id", param.get("id"));
-	
-		boolean b = visitService.writeVisit(query);
+		System.out.println("넘어온 objectID : " + param.get("id") );
+		boolean b = visitService.delVisit(query);
 
 		return false;
 	}
