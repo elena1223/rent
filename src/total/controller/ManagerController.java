@@ -64,9 +64,9 @@ public class ManagerController {
 		return "default";
 	}
 	@RequestMapping(path="/cancelp",method=RequestMethod.POST)
-	public String cancelpHandle(Model model, @RequestParam String[] no) {
+	public String cancelHandle(Model model,@RequestParam String[] no,@RequestParam String c) {
 		for(String each:no) {
-			reserveService.delete(each);
+			reserveService.cancellation(each,c);
 		}
 		
 		return "redirect:/manager/reserve";
@@ -77,6 +77,7 @@ public class ManagerController {
 		model.addAttribute("member",managerService.readMember("%"+key+"%"));
 		return "default";
 	}
+
 	@RequestMapping(path="/delete",method=RequestMethod.POST)
 	public String deleteHandle(Model model, @RequestParam String[] no) {
 		for(String each:no) {
