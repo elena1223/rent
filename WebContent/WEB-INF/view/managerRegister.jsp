@@ -106,7 +106,7 @@
 			<button type="submit" class="btn" style="width: 20%" >µî·Ï</button>
 		</form>
 	</div>
-
+	<br/>
 	<script>
 		
 		var InputImage = (function loadImageFile() {

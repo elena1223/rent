@@ -48,8 +48,8 @@
 		<button type="submit" class="btn btn-success" style="width: 20%" formaction="/manager/update">수정</button>
 		<button type="submit" class="btn btn-danger" style="width: 20%" formaction="/manager/remove" onclick="remove()">삭제</button>
 		</form>
-
 	</div>
+	<br/>
 	<script>
 		// 테이블 선택시 해당 라인 체크/해제
 		$(".trr").click(function(){
