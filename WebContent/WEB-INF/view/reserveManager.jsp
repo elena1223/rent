@@ -38,7 +38,7 @@ th{
         <td align="center">${r.END_DAY }</td>
         <td>${r.ID }</td>
         <td align="center">${r.PHONE }</td>
-        <td align="center"><input type="checkbox"  id = "cancelno" name="no" value="${r.RNO }"/></td>
+        <td align="center"><input type="checkbox"  name="no" value="${r.RNO }"/></td>
       </tr>
      </c:forEach>
   	</tbody>
@@ -73,7 +73,7 @@ th{
         <td align="center">${r.END_DAY }</td>
         <td>${r.ID }</td>
         <td align="center">${r.PHONE }</td>
-        <td align="center"><input type="checkbox" id = "admitno" name="no" value="${r.RNO }"/></td>
+        <td align="center"><input type="checkbox" class = "t" name="no" value="${r.RNO }"/></td>
       </tr>
      </c:forEach>
   	</tbody>
@@ -122,12 +122,25 @@ th{
   })
   
   
-  
   $("#admit").click(function(){
-	  
+	var b = false;
+	$(".t").each(function(){
+		console.log($(this).val());
+		if($(this).is(':checked')){
+			b = true;
+			return true;
+		}
+	})
+	
+	if(!b){
+		alert("취소 승인 할 예약을 선택하세요");
+	} else {
+	
 	if(window.confirm("선택한 예약을 취소하시겠습니까?")){
 		$("#cancelAdmit").submit();
 	} 
+  }
+  
   })
   </script>
   

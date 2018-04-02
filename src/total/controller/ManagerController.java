@@ -96,15 +96,12 @@ public class ManagerController {
 	@RequestMapping(path = "/cancelp", method = RequestMethod.POST)
 	public String cancelHandle(HttpSession session, Model model, @RequestParam String[] no,
 			@RequestParam String c) {
+		System.out.println("파람값 :" + no);
 		
 		if (!lvCheck(session)) {
 			return "redirect:/";
 		}
 		
-		if(no.length<1) {
-			return "redirect:/manager/reserve";
-
-		}
 		for (String each : no) {
 			reserveService.cancellation(each, c);
 		}
