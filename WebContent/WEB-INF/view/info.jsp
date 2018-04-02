@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String type = request.getParameter("type");
+	if(type==null){
+		type="소형";
+	}
 %>
 <html>
 <head>
