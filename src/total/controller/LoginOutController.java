@@ -28,7 +28,7 @@ public class LoginOutController {
 	@Autowired
 	MypageService mypageService;
 	@Autowired
-	MessageService MessageService;
+	MessageService messageService;
 	
 	@RequestMapping(path= {"/login","/findpass"}, method=RequestMethod.GET)
 	public String loginGetHandle(HttpSession session, Model model) {
@@ -45,7 +45,7 @@ public class LoginOutController {
 		Map logon = loginOutService.findByIdAndPass(param);
 		if(logon != null) {
 			session.setAttribute("logon", logon);
-			MessageService.logonMessage(String.valueOf(((Map)session.getAttribute("logon")).get("ID")));
+			messageService.logonMessage(String.valueOf(((Map)session.getAttribute("logon")).get("NO")));
 			return "redirect:/";
 		} else {
 			model.addAttribute("err", "Logon Failed");

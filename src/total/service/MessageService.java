@@ -43,6 +43,21 @@ public class MessageService {
 		return r;
 	}
 	
+	public void sendMessage(String other,String content){
+		if(map.containsKey(other)) {
+			Map msg = new LinkedHashMap<>();
+				msg.put("mode", "message");
+				msg.put("msg", content);
+			for(WebSocketSession ws : map.get(other)) {
+				try {
+					ws.sendMessage(new TextMessage(gson.toJson(msg)));
+				} catch (IOException e) {
+					e.printStackTrace();
+					break;
+				}
+			}
+		}
+	}
 	
 	public void logonMessage(String other){
 		if(map.containsKey(other)) {

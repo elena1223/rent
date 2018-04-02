@@ -3,6 +3,7 @@ package total.controller;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -15,9 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import total.service.ManagerService;
+import total.service.MessageService;
 import total.service.ReserveService;
 
 @Controller
@@ -27,6 +30,8 @@ public class ManagerController {
 	ManagerService	managerService;
 	@Autowired
 	ReserveService reserveService;
+	@Autowired
+	MessageService messageService;
 	
 	public boolean lvCheck(HttpSession session) {
 		if(session.getAttribute("logon")==null) {
@@ -113,5 +118,13 @@ public class ManagerController {
 			managerService.delMember(each);
 		}
 		return "redirect:/manager/member";
+	}
+	
+	@ResponseBody
+	@RequestMapping(path="/message",method=RequestMethod.POST)
+	public boolean messageHandle(@RequestParam String target,@RequestParam String content) {
+		System.out.println(target);
+			messageService.sendMessage(target, content);
+		return true;
 	}
 }

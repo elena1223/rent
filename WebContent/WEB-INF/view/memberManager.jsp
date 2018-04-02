@@ -9,7 +9,9 @@
 <div class="container">  
 <h2>현재 회원</h2>        
 <form><p align="right" ><span class="glyphicon glyphicon-search"></span> <input style="height:30px" name="key" value="${key }" placeholder="아이디 or 이메일"/> 
-<button type="button" id="b" style="margin-right:228px" class="btn btn-danger" >선택한 회원 강퇴</button></p></form>
+<button type="button" id="b" class="btn btn-danger" >선택한 회원 강퇴</button>
+<button type="button" id="m" style="margin-right:228px" class="btn btn-success" >메세지 전송</button>
+</p></form>
 <form id="del" action="/manager/delete" method="post">
 <table class="table table-bordered" style="width:80%">
     <thead>
@@ -20,7 +22,7 @@
         <th width="15%">비밀번호</th>
         <th width="23%">연락처</th>
         <th>권한</th>
-        <th width="5%">선택</th>
+        <th width="5%"><input type="checkbox" id="checkAll"/></th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +40,7 @@
         <td>${m.LV }</td>
         <c:choose>
 	    <c:when test="${m.LV eq '2'}"><<td></td></c:when>
-	    <c:otherwise><td><input type="checkbox" name="no" value="${m.NO }"/></td></c:otherwise>
+	    <c:otherwise><td><input type="checkbox" name="no" class="check" value="${m.NO }"/></td></c:otherwise>
 	    </c:choose>
       </tr>
      </c:forEach>
@@ -51,7 +53,55 @@ $("#b").click(function(){
 	if(window.confirm("정말로 선택한 회원들을 강퇴시키겠습니까?")){
 		$("#del").submit()
 	}
-	
+})
+$("#m").click(function(){
+	var content = window.prompt("전송할 메세지를 입력하세요")
+	if(content!=null){
+		
+		
+		$(".check").each(function(){
+		if($(this).is(':checked')){
+		
+		$.ajax({
+			url: "/manager/message",
+			type: "POST",
+			async:false,
+			data : {
+				"content" : content,
+				"target" : $(this).val()
+			},
+			success: function(rst){
+				if(rst == true){
+					
+
+				} else {
+
+				}
+			}
+		});
+		}
+		})
+		window.alert("메세지가 전송되었습니다.")
+	}
 	
 })
+
+$("#checkAll").change(function(){
+	if( $("#checkAll").is(':checked') ){
+	    $(".check").prop("checked", true);
+	  }else{
+	    $(".check").prop("checked", false);
+	  }
+})
+$(".check").change(function(){
+	var state=true;
+	$(".check").each(function(){
+		if(!$(this).is(':checked')){
+			state=false;
+			return false;
+		}
+	})
+	$("#checkAll").prop("checked", state);
+})
+
 </script>

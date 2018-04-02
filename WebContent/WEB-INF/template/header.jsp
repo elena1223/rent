@@ -55,6 +55,9 @@
 				window.alert("다른 사용자가 로그인하여 로그아웃됩니다.");
 				location.href="/logout"
 				break;
+			case "message":
+				window.alert("관리자부터로의 메세지 : "+obj.msg)
+				break;
 			}
 		}
 	

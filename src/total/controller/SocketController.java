@@ -17,13 +17,13 @@ public class SocketController extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		String key =String.valueOf(((Map)session.getAttributes().get("logon")).get("ID"));
+		String key =String.valueOf(((Map)session.getAttributes().get("logon")).get("NO"));
 		messageService.addWebSocket(key, session);
 	}
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		String key =String.valueOf(((Map)session.getAttributes().get("logon")).get("ID"));
+		String key =String.valueOf(((Map)session.getAttributes().get("logon")).get("NO"));
 		messageService.removeWebSocket(key, session);
 	}
 
