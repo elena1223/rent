@@ -34,8 +34,8 @@ th{
       <tr class="success" >
         <td align="center">${r.NAME }</td>
         <td>${r.CNAME }</td>
-        <td align="center">${r.START_DAY }</td>
-        <td align="center">${r.END_DAY }</td>
+        <td align="center">${r.SDAY }</td>
+        <td align="center">${r.EDAY }</td>
         <td>${r.ID }</td>
         <td align="center">${r.PHONE }</td>
         <td align="center"><input type="checkbox" name="no" value="${r.RNO }"/></td>
@@ -68,8 +68,8 @@ th{
       <tr class="danger">
         <td align="center">${r.NAME }</td>
         <td>${r.CNAME }</td>
-        <td align="center">${r.START_DAY }</td>
-        <td align="center">${r.END_DAY }</td>
+        <td align="center">${r.SDAY }</td>
+        <td align="center">${r.EDAY }</td>
         <td>${r.ID }</td>
         <td align="center">${r.PHONE }</td>
         <td align="center"><input type="checkbox" name="no" value="${r.RNO }"/></td>
@@ -101,8 +101,8 @@ th{
       <tr class="active">
         <td align="center">${r.NAME }</td>
         <td>${r.CNAME }</td>
-        <td align="center">${r.START_DAY }</td>
-        <td align="center">${r.END_DAY }</td>
+        <td align="center">${r.SDAY }</td>
+        <td align="center">${r.EDAY }</td>
         <td>${r.ID }</td>
         <td align="center">${r.PHONE }</td>
         <td align="center"><c:if test="${r.CANCEL eq '3' }"><span style="color:red">취소</span></c:if></td>
