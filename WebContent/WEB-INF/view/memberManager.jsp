@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div align="center"> 
 <h2 style="color: #2E64FE">회원 관리</h2>
@@ -37,7 +37,7 @@
         <td align="center">${m.PHONE }</td>
         <td align="center">${m.LV }</td>
         <c:choose>
-	    <c:when test="${m.LV eq '2'}"><<td></td></c:when>
+	    <c:when test="${m.LV eq '2'}"><td></td></c:when>
 	    <c:otherwise><td align="center"><input type="checkbox" name="no" class="check" value="${m.NO }"/></td></c:otherwise>
 	    </c:choose>
       </tr>

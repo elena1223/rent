@@ -12,10 +12,16 @@ th{
 </style>
   <h2 style="color: #2E64FE" align="center">예약 내역</h2>
   <form style="position: absolute; right: 0; margin:10px">
+<<<<<<< HEAD
+  <input name="key" value="${key}"/> <span style="text-align:right" class="glyphicon glyphicon-search"></span>
+  </form> <br/><br/>
+  <form id="cancleForm" action="/manager/canclep" method="post">
+=======
   <span style="text-align:right" class="glyphicon glyphicon-search"></span> <input name="key" value="${key}"/> 
   </form>
   <h3 style="text-align:left">진행중인 예약</h3>
   <form id="cancelForm" action="/manager/cancelp" method="post">
+>>>>>>> refs/heads/master
   <input type="hidden" name="c" value="3">
   <table class="table table-hover">
     <thead>
@@ -43,13 +49,13 @@ th{
      </c:forEach>
   	</tbody>
   </table>
-  <button type="button" id="cancel" style="position: absolute; right: 0; margin:12px" class="btn btn-danger">예약취소</button>
+  <button type="button" id="cancle" style="position: absolute; right: 0; margin:12px" class="btn btn-danger">예약취소</button>
   
   </form>
   <br/>
   <br/>
   <h3>예약취소요청</h3>
-    <form id="cancelAdmit" action="/manager/cancelp" method="post">
+    <form id="cancleAdmit" action="/manager/canclep" method="post">
     <input type="hidden" name="c" value="3">
   <table class="table table-hover">
     <thead>
@@ -64,7 +70,7 @@ th{
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="r" items="${cancel }">     
+    <c:forEach var="r" items="${cancle }">     
       <tr class="danger">
         <td align="center">${r.NAME }</td>
         <td>${r.CNAME }</td>
@@ -112,15 +118,19 @@ th{
   </table>
   
   <script>
+<<<<<<< HEAD
+  $("#cancle").click(function(){
+=======
   
   $("#cancel").click(function(){
+>>>>>>> refs/heads/master
 	if(window.confirm("선택한 예약을 취소하시겠습니까?")){
-		$("#cancelForm").submit();
+		$("#cancleForm").submit();
 	} 
   })
   $("#admit").click(function(){
 	if(window.confirm("선택한 예약을 취소하시겠습니까?")){
-		$("#cancelAdmit").submit();
+		$("#cancleAdmit").submit();
 	} 
   })
   </script>
