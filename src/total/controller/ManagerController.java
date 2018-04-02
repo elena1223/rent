@@ -100,6 +100,11 @@ public class ManagerController {
 		if (!lvCheck(session)) {
 			return "redirect:/";
 		}
+		
+		if(no.length<1) {
+			return "redirect:/manager/reserve";
+
+		}
 		for (String each : no) {
 			reserveService.cancellation(each, c);
 		}
