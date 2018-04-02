@@ -88,7 +88,7 @@ public class ManagerController {
 		model.addAttribute("main", "reserveManager.jsp");
 		model.addAttribute("reserve", reserveService.readAll(key));
 		model.addAttribute("end", reserveService.endReserve(key));
-		model.addAttribute("cancle", reserveService.cancleReserve(key));
+		model.addAttribute("cancle", reserveService.cancelReserve(key));
 
 		return "default";
 	}
@@ -100,6 +100,7 @@ public class ManagerController {
 		if (!lvCheck(session)) {
 			return "redirect:/";
 		}
+		
 		for (String each : no) {
 			reserveService.cancellation(each, c);
 		}
@@ -140,4 +141,19 @@ public class ManagerController {
 			messageService.sendMessage(target, content);
 		return true;
 	}
+	
+	
+	@RequestMapping("/detail")
+	public String cancelReserveReadHandle(HttpSession session, Model model, 
+			@RequestParam(defaultValue = "") String key) {
+		if (!lvCheck(session)) {
+			return "redirect:/";
+		}
+		key = "%" + key + "%";
+		model.addAttribute("end", reserveService.endReserve(key));
+
+		return "detailReserve";
+	}
+	
+	
 }

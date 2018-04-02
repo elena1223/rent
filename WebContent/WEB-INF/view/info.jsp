@@ -24,24 +24,26 @@ table {
 			<c:if test="${li.TYPE == param.type }">
 				<table class="table table-condensed">
 					<tr>
-						<td colspan="3">&nbsp;<b style="font-size: 20px;">${li.CNAME }</b><small>(${li.MAX }인승)</small></td>
+						<td colspan="5">&nbsp;<b style="font-size: 20px;">${li.CNAME }</b><small>(${li.MAX }인승)</small></td>
 					</tr>
 					<tr>
 						<td rowspan="5" style="width: 50%"><img
 							src="/imgCar/${li.IMG }" style="width: 400px;"></td>
-						<td align="center" style="width: 18%; vertical-align: middle;">1일</td>
-						<td align="right" style="vertical-align: middle;"><fmt:formatNumber type="number"
+						<td colspan="2" align="center" style="vertical-align: middle;">1일</td>
+						<td colspan="2" align="center" style="vertical-align: middle;"><fmt:formatNumber type="number"
 								value="${li.PRICE }" pattern="#,###" />원&nbsp;</td>
 					</tr>
 					<tr align="center">
-						<td style="vertical-align: middle;">${li.OIL }</td>
-						<td style="vertical-align: middle;">연비 ${li.KILO }Km</td>
+						<td style="vertical-align: middle;">연료</td>
+						<td style="vertical-align: middle;"> ${li.OIL }</td>
+						<td style="vertical-align: middle;">연비</td>
+						<td style="vertical-align: middle;">${li.KILO }Km</td>
 					</tr>
 					<tr align="center">
-						<td colspan="2" style="vertical-align: middle;">옵션</td>
+						<td colspan="4" style="vertical-align: middle;">옵션</td>
 					</tr>
 					<tr align="center">
-						<td colspan="2" style="vertical-align: middle;">${li.OPT }</td>
+						<td colspan="4" style="vertical-align: middle;">${li.OPT }</td>
 					</tr>
 					<tr>
 						<c:if test="${logon != null }">
