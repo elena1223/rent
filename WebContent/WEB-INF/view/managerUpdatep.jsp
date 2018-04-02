@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div align="center">
-		<h2>수정 목록</h2>
+		<h2 style="color: #2E64FE">수정 목록</h2>
 		<form name="form" method="post" enctype="multipart/form-data">
 			<c:forEach var="li" items="${up }">
 				<table>
@@ -34,8 +34,8 @@
 					</tr>
 					<tr align="center">
 						<td>
-							<label class="radio-inline"><input type="radio" name="oil" value="가솔린" class="oil" ${li.OIL =='가솔린'?'checked' : '' }>가솔린</label>
-							<label class="radio-inline"><input type="radio" name="oil" value="디젤" class="oil" ${li.OIL =='디젤'?'checked' : '' }>디젤</label>
+							<label class="radio-inline"><input type="radio" name="oil" value="가솔린" class="oil" ${li.OIL =='가솔린'?'checked' : '' }>가솔린</label><br/>
+							<label class="radio-inline"><input type="radio" name="oil" value="디젤" class="oil" ${li.OIL =='디젤'?'checked' : '' }>디젤</label><br/>
 							<label class="radio-inline"><input type="radio" name="oil" value="LPG" class="oil" ${li.OIL =='LPG'?'checked' : '' }>LPG</label>
 						</td>
 						<td><input type="number" min="0" name="kilo" value="${li.KILO }" style="width: 30%"/>Km</td>

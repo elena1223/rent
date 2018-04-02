@@ -11,11 +11,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" >메뉴</a>
+      <a class="navbar-brand" >Rent</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="<%=uri.equals("index")?"active":""%>"><a href="<%=request.getContextPath() %>/index">메인</a></li>
+        <li class="<%=uri.equals("index")?"active":""%>"><a href="<%=request.getContextPath() %>/index"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="<%=uri.equals("info")?"active":""%>"><a href="<%=request.getContextPath() %>/info?type=소형">차량정보</a></li>
         <li class="<%=uri.equals("reserve")?"active":""%> needLogin" id=""><a href="<%=request.getContextPath() %>/reserve">렌트예약</a></li>
         <li class="<%=uri.equals("service")?"active":""%>"><a href="<%=request.getContextPath() %>/service/way">이용안내</a></li>
