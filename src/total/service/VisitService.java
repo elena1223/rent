@@ -28,7 +28,7 @@ import total.controller.VisitController;
 @Service
 public class VisitService {
 
-	public List listVisit() {
+	public List listVisit(String tag) {
 
 		MongoClient client = new MongoClient("13.125.168.55", 27017);
 		MongoDatabase db = client.getDatabase("board");
@@ -42,7 +42,11 @@ public class VisitService {
 //			FindIterable<Document> finds = collection.find(new Document());
 	        BasicDBObject orderBy = new BasicDBObject("date", -1);
 
-	        FindIterable<Document> finds= collection.find(new Document()).sort(orderBy);
+	        Document data = new Document();
+	        if(tag.length()>0) {
+	        	data=data.parse("{tags:{$in : [\""+tag+"\"]}}");
+	        }
+	        FindIterable<Document> finds= collection.find(data).sort(orderBy);
 	        
 
 
