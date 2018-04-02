@@ -39,7 +39,7 @@ th{
 					<tr class="trr">
 						<td align="center"><input type="checkbox" name="no" class="check" value="${li.NO }"/></td>
 						<td>${li.CNAME }</td>
-						<td>${li.TYPE }</td>
+						<td align="center">${li.TYPE }</td>
 						<td align="center"><fmt:formatNumber pattern="#,###">${li.PRICE }</fmt:formatNumber>원</td>
 						<td align="center">${li.OIL }</td>
 						<td align="center">${li.KILO }</td>
@@ -61,7 +61,7 @@ th{
 		// 테이블 선택시 해당 라인 체크/해제
 		$(".trr").click(function(){
 			var old = $(this).find("input:checkbox").prop("checked");
-			$(this).find("input:checkbox").prop("checked", !old);
+			$(this).find("input:checkbox").trigger("click");
 		});
 	
 		var chkObj = document.getElementsByName("no");
@@ -79,7 +79,7 @@ th{
 				}
 			});
 
-			$('.check').click(function() {
+			$('.check').change(function() {
 				for (var i = 0; i < rowCnt; i++) {
 					if (chkObj[i].checked == false) {
 						ck = false;

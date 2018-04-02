@@ -114,7 +114,7 @@ th{
   <script>
   $(".trr").click(function(){
 		var old = $(this).find("input:checkbox").prop("checked");
-		$(this).find("input:checkbox").prop("checked", !old);
+		$(this).find("input:checkbox").trigger("click");
 	});
   
   $("#cancel").click(function(){
