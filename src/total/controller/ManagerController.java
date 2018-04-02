@@ -123,7 +123,6 @@ public class ManagerController {
 	@ResponseBody
 	@RequestMapping(path="/message",method=RequestMethod.POST)
 	public boolean messageHandle(@RequestParam String target,@RequestParam String content) {
-		System.out.println(target);
 			messageService.sendMessage(target, content);
 		return true;
 	}

@@ -9,8 +9,8 @@
 <div class="container">  
 <h2>현재 회원</h2>        
 <form><p align="right" ><span class="glyphicon glyphicon-search"></span> <input style="height:30px" name="key" value="${key }" placeholder="아이디 or 이메일"/> 
-<button type="button" id="b" class="btn btn-danger" >선택한 회원 강퇴</button>
-<button type="button" id="m" style="margin-right:228px" class="btn btn-success" >메세지 전송</button>
+<button type="button" id="b" class="btn btn-danger" >회원강퇴</button>
+<button type="button" id="m" style="margin-right:228px" class="btn btn-success" >메세지</button>
 </p></form>
 <form id="del" action="/manager/delete" method="post">
 <table class="table table-bordered" style="width:80%">
