@@ -28,13 +28,14 @@ public class CustomerController {
 		model.addAttribute("main", "customer/qna.jsp");
 		Map map = new HashMap();
 		map.put("type", type);
-		map.put("key", "%" + key + "%");
-		List<Map> res = customerService.readAllBoard(map);
-		if (!type.equals("notice") && key.length() < 1) {
-			Map notice = new HashMap();
-			notice.put("type", type);
-			map.put("key", "%%");
-			model.addAttribute("notice", notice);
+		map.put("key", "%"+key+"%");
+		List<Map> res=customerService.readAllBoard(map);
+		if(!type.equals("notice")&&key.length()<1) {
+			Map notice=new HashMap();
+			notice.put("type", "notice");
+			notice.put("key", "%%");
+			List<Map> noti=customerService.readAllBoard(notice);
+		model.addAttribute("noti",noti);
 		}
 
 		model.addAttribute("board", res);
@@ -93,7 +94,7 @@ public class CustomerController {
 		if (customerService.modifyBoard(map)) {
 			return "redirect:/customer/" + map.get("type") + "/" + map.get("no");
 		} else {
-			model.addAttribute("err", "글수정 실패");
+			model.addAttribute("err", "湲��닔�젙 �떎�뙣");
 			return "redirect:/customer/" + map.get("type");
 		}
 	}
@@ -106,11 +107,11 @@ public class CustomerController {
 			if (customerService.addBoard(map)) {
 				return "redirect:/customer/" + map.get("type");
 			} else {
-				model.addAttribute("err", "글작성 실패");
+				model.addAttribute("err", "湲��옉�꽦 �떎�뙣");
 				return "redirect:/customer/" + map.get("type");
 			}
 		} else {
-			model.addAttribute("err", "로그인 후 이용하실 수 있는 서비스입니다.");
+			model.addAttribute("err", "濡쒓렇�씤 �썑 �씠�슜�븯�떎 �닔 �엳�뒗 �꽌鍮꾩뒪�엯�땲�떎.");
 			return "redirect:/login";
 		}
 	}
@@ -120,7 +121,7 @@ public class CustomerController {
 		if (customerService.deleteBoard(no)) {
 			return "redirect:/customer/" + type;
 		} else {
-			model.addAttribute("err", "게시글 삭제 실패");
+			model.addAttribute("err", "寃뚯떆湲� �궘�젣 �떎�뙣");
 			return "redirect:/customer/" + type;
 		}
 	}
@@ -130,7 +131,7 @@ public class CustomerController {
 		map.put("mno", ((Map) session.getAttribute("logon")).get("NO"));
 		map.put("name", ((Map) session.getAttribute("logon")).get("NAME"));
 		if (!customerService.addComments(map)) {
-			model.addAttribute("err", "댓글 작성에 실패하였습니다.");
+			model.addAttribute("err", "�뙎湲� �옉�꽦�뿉 �떎�뙣�븯���뒿�땲�떎.");
 		}
 		return "redirect:" + map.get("uri");
 	}
@@ -139,7 +140,7 @@ public class CustomerController {
 	public String cdeleteHandle(Model model, @RequestParam String no, @RequestParam String cno,
 			@RequestParam String type) {
 		if (!customerService.deleteComment(no)) {
-			model.addAttribute("err", "댓글삭제에 실패하였습니다.");
+			model.addAttribute("err", "�뙎湲��궘�젣�뿉 �떎�뙣�븯���뒿�땲�떎.");
 		}
 		return "redirect:/customer/" + type + "/" + cno;
 	}

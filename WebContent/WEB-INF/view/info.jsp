@@ -10,18 +10,19 @@
 <title>Info</title>
 <style>
 table {
-    border: 1px;
-    width: 100%;
-    height: 170px;
+	border: 1px;
+	width: 100%;
+	height: 170px;
+
 }
 </style>
 </head>
 <body>
-	<div calss="carList" align="center">
-		<h2>차량 정보</h2>
+	<div align="center">
+		<h2 style="color: #2E64FE">${param.type }</h2>
 		<c:forEach var="li" items="${car }">
 			<c:if test="${li.TYPE == param.type }">
-				<table>
+				<table class="table table-condensed">
 					<tr>
 						<td colspan="3">&nbsp;<b style="font-size: 20px;">${li.CNAME }</b><small>(${li.MAX }인승)</small></td>
 					</tr>
@@ -58,6 +59,7 @@ table {
 		</c:forEach>
 	</div>
 	<script>
+		
 	</script>
 </body>
 </html>

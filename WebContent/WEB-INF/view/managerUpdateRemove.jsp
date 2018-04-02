@@ -10,31 +10,36 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+th{
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<div align="center">
-		<h2>차량 목록</h2>
+		<h2 style="color: #2E64FE">차량 목록</h2>
 		<form name="form" method="post" id="form" onsubmit="return update();">
 		<table class="table table-condensed table-hover">
 			<thead>
 				<tr>
-					<td><input type="checkbox" id="checkAll" /></td>
-					<td><b>이름</b></td>
-					<td><b>타입</b></td>
-					<td align="center"><b>가격<small>(1일)</small></b></td>
-					<td align="center"><b>유종</b></td>
-					<td align="center"><b>연비</b></td>
-					<td align="center"><b>옵션</b></td>
-					<td align="center"><b>정원</b></td>
-					<td align="center"><b>보유</b></td>
+					<th><input type="checkbox" id="checkAll" /></th>
+					<th>이름</th>
+					<th>타입</th>
+					<th>가격<small>(1일)</small></th>
+					<th>유종</th>
+					<th>연비</th>
+					<th>옵션</th>
+					<th>정원</th>
+					<th>보유</th>
 				</tr>
 			</thead>
 			<c:forEach var="li" items="${car }">
 				<tbody>
 					<tr class="trr">
-						<td><input type="checkbox" name="no" class="check" value="${li.NO }"/></td>
+						<td align="center"><input type="checkbox" name="no" class="check" value="${li.NO }"/></td>
 						<td>${li.CNAME }</td>
-						<td>${li.TYPE }</td>
+						<td align="center">${li.TYPE }</td>
 						<td align="center"><fmt:formatNumber pattern="#,###">${li.PRICE }</fmt:formatNumber>원</td>
 						<td align="center">${li.OIL }</td>
 						<td align="center">${li.KILO }</td>
@@ -50,13 +55,13 @@
 		<button type="submit" class="btn btn-danger" 
 		style="width: 20%; margin-bottom: 30px;" formaction="/manager/remove" onclick="remove()">삭제</button>
 		</form>
-
 	</div>
+	<br/>
 	<script>
 		// 테이블 선택시 해당 라인 체크/해제
 		$(".trr").click(function(){
 			var old = $(this).find("input:checkbox").prop("checked");
-			$(this).find("input:checkbox").prop("checked", !old);
+			$(this).find("input:checkbox").trigger("click");
 		});
 	
 		var chkObj = document.getElementsByName("no");
@@ -74,7 +79,7 @@
 				}
 			});
 
-			$('.check').click(function() {
+			$('.check').change(function() {
 				for (var i = 0; i < rowCnt; i++) {
 					if (chkObj[i].checked == false) {
 						ck = false;

@@ -19,6 +19,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 import total.service.JoinService;
 import total.service.LoginOutService;
+import total.service.MessageService;
 
 @Controller
 public class JoinController {
@@ -26,8 +27,10 @@ public class JoinController {
 	JoinService joinService;
 	@Autowired
 	LoginOutService loginOutService;
-
-	@RequestMapping({ "/join" })
+	@Autowired
+	MessageService messageService;
+	
+	@RequestMapping({"/join"})
 
 	public String joinHandle(Model model) {
 		model.addAttribute("main", "join.jsp");

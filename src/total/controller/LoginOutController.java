@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import total.service.LoginOutService;
 import total.service.MailService;
+import total.service.MessageService;
 import total.service.MypageService;
 
 @Controller
@@ -26,6 +27,8 @@ public class LoginOutController {
 	MailService mailService;
 	@Autowired
 	MypageService mypageService;
+	@Autowired
+	MessageService messageService;
 	
 	@RequestMapping(path= {"/login","/findpass"}, method=RequestMethod.GET)
 	public String loginGetHandle(HttpSession session, Model model) {
@@ -42,6 +45,7 @@ public class LoginOutController {
 		Map logon = loginOutService.findByIdAndPass(param);
 		if(logon != null) {
 			session.setAttribute("logon", logon);
+			messageService.logonMessage(String.valueOf(((Map)session.getAttribute("logon")).get("NO")),"다른 사용자가 로그인하여 로그아웃됩니다.");
 			return "redirect:/";
 		} else {
 			model.addAttribute("err", "Logon Failed");

@@ -3,6 +3,7 @@ package total.controller;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -15,9 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import total.service.ManagerService;
+import total.service.MessageService;
 import total.service.ReserveService;
 
 @Controller
@@ -27,7 +30,9 @@ public class ManagerController {
 	ManagerService managerService;
 	@Autowired
 	ReserveService reserveService;
-
+	@Autowired
+	MessageService messageService;
+	
 	public boolean lvCheck(HttpSession session) {
 		if (session.getAttribute("logon") == null) {
 			return false;
@@ -79,7 +84,6 @@ public class ManagerController {
 		if (!lvCheck(session)) {
 			return "redirect:/";
 		}
-		
 		key = "%" + key + "%";
 		model.addAttribute("main", "reserveManager.jsp");
 		model.addAttribute("reserve", reserveService.readAll(key));
@@ -121,12 +125,19 @@ public class ManagerController {
 		if (!lvCheck(session)) {
 			return "redirect:/";
 		}
-		//강퇴되었는지 여부를 알려주면 좋겠는데..
-		boolean b = false;
-		for (String each : no) {
-			b = managerService.delMember(each);
+
+		for(String each:no) {
+			managerService.delMember(each);
+			messageService.logonMessage(each,"강퇴당했습니다.");
 		}
 		
 		return "redirect:/manager/member";
+	}
+	
+	@ResponseBody
+	@RequestMapping(path="/message",method=RequestMethod.POST)
+	public boolean messageHandle(@RequestParam String target,@RequestParam String content) {
+			messageService.sendMessage(target, content);
+		return true;
 	}
 }

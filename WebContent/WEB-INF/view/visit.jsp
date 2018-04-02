@@ -30,7 +30,6 @@ textarea {
         <h2 id="ctn_title">방명록</h2>
 		<div style="border-top:2px solid #ccc;"></div>
     </div>
-
 <form style="margin-top: 30px;" id="visitform" name="visitform" method="post" autocomplete="off">
   <textarea  name= "comment" id="comment"></textarea>
   <p align="right">
@@ -54,7 +53,7 @@ textarea {
 				<p style="color: grey;" align="right">
 					tag.&nbsp;
 					<c:forEach var="t" items="${v.tags}" varStatus="vs">
-						<a href="#">#${t}</a>&nbsp;
+						<a href="?tag=${t}">#${t}</a>&nbsp;
 					</c:forEach>
 				</p>
 		</c:forEach>
@@ -67,7 +66,7 @@ textarea {
 		<b>${i }</b>
 		</c:when>
 		<c:otherwise>
-		<a href="?page=${i }&key=${key}">${i }</a>
+		<a href="?page=${i }&tag=${tag}">${i }</a>
 		</c:otherwise>
 		</c:choose> 
 	</c:forEach>

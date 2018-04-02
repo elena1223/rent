@@ -11,11 +11,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" >메뉴</a>
+      <a class="navbar-brand" >Rent</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="<%=uri.equals("index")?"active":""%>"><a href="<%=request.getContextPath() %>/index">메인</a></li>
+        <li class="<%=uri.equals("index")?"active":""%>"><a href="<%=request.getContextPath() %>/index"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="<%=uri.equals("info")?"active":""%>"><a href="<%=request.getContextPath() %>/info?type=소형">차량정보</a></li>
         <li class="<%=uri.equals("reserve")?"active":""%> needLogin" id=""><a href="<%=request.getContextPath() %>/reserve">렌트예약</a></li>
         <li class="<%=uri.equals("service")?"active":""%>"><a href="<%=request.getContextPath() %>/service/way">이용안내</a></li>
@@ -47,6 +47,22 @@
 			window.alert("로그인후 이용가능한 서비스입니다. 로그인페이지로 이동합니다.")
 		}
 	})
+	
+	var onws = new WebSocket("ws://${pageContext.request.serverName}/logonWs");
+		
+		onws.onmessage = function(rst) {
+			var obj = JSON.parse(rst.data);
+			switch(obj.mode) {
+			case "logon":
+				window.alert(obj.msg);
+				location.href="/logout"
+				break;
+			case "message":
+				window.alert("관리자부터로의 메세지 : "+obj.msg)
+				break;
+			}
+		}
+	
 
 	
 

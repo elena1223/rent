@@ -23,52 +23,64 @@
  <c:set var="notice" value="notice"/>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
  <style type="text/css">
- a:link { color: black; text-decoration: none;}
- a:visited { color: gray; text-decoration: none;}
- a:hover { color: black; text-decoration: underline;}
+ a.bgg:link { color: black; text-decoration: none;}
+ a.bgg:visited { color: gray; text-decoration: none;}
+ a.bgg:hover { color: black; text-decoration: underline;}
+ 
 </style>
-<div class="container" style="margin-bottom: 25px;">
+<div  style="margin-bottom: 25px;">
   <h2 style="color:#2E64FE"><%=typek %></h2> 
+  <c:if test="${logon!=null}">
+<c:if test="${type!=notice||logon.LV==2}">
+  <p align="right"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">글쓰기</button></p>
+  </c:if>
+</c:if>
   <form id="del" action="/customer/delete2" method="post">
   <input type="hidden" name="type" value="${type}">
-  <table class="table" style="width:80%">
+  <table class="table" style="width:100%">
     <thead>
       <tr>
       	<th style="width:5%"></th>
-        <th style="width:55%">제목</th>
-        <th style="width:10%">작성자</th>
-        <th style="width:20%">작성일자</th>
-        <th style="width:10%">조회수</th>
+        <th style="width:50%">제목</th>
+        <th style="width:15%; text-align: center;">작성자</th>
+        <th style="width:20%; text-align: center;">작성일자</th>
+        <th style="width:10%; text-align: center;">조회수</th>
           <c:if test="${logon.LV eq '2' }">
         <th style="width:5%"><input id="checkAll" type="checkbox"/></th>
         </c:if>
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" 
-    end="${(page.page-1)*page.countList+page.countList-1}" varStatus="vs">
+    <c:forEach var="n" items="${noti }" end="2">
+    	<tr>
+    		<th>공지</th>
+    		<th><a href="/customer/notice/${n.NO }">${n.TITLE } (${n.CNT }<c:if test="${n.CNT==null }">0</c:if>)</a></th>
+    		<th>${n.NAME }</th>
+    		<th><fmt:formatDate value="${n.BDATE }" pattern="MM/dd HH:mm"/></th>
+    		<th>${n.HIT }</th>
+    	</tr>
+    </c:forEach>
+    <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
       <tr>
-      	<td>${vs.count }</td>
-        <td><a href="/customer/${type}/${b.NO }">${b.TITLE } (${b.CNT }
-        <c:if test="${b.CNT==null }">0</c:if>)</a>
-        </td>
-        <td>${b.NAME }</td>
-        <td><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
-        <td>${b.HIT }</td>
+      	<td>${b.NO }</td>
+        <td><a href="/customer/${type}/${b.NO }" class="bgg">${b.TITLE } (${b.CNT }
+        <c:if test="${b.CNT==null }">0</c:if>)</a></td>
+        <td align="center">${b.NAME }</td>
+        <td align="center"><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
+        <td align="center">${b.HIT }</td>
         <c:if test="${logon.LV eq '2' }">
-        <td><input class="check" type="checkbox" name="no" value="${b.NO}"/></td>
+        <td align="center"><input class="check" type="checkbox" name="no" value="${b.NO}"/></td>
         </c:if>
 	</c:forEach>
     </tbody>
   </table> 
   </form>
 	<c:if test="${logon.LV eq '2' }">
-	<p align="right" style=" margin-right:235px"> <a href="javascript:del();">[삭제]</a></p>
+	<p align="right"> <a href="javascript:del();" class="bgg">[삭제]</a></p>
 	</c:if>
   <div style="float:left">
 	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
@@ -77,26 +89,19 @@
 		<b>${i }</b>
 		</c:when>
 		<c:otherwise>
-		<a href="?page=${i }&key=${key}">${i }</a>
+		<a href="?page=${i }&key=${key}" class="bgg">${i }</a>
 		</c:otherwise>
 		</c:choose> 
 	</c:forEach>
 
 	</div>
 	<form>
-	<p align="right" style="margin-right:225px">
+	<p align="right" style="margin-right:9px">
 		<input type="hidden" name="page" value="${page.page }"/>
 		<span class="glyphicon glyphicon-search"></span> 
 		&nbsp;<input type="text" name="key" value="${key }" placeholder="작성자 or 제목 or 내용"/>
 		</p>
 	</form>
-<c:if test="${logon!=null}">
-<c:if test="${type!=notice||logon.LV==2}">
-  <p align="right" style="margin-right:225px">
-  <button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">
-  글쓰기</button></p>
-  </c:if>
-</c:if>
 </div>
 <br/>
 <script>
