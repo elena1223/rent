@@ -42,11 +42,8 @@ public class VisitService {
 //			FindIterable<Document> finds = collection.find(new Document());
 	        BasicDBObject orderBy = new BasicDBObject("date", -1);
 
-	        
-
 	        FindIterable<Document> finds= collection.find(new Document()).sort(orderBy);
-
-	 
+	        
 
 
 			if (finds != null) {

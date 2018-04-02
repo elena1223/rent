@@ -65,7 +65,7 @@ th{
     </thead>
     <tbody>
     <c:forEach var="r" items="${cancel }">     
-      <tr class="danger trr">
+      <tr class="danger">
         <td align="center">${r.NAME }</td>
         <td>${r.CNAME }</td>
         <td align="center">${r.START_DAY }</td>
@@ -112,10 +112,6 @@ th{
   </table>
   
   <script>
-  $(".trr").click(function(){
-		var old = $(this).find("input:checkbox").prop("checked");
-		$(this).find("input:checkbox").trigger("click");
-	});
   
   $("#cancel").click(function(){
 	if(window.confirm("선택한 예약을 취소하시겠습니까?")){
