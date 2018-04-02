@@ -16,7 +16,7 @@
 <form id="form" action="/reserve/result" method="post">
 <input type="hidden" name="no" value="${car.NO }">
 <img src="/imgCar/${car.IMG }" style="width: 300px; height: 200px;">
-			<table class="table table-condensed">
+			<table class="table table-condensed" style="width: 300px">
 				<tbody align="center">
 					<tr>
 						<td>${car.KILO }km</td>
@@ -38,8 +38,9 @@
 
   총 <span id="day">1</span>일 / <span id="price"></span>원<br/>
   <span id="msg"></span><br/>
-  <button type="button" id="sub" style= "margin-left:315px" class="btn btn-primary">예약하기</button>
+  <button type="button" id="sub" style= "margin-left:280px" class="btn btn-primary">예약하기</button>
   </div>
+  <br/>
 <div style="float:center"> 
   <div id ="days">
   

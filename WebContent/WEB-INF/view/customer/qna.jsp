@@ -57,16 +57,16 @@
     <tbody>
     <c:forEach var="n" items="${noti }" end="2">
     	<tr>
-    		<th>공지</th>
-    		<th><a href="/customer/notice/${n.NO }">${n.TITLE } (${n.CNT }<c:if test="${n.CNT==null }">0</c:if>)</a></th>
-    		<th>${n.NAME }</th>
-    		<th><fmt:formatDate value="${n.BDATE }" pattern="MM/dd HH:mm"/></th>
-    		<th>${n.HIT }</th>
+    		<th style="text-align: center;">공지</th>
+    		<th><a href="/customer/notice/${n.NO }" class="bgg">${n.TITLE } (${n.CNT }<c:if test="${n.CNT==null }">0</c:if>)</a></th>
+    		<th style="text-align: center;">${n.NAME }</th>
+    		<th style="text-align: center;"><fmt:formatDate value="${n.BDATE }" pattern="MM/dd HH:mm"/></th>
+    		<th style="text-align: center;">${n.HIT }</th>
     	</tr>
     </c:forEach>
     <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
       <tr>
-      	<td>${b.NO }</td>
+      	<td align="center">${b.NO }</td>
         <td><a href="/customer/${type}/${b.NO }" class="bgg">${b.TITLE } (${b.CNT }
         <c:if test="${b.CNT==null }">0</c:if>)</a></td>
         <td align="center">${b.NAME }</td>

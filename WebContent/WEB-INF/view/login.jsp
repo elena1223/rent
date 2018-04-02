@@ -38,7 +38,7 @@
 		비밀번호를 잊으셨나요? &nbsp;<a href="#" style="text-decoration: none;" onclick="find()">비밀번호 찾기</a>
 		</p>
 		<p style="margin-top: 50px;">
-		★&nbsp;<a href="/" style="text-decoration: none;">뒤로가기</a>
+		<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;<a href="/" style="text-decoration: none;" >뒤로가기</a>
 		</p>				
 	</div>
 	

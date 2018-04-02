@@ -11,7 +11,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-th{
+th {
 	text-align: center;
 }
 </style>
@@ -19,51 +19,53 @@ th{
 <body>
 	<div align="center">
 		<h2 style="color: #2E64FE">차량 목록</h2>
-		<form name="form" method="post" id="form" onsubmit="return update();">
-		<table class="table table-condensed table-hover">
-			<thead>
-				<tr>
-					<th><input type="checkbox" id="checkAll" /></th>
-					<th>이름</th>
-					<th>타입</th>
-					<th>가격<small>(1일)</small></th>
-					<th>유종</th>
-					<th>연비</th>
-					<th>옵션</th>
-					<th>정원</th>
-					<th>보유</th>
-				</tr>
-			</thead>
-			<c:forEach var="li" items="${car }">
-				<tbody>
-					<tr class="trr">
-						<td align="center"><input type="checkbox" name="no" class="check" value="${li.NO }"/></td>
-						<td>${li.CNAME }</td>
-						<td align="center">${li.TYPE }</td>
-						<td align="center"><fmt:formatNumber pattern="#,###">${li.PRICE }</fmt:formatNumber>원</td>
-						<td align="center">${li.OIL }</td>
-						<td align="center">${li.KILO }</td>
-						<td>${li.OPT }</td> 
-						<td align="center">${li.MAX }</td>
-						<td align="center">${li.CNT }</td>
+		<form name="form" method="post" id="form"
+			onsubmit="return counting();">
+			<table class="table table-condensed table-hover">
+				<thead>
+					<tr>
+						<th><input type="checkbox" id="checkAll" /></th>
+						<th>이름</th>
+						<th>타입</th>
+						<th>가격<small>(1일)</small></th>
+						<th>유종</th>
+						<th>연비</th>
+						<th>옵션</th>
+						<th>정원</th>
+						<th>보유</th>
 					</tr>
-				</tbody>
-			</c:forEach>
-		</table>
-		<button type="submit" class="btn btn-success" 
-		style="width: 20%; margin-bottom: 30px;" formaction="/manager/update">수정</button>
-		<button type="submit" class="btn btn-danger" 
-		style="width: 20%; margin-bottom: 30px;" formaction="/manager/remove" onclick="remove()">삭제</button>
+				</thead>
+				<c:forEach var="li" items="${car }">
+					<tbody>
+						<tr class="warning">
+							<td align="center"><input type="checkbox" name="no"
+								class="check" value="${li.NO }" /></td>
+							<td>${li.CNAME }</td>
+							<td align="center">${li.TYPE }</td>
+							<td align="center"><fmt:formatNumber pattern="#,###">${li.PRICE }</fmt:formatNumber>원</td>
+							<td align="center">${li.OIL }</td>
+							<td align="center">${li.KILO }</td>
+							<td>${li.OPT }</td>
+							<td align="center">${li.MAX }</td>
+							<td align="center">${li.CNT }</td>
+						</tr>
+					</tbody>
+				</c:forEach>
+			</table>
+			<button type="button" class="btn btn-success"
+				style="width: 20%; margin-bottom: 30px;" id="ubt">수정</button>
+			<button type="button" class="btn btn-danger"
+				style="width: 20%; margin-bottom: 30px;" id="rbt">삭제</button>
 		</form>
 	</div>
-	<br/>
+	<br />
 	<script>
 		// 테이블 선택시 해당 라인 체크/해제
-		$(".trr").click(function(){
+		/* $(".trr").click(function(){
 			var old = $(this).find("input:checkbox").prop("checked");
 			$(this).find("input:checkbox").trigger("click");
-		});
-	
+		}); */
+
 		var chkObj = document.getElementsByName("no");
 		var rowCnt = chkObj.length;
 		var ck;
@@ -95,24 +97,37 @@ th{
 				}
 			});
 
-		})
-		function remove(){
-			window.alert("삭제가 완료되었습니다.");
-		}
-		function update(){
+		});
+		function counting() {
 			var cnt = 0;
 			for (var i = 0; i < rowCnt; i++) {
 				if (chkObj[i].checked) {
 					cnt++;
 				}
 			}
-			if(cnt >= 2){
-				window.alert("수정 항복은 하나만 선택해주세요.");
-				return false;
-			}else{
-				return true;
-			}
+			return cnt;
 		}
+		$("#ubt").click(function() {
+			var cnt =counting();
+			if(cnt==0) {
+				window.alert("수정 항목을 선택해주세요.");
+			}else if(cnt >= 2){
+				window.alert("수정 항복은 하나만 선택해주세요.");
+			}else {
+				$("#form").attr("action","/manager/update");
+				$("#form").submit();
+			}
+		});
+		$("#rbt").click(function() {
+			var cnt = counting();
+			if (cnt == 0) {
+				window.alert("삭제 항목을 선택해주세요.");
+			} else {
+				$("#form").attr("action", "/manager/remove");
+				$("#form").submit();
+				window.alert("삭제가 완료되었습니다.");
+			}
+		});
 	</script>
 </body>
 </html>
