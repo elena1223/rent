@@ -52,7 +52,7 @@
 			var obj = JSON.parse(rst.data);
 			switch(obj.mode) {
 			case "logon":
-				window.alert("다른 사용자가 로그인하여 로그아웃됩니다.");
+				window.alert(obj.msg);
 				location.href="/logout"
 				break;
 			case "message":

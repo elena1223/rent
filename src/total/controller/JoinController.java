@@ -74,7 +74,6 @@ public class JoinController {
 			if(rst) {
 				Map info = loginOutService.findByIdAndPass(param);
 				session.setAttribute("logon", info);
-				messageService.logonMessage(String.valueOf(((Map)session.getAttribute("logon")).get("NO")));
 				return "redirect:/";
 			}
 			throw new Exception();

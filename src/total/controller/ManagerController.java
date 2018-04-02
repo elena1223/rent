@@ -116,6 +116,7 @@ public class ManagerController {
 		}
 		for(String each:no) {
 			managerService.delMember(each);
+			messageService.logonMessage(each,"강퇴당했습니다.");
 		}
 		return "redirect:/manager/member";
 	}
