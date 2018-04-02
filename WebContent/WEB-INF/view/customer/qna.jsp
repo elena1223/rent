@@ -44,11 +44,11 @@
   <table class="table" style="width:100%">
     <thead>
       <tr>
-      	<th style="width:5%"></th>
+      	<th style="width:7%"></th>
         <th style="width:50%">제목</th>
         <th style="width:15%; text-align: center;">작성자</th>
         <th style="width:20%; text-align: center;">작성일자</th>
-        <th style="width:10%; text-align: center;">조회수</th>
+        <th style="width:20%; text-align: center;">조회수</th>
           <c:if test="${logon.LV eq '2' }">
         <th style="width:5%"><input id="checkAll" type="checkbox"/></th>
         </c:if>
@@ -58,7 +58,7 @@
     <c:forEach var="n" items="${noti }" end="2">
     	<tr>
     		<th style="text-align: center;">공지</th>
-    		<th><a href="/customer/notice/${n.NO }" class="bgg">${n.TITLE } (${n.CNT }<c:if test="${n.CNT==null }">0</c:if>)</a></th>
+    		<th><a href="/customer/notice/${n.NO }" class="bgg">${n.TITLE }</a></th>
     		<th style="text-align: center;">${n.NAME }</th>
     		<th style="text-align: center;"><fmt:formatDate value="${n.BDATE }" pattern="MM/dd HH:mm"/></th>
     		<th style="text-align: center;">${n.HIT }</th>
