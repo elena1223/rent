@@ -96,7 +96,6 @@ public class ManagerController {
 	@RequestMapping(path = "/cancelp", method = RequestMethod.POST)
 	public String cancelHandle(HttpSession session, Model model, @RequestParam String[] no,
 			@RequestParam String c) {
-		System.out.println("파람값 :" + no);
 		
 		if (!lvCheck(session)) {
 			return "redirect:/";
@@ -142,4 +141,19 @@ public class ManagerController {
 			messageService.sendMessage(target, content);
 		return true;
 	}
+	
+	
+	@RequestMapping("/detail")
+	public String cancelReserveReadHandle(HttpSession session, Model model, 
+			@RequestParam(defaultValue = "") String key) {
+		if (!lvCheck(session)) {
+			return "redirect:/";
+		}
+		key = "%" + key + "%";
+		model.addAttribute("end", reserveService.endReserve(key));
+
+		return "detailReserve";
+	}
+	
+	
 }

@@ -3,6 +3,7 @@ package total.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.tiles.request.Request;
@@ -77,5 +78,14 @@ public class ReserveContoller {
 		model.addAttribute("main", "reserve/reservep.jsp");
 		return "default";
 	}
-
+	
+//	@RequestMapping(path = "/datail")
+//	public String popupHandle(Model model, HttpSession session, HttpServletRequest req,
+//			@RequestParam(defaultValue = "") String key ) {
+//		
+//		model.addAttribute("end", reserveService.endReserve(key));
+//		return "detailReserve";
+//
+//	}
+	
 }
