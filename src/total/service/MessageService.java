@@ -59,10 +59,11 @@ public class MessageService {
 		}
 	}
 	
-	public void logonMessage(String other){
+	public void logonMessage(String other,String content){
 		if(map.containsKey(other)) {
 			Map msg = new LinkedHashMap<>();
 				msg.put("mode", "logon");
+				msg.put("msg", content);
 			for(WebSocketSession ws : map.get(other)) {
 				try {
 					ws.sendMessage(new TextMessage(gson.toJson(msg)));

@@ -45,7 +45,7 @@ public class LoginOutController {
 		Map logon = loginOutService.findByIdAndPass(param);
 		if(logon != null) {
 			session.setAttribute("logon", logon);
-			messageService.logonMessage(String.valueOf(((Map)session.getAttribute("logon")).get("NO")));
+			messageService.logonMessage(String.valueOf(((Map)session.getAttribute("logon")).get("NO")),"다른 사용자가 로그인하여 로그아웃됩니다.");
 			return "redirect:/";
 		} else {
 			model.addAttribute("err", "Logon Failed");

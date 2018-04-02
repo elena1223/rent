@@ -84,7 +84,6 @@ public class ManagerController {
 		if (!lvCheck(session)) {
 			return "redirect:/";
 		}
-		
 		key = "%" + key + "%";
 		model.addAttribute("main", "reserveManager.jsp");
 		model.addAttribute("reserve", reserveService.readAll(key));
@@ -126,10 +125,10 @@ public class ManagerController {
 		if (!lvCheck(session)) {
 			return "redirect:/";
 		}
-		//강퇴되었는지 여부를 알려주면 좋겠는데..
-		boolean b = false;
-		for (String each : no) {
-			b = managerService.delMember(each);
+
+		for(String each:no) {
+			managerService.delMember(each);
+			messageService.logonMessage(each,"강퇴당했습니다.");
 		}
 		
 		return "redirect:/manager/member";
@@ -138,7 +137,6 @@ public class ManagerController {
 	@ResponseBody
 	@RequestMapping(path="/message",method=RequestMethod.POST)
 	public boolean messageHandle(@RequestParam String target,@RequestParam String content) {
-		System.out.println(target);
 			messageService.sendMessage(target, content);
 		return true;
 	}
