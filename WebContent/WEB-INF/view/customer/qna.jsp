@@ -18,7 +18,6 @@
 		response.sendRedirect("/index");
 	}
 	
-
 %>
  <c:set var="notice" value="notice"/>
   <meta charset="utf-8">
@@ -62,6 +61,7 @@
     		<th style="text-align: center;">${n.NAME }</th>
     		<th style="text-align: center;"><fmt:formatDate value="${n.BDATE }" pattern="MM/dd HH:mm"/></th>
     		<th style="text-align: center;">${n.HIT }</th>
+    		<th></th>
     	</tr>
     </c:forEach>
     <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">

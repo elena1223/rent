@@ -35,20 +35,20 @@
   <td><input type="text" name="end" readonly class="input-group input-append date" id="to"  style="width: 100%"/></td></tr>
   </table>
   
+  
 </form>
-
   총 <span id="day">1</span>일 / <span id="price"></span>원<br/>
   <span id="msg"></span><br/>
+  
+<div align="center"> 
+  <div id ="days">
+  </div>
+</div>
+  <br/>
   <button type="button" id="sub" style= "margin-left:280px" class="btn btn-primary">예약하기</button>
   </div>
   <br/>
-<div style="float:center"> 
-  <div id ="days">
   
-  </div>
-</div>
-
-
 <script>
     var dateCheck=false;
  window.onload = function () {
@@ -68,8 +68,6 @@
          },
          success: function(rst){
             if(rst.CNT<=rst.RCNT){
-               $("#msg").css("color","red");
-               $("#msg").html("예약 불가능한 날짜입니다.");
                dateCheck=false;
                $.ajax({
                   url: "/reserve/overlapCheck",
@@ -82,7 +80,7 @@
                      "cnt" : ${car.CNT} 
                   },
                   success: function(res){
-                     var html="선택한 날짜중 예약불가능한 날짜 (${car.CNT}대 운영중)<br/><br/>"
+                     var html="예약 불가능한 날짜가 있습니다.(${car.CNT}대 운영중)<br/>"
                      for(var i=0;res.length>i;i++){
                         html+=res[i]
                         if(res.length==i+1||(i+1)%3==0){
@@ -98,7 +96,7 @@
                
             } else {
                $("#msg").css("color","green");
-               $("#msg").html("예약 가능한 날짜 입니다.");
+               $("#msg").html("<br/>예약 가능한 날짜 입니다.");
                $("#days").html("");
                dateCheck=true;
             }

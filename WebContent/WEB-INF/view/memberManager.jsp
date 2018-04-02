@@ -8,8 +8,8 @@
 
 <div align="center"> 
 <h2 style="color: #2E64FE">회원 관리</h2>
-<form><div align="right" ><span class="glyphicon glyphicon-search"></span> <input style="height:30px" name="key" value="${key }" placeholder="아이디 or 이메일"/> 
-</div></form>
+<form><p align="right" ><span class="glyphicon glyphicon-search"></span> <input style="height:30px" name="key" value="${key }" placeholder="아이디 or 이메일"/> 
+</p></form>
 <form id="del" action="/manager/delete" method="post">
 <table class="table table-bordered" style="width:100%">
     <thead>
@@ -37,7 +37,7 @@
         <td align="center">${m.PHONE }</td>
         <td align="center">${m.LV }</td>
         <c:choose>
-	    <c:when test="${m.LV eq '2'}"><<td></td></c:when>
+	    <c:when test="${m.LV eq '2'}"><td></td></c:when>
 	    <c:otherwise><td align="center"><input type="checkbox" name="no" class="check" value="${m.NO }"/></td></c:otherwise>
 	    </c:choose>
       </tr>
