@@ -91,10 +91,10 @@ public class VisitController {
 
 	@RequestMapping(path="/visit", method = RequestMethod.GET)
 	public String visitGETController(Model model, HttpSession session, HttpServletRequest req, 
-			@RequestParam Map<String, String> param, @RequestParam(defaultValue= "1") int page){
+			@RequestParam Map<String, String> param, @RequestParam(defaultValue= "1") int page,@RequestParam(defaultValue="") String tag){
 		List<Map> list;
 	
-		list = visitService.listVisit();
+		list = visitService.listVisit(tag);
 		
 		Map<String,Integer> paging = new HashMap<String,Integer>();
 		int size = list.size();
