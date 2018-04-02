@@ -84,12 +84,12 @@ public class ManagerController {
 		model.addAttribute("main", "reserveManager.jsp");
 		model.addAttribute("reserve", reserveService.readAll(key));
 		model.addAttribute("end", reserveService.endReserve(key));
-		model.addAttribute("cancel", reserveService.cancelReserve(key));
+		model.addAttribute("cancle", reserveService.cancleReserve(key));
 
 		return "default";
 	}
 
-	@RequestMapping(path = "/cancelp", method = RequestMethod.POST)
+	@RequestMapping(path = "/canclep", method = RequestMethod.POST)
 	public String cancelHandle(HttpSession session, Model model, @RequestParam String[] no,
 			@RequestParam String c) {
 		

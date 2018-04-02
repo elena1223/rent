@@ -74,8 +74,8 @@ public class ReserveService {
 		return template.selectList("reserve.endReserve", key);
 	}
 
-	public List<Map> cancelReserve(String key) {
-		return template.selectList("reserve.readCancel", key);
+	public List<Map> cancleReserve(String key) {
+		return template.selectList("reserve.readCancle", key);
 	}
 
 	public boolean cancellation(String no, String c) {

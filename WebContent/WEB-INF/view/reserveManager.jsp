@@ -10,7 +10,7 @@
   <form style="position: absolute; right: 0; margin:10px">
   <input name="key" value="${key}"/> <span style="text-align:right" class="glyphicon glyphicon-search"></span>
   </form> <br/><br/>
-  <form id="cancelForm" action="/manager/cancelp" method="post">
+  <form id="cancleForm" action="/manager/canclep" method="post">
   <input type="hidden" name="c" value="3">
   <table class="table">
     <thead>
@@ -38,13 +38,13 @@
      </c:forEach>
   	</tbody>
   </table>
-  <button type="button" id="cancel" style="position: absolute; right: 0; margin:12px" class="btn btn-danger">예약취소</button>
+  <button type="button" id="cancle" style="position: absolute; right: 0; margin:12px" class="btn btn-danger">예약취소</button>
   
   </form>
   <br/>
   <br/>
   <h3>예약취소요청</h3>
-    <form id="cancelAdmit" action="/manager/cancelp" method="post">
+    <form id="cancleAdmit" action="/manager/canclep" method="post">
     <input type="hidden" name="c" value="3">
   <table class="table">
     <thead>
@@ -59,7 +59,7 @@
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="r" items="${cancel }">     
+    <c:forEach var="r" items="${cancle }">     
       <tr class="danger">
         <td>${r.NAME }</td>
         <td>${r.CNAME }</td>
@@ -100,21 +100,21 @@
         <td>${r.END_DAY }</td>
         <td>${r.ID }</td>
         <td>${r.PHONE }</td>
-        <td><c:if test="${r.CANCEL eq '3' }"><span style="color:red">취소</span></c:if></td>
+        <td><c:if test="${r.cancle eq '3' }"><span style="color:red">취소</span></c:if></td>
       </tr>
      </c:forEach>
   	</tbody>
   </table>
   
   <script>
-  $("#cancel").click(function(){
+  $("#cancle").click(function(){
 	if(window.confirm("선택한 예약을 취소하시겠습니까?")){
-		$("#cancelForm").submit();
+		$("#cancleForm").submit();
 	} 
   })
   $("#admit").click(function(){
 	if(window.confirm("선택한 예약을 취소하시겠습니까?")){
-		$("#cancelAdmit").submit();
+		$("#cancleAdmit").submit();
 	} 
   })
   </script>
