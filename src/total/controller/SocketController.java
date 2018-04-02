@@ -1,5 +1,7 @@
 package total.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
@@ -15,13 +17,13 @@ public class SocketController extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		String key =(String)session.getAttributes().get("logon");
+		String key =String.valueOf(((Map)session.getAttributes().get("logon")).get("ID"));
 		messageService.addWebSocket(key, session);
 	}
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		String key =(String)session.getAttributes().get("logon");
+		String key =String.valueOf(((Map)session.getAttributes().get("logon")).get("ID"));
 		messageService.removeWebSocket(key, session);
 	}
 

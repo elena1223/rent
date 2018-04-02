@@ -45,6 +45,19 @@
 			window.alert("로그인후 이용가능한 서비스입니다. 로그인페이지로 이동합니다.")
 		}
 	})
+	
+	var onws = new WebSocket("ws://${pageContext.request.serverName}/logonWs");
+		
+		onws.onmessage = function(rst) {
+			var obj = JSON.parse(rst.data);
+			switch(obj.mode) {
+			case "logon":
+				window.alert("다른 사용자가 로그인하여 로그아웃됩니다.");
+				location.href="/logout"
+				break;
+			}
+		}
+	
 
 	
 

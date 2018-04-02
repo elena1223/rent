@@ -44,13 +44,17 @@ public class MessageService {
 	}
 	
 	
-	public void sendRequestMessage(String one, String other) throws IOException {
+	public void logonMessage(String other){
 		if(map.containsKey(other)) {
 			Map msg = new LinkedHashMap<>();
-				msg.put("mode", "fr_req");
-				msg.put("from", one);
+				msg.put("mode", "logon");
 			for(WebSocketSession ws : map.get(other)) {
-				ws.sendMessage(new TextMessage(gson.toJson(msg)));
+				try {
+					ws.sendMessage(new TextMessage(gson.toJson(msg)));
+				} catch (IOException e) {
+					e.printStackTrace();
+					break;
+				}
 			}
 		}
 	}
