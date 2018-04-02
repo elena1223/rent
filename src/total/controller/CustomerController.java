@@ -31,9 +31,10 @@ public class CustomerController {
 		List<Map> res=customerService.readAllBoard(map);
 		if(!type.equals("notice")&&key.length()<1) {
 			Map notice=new HashMap();
-			notice.put("type", type);
-			map.put("key", "%%");
-		model.addAttribute("notice",notice);
+			notice.put("type", "notice");
+			notice.put("key", "%%");
+			List<Map> noti=customerService.readAllBoard(notice);
+		model.addAttribute("noti",noti);
 		}
 		
 		model.addAttribute("board",res);

@@ -92,7 +92,7 @@
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="r" items="${end }">     
+    <c:forEach var="r" items="${end }" end="10">     
       <tr class="active">
         <td>${r.NAME }</td>
         <td>${r.CNAME }</td>
