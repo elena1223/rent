@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -16,18 +16,18 @@
 <form id="form" action="/reserve/result" method="post">
 <input type="hidden" name="no" value="${car.NO }">
 <img src="/imgCar/${car.IMG }" style="width: 300px; height: 200px;">
-			<table class="table table-condensed">
-				<tbody align="center">
-					<tr>
-						<td>${car.KILO }km</td>
-						<td>${car.OIL }</td>
-						<td>${car.MAX }인승</td>
-						<td><fmt:formatNumber pattern="#,###">${car.PRICE }</fmt:formatNumber>원</td>
-					</tr>
-					<tr>
-						<td colspan="4">${car.OPT }</td>
-					</tr>
-			</table>
+         <table class="table table-condensed">
+            <tbody align="center">
+               <tr>
+                  <td>${car.KILO }km</td>
+                  <td>${car.OIL }</td>
+                  <td>${car.MAX }인승</td>
+                  <td><fmt:formatNumber pattern="#,###">${car.PRICE }</fmt:formatNumber>원</td>
+               </tr>
+               <tr>
+                  <td colspan="4">${car.OPT }</td>
+               </tr>
+         </table>
   <table>
   <tr><td><input type="text" name="start" readonly class="input-group input-append date" id="from"  style="width: 100%"/></td>
   <td> ~ </td>
@@ -48,115 +48,115 @@
 
 
 <script>
- 	var dateCheck=false;
+    var dateCheck=false;
  window.onload = function () {
-		bw();
-		check();
-	}
- 	
- 	function check(){
-		$.ajax({
-			url: "/reserve/dateCheck",
-			type: "POST",
-			async:false,
-			data : {
-				"start" : $('#from').val(),
-				"end" : $('#to').val(),
-				"no" : '${car.NO}'
-			},
-			success: function(rst){
-				if(rst.CNT<=rst.RCNT){
-					$("#msg").css("color","red");
-					$("#msg").html("예약 불가능한 날짜입니다.");
-					dateCheck=false;
-					$.ajax({
-						url: "/reserve/overlapCheck",
-						type: "POST",
-						async:false,
-						data : {
-							"start" : $('#from').val(),
-							"end" : $('#to').val(),
-							"no" : '${car.NO}',
-							"cnt" : ${car.CNT} 
-						},
-						success: function(res){
-							var html="선택한 날짜중 예약불가능한 날짜 (${car.CNT}대 운영중)<br/><br/>"
-							for(var i=0;res.length>i;i++){
-								html+=res[i]
-								if(res.length==i+1||(i+1)%3==0){
-									html+="<br/>"
-								}else{
-									html+=" | "
-								}
-							}
-							$("#days").css("color","red");
-							$("#days").html(html)
-						}
-					});
-					
-				} else {
-					$("#msg").css("color","green");
-					$("#msg").html("예약 가능한 날짜 입니다.");
-					$("#days").html("");
-					dateCheck=true;
-				}
-			}
-		});
-		
- 	}
+      bw();
+      check();
+   }
+    
+    function check(){
+      $.ajax({
+         url: "/reserve/dateCheck",
+         type: "POST",
+         async:false,
+         data : {
+            "start" : $('#from').val(),
+            "end" : $('#to').val(),
+            "no" : '${car.NO}'
+         },
+         success: function(rst){
+            if(rst.CNT<=rst.RCNT){
+               $("#msg").css("color","red");
+               $("#msg").html("예약 불가능한 날짜입니다.");
+               dateCheck=false;
+               $.ajax({
+                  url: "/reserve/overlapCheck",
+                  type: "POST",
+                  async:false,
+                  data : {
+                     "start" : $('#from').val(),
+                     "end" : $('#to').val(),
+                     "no" : '${car.NO}',
+                     "cnt" : ${car.CNT} 
+                  },
+                  success: function(res){
+                     var html="선택한 날짜중 예약불가능한 날짜 (${car.CNT}대 운영중)<br/><br/>"
+                     for(var i=0;res.length>i;i++){
+                        html+=res[i]
+                        if(res.length==i+1||(i+1)%3==0){
+                           html+="<br/>"
+                        }else{
+                           html+=" | "
+                        }
+                     }
+                     $("#days").css("color","red");
+                     $("#days").html(html)
+                  }
+               });
+               
+            } else {
+               $("#msg").css("color","green");
+               $("#msg").html("예약 가능한 날짜 입니다.");
+               $("#days").html("");
+               dateCheck=true;
+            }
+         }
+      });
+      
+    }
  
-	function bw(){
-	 var between=(new Date($('#to').val())-new Date($('#from').val()))/1000/60/60/24+1
-	 $('#day').html(between);
-	 $('#price').html(between*${car.PRICE});
+   function bw(){
+    var between=(new Date($('#to').val())-new Date($('#from').val()))/1000/60/60/24+1
+    $('#day').html(between);
+    $('#price').html(between*${car.PRICE});
  }
-	
-	$("#sub").click(function(){
-		check();
-		if(dateCheck){
-			$("#form").submit();
-		}else{
-			window.alert("예약가능한 날짜를 선택해주세요.")
-		}
-		
-	});
+   
+   $("#sub").click(function(){
+      check();
+      if(dateCheck){
+         $("#form").submit();
+      }else{
+         window.alert("예약가능한 날짜를 선택해주세요.")
+      }
+      
+   });
  
-	var day = new Date();
-	day.setDate(day.getDate() + 1);
-	
+   var day = new Date();
+   day.setDate(day.getDate() + 1);
+   
  $('#from').datepicker({
-	 format: "yyyy-mm-dd",
-	 language: "kr",
-	 startDate: day
-	 }).datepicker("setDate", day );
+    format: "yyyy-mm-dd",
+    language: "kr",
+    startDate: day
+    }).datepicker("setDate", day );
  
  $('#to').datepicker({
-	 format: "yyyy-mm-dd",
-	 language: "kr",
-	startDate: day
- 		
-	 }).datepicker("setDate", day );
-	 
+    format: "yyyy-mm-dd",
+    language: "kr",
+   startDate: day
+       
+    }).datepicker("setDate", day );
+    
  $('#from').change(function(){
-	 if($('#from').val()>$('#to').val()){
-	 $('#to').val($('#from').val())
-	 }else{
-		 check();
-		 bw();
-	 }
-	 
-	 
+    if($('#from').val()>$('#to').val()){
+    $('#to').val($('#from').val())
+    }else{
+       check();
+       bw();
+    }
+    
+    
  })
  
   $('#to').change(function(){
-	 if($('#from').val()>$('#to').val()){
-	 $('#from').val($('#to').val())
-	 }else{
-		 check();
-		 bw();
-	 }
-	 
-	 
+    if($('#from').val()>$('#to').val()){
+    $('#from').val($('#to').val())
+    }else{
+       check();
+       bw();
+    }
+    
+    
  })
  
  
