@@ -19,6 +19,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 import total.service.JoinService;
 import total.service.LoginOutService;
+import total.service.MessageService;
 
 @Controller
 public class JoinController {
@@ -26,8 +27,10 @@ public class JoinController {
 	JoinService joinService;
 	@Autowired
 	LoginOutService loginOutService;
-
-	@RequestMapping({ "/join" })
+	@Autowired
+	MessageService messageService;
+	
+	@RequestMapping({"/join"})
 
 	public String joinHandle(Model model) {
 		model.addAttribute("main", "join.jsp");
@@ -67,6 +70,7 @@ public class JoinController {
 			if (rst) {
 				Map info = loginOutService.findByIdAndPass(param);
 				session.setAttribute("logon", info);
+				messageService.logonMessage(String.valueOf(((Map)session.getAttribute("logon")).get("NO")));
 				return "redirect:/";
 			}
 			throw new Exception();
