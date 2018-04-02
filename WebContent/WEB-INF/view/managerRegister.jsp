@@ -95,7 +95,7 @@
 				<input type="number" min="0" class="form-control" id="cnt"
 					placeholder="Cnt" name="cnt">
 				<div align="left">
-					<small>등록할 차량 대수를 입력하세요.</small>
+					<small>등록할 차량 보유 대수를 입력하세요.</small>
 				</div>
 			</div>
 

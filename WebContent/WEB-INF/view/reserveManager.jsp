@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style>
+th{
+	text-align: center;
+}
+</style>
   <h2 style="color: #2E64FE" align="center">예약 내역</h2>
   <form style="position: absolute; right: 0; margin:10px">
   <span style="text-align:right" class="glyphicon glyphicon-search"></span> <input name="key" value="${key}"/> 
@@ -14,14 +19,14 @@
   <input type="hidden" name="c" value="3">
   <table class="table table-hover">
     <thead>
-      <tr align="center">
-        <td><b>예약자</b></td>
-        <td><b>차량</b></td>
-        <td><b>시작일</b></td>
-        <td><b>반납일</b></td>
-        <td><b>이메일</b></td>
-        <td><b>연락처</b></td>
-        <td></td>
+      <tr>
+        <th>예약자</th>
+        <th>차량</th>
+        <th>시작일</th>
+        <th>반납일</th>
+        <th>이메일</th>
+        <th>연락처</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -48,14 +53,14 @@
     <input type="hidden" name="c" value="3">
   <table class="table table-hover">
     <thead>
-      <tr align="center">
-        <td><b>예약자</b></td>
-        <td><b>차량</b></td>
-        <td><b>시작일</b></td>
-        <td><b>반납일</b></td>
-        <td><b>이메일</b></td>
-        <td><b>연락처</b></td>
-        <td></td>
+      <tr>
+        <th>예약자</th>
+        <th>차량</th>
+        <th>시작일</th>
+        <th>반납일</th>
+        <th>이메일</th>
+        <th>연락처</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -81,14 +86,14 @@
   <h3>종료된 예약</h3>
     <table class="table table-hover">
     <thead>
-      <tr align="center">
-        <td><b>예약자</b></td>
-        <td><b>차량</b></td>
-        <td><b>시작일</b></td>
-        <td><b>반납일</b></td>
-        <td><b>이메일</b></td>
-        <td><b>연락처</b></td>
-        <td><b>비고</b></td>
+      <tr>
+        <th>예약자</th>
+        <th>차량</th>
+        <th>시작일</th>
+        <th>반납일</th>
+        <th>이메일</th>
+        <th>연락처</th>
+        <th>비고</th>
       </tr>
     </thead>
     <tbody>

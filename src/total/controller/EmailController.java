@@ -25,49 +25,38 @@ public class EmailController {
 	@Autowired
 	UuidService uuidService;
 
-	
 	@ResponseBody
-	@RequestMapping(path="/email", method = RequestMethod.POST)
-	public boolean authHandle(@RequestParam String email, String authkey, Map map,
-			HttpServletRequest req, HttpSession session) {
+	@RequestMapping(path = "/email", method = RequestMethod.POST)
+	public boolean authHandle(@RequestParam String email, String authkey, Map map, HttpServletRequest req,
+			HttpSession session) {
 		HttpSession s = req.getSession();
 		String auth = uuidService.authUUID();
 		authkey = auth;
+		System.out.println(authkey);
 		if (s != null) {
-//		System.out.println( " / session = " + authkey );
-		
-		boolean b = mailService.sendWelcomeMail(email, authkey);
-		System.out.println("이메일 전송여부  = " + b);
-			if(b) {
-//				map.put("auth", authkey);
-//				map.put("send", true);
+
+			boolean b = mailService.sendWelcomeMail(email, authkey);
+			System.out.println("이메일 전송여부  = " + b);
+			if (b) {
 				session.setAttribute("authCheck", auth);
-			} 
+			}
 			return true;
 		} else {
 			session.setAttribute("err", "error");
-			
+
 			return false;
 		}
-		
+
 	}
-	
-	
+
 	@ResponseBody
-	@RequestMapping(path="/authCheck", method= RequestMethod.POST)
+	@RequestMapping(path = "/authCheck", method = RequestMethod.POST)
 	public boolean authCheck(Model model, HttpSession session, @RequestParam Map<String, String> param,
 			HttpServletRequest req) {
 		HttpSession s = req.getSession();
-//		System.out.println(param.get("auth"));
-//		System.out.println((String)s.getAttribute("authCheck"));
-		boolean b = param.get("lv").equals((String)s.getAttribute("authCheck"));
-//		System.out.println(b);
-			return b;
-			
-		}
-	
-	
-	
-	
-	
+		boolean b = param.get("lv").equals((String) s.getAttribute("authCheck"));
+		return b;
+
+	}
+
 }

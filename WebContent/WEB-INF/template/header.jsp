@@ -20,6 +20,8 @@
         <li class="<%=uri.equals("reserve")?"active":""%> needLogin" id=""><a href="<%=request.getContextPath() %>/reserve">렌트예약</a></li>
         <li class="<%=uri.equals("service")?"active":""%>"><a href="<%=request.getContextPath() %>/service/way">이용안내</a></li>
         <li class="<%=uri.equals("customer")?"active":""%>"><a href="<%=request.getContextPath() %>/customer/qna">고객센터</a></li>
+        <li class="<%=uri.equals("visit")?"active":""%>">
+        <a href="<%=request.getContextPath() %>/visit">방명록</a></li>
         <c:if test="${logon!=null}">
         <li class="<%=uri.equals("mypage")?"active":""%>"><a href="<%=request.getContextPath() %>/mypage">회원정보</a></li>
         </c:if>
