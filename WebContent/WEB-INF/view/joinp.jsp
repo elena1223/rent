@@ -97,7 +97,7 @@ th, td {
 						<input type="text" name = "id" id= "id" value="${param.ID}" 
 						onblur="idCheck()"/> &nbsp;
 						<small><span class="msg_id"></span></small> 
-						<input type="button" id="t1" value="인증" onclick="mailcheck()"> 
+						<input type="button" class="btn" id="t1" value="인증" onclick="mailcheck()"> 
 						 
 					</td>
 				</tr>	
@@ -107,8 +107,8 @@ th, td {
 					</td>
 					<td>
 						<input type="text" name = "lv" id= "lv"/> &nbsp; 
-						<input type="button" id="t2" value="확인" onclick="authCheck()"> 
-						<input type="button" id="t1" value="다시받기" onclick="mailcheck()"> 
+						<input type="button" id="t2" class="btn" value="확인" onclick="authCheck()"> 
+						<input type="button" id="t1" class="btn" value="다시받기" onclick="mailcheck()"> 
 						 
 					</td>
 				</tr>	
@@ -142,7 +142,7 @@ th, td {
 				</tr>
 
 			</table>
-		<button type="button" onclick="register()" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
+		<button type="button" class="btn" onclick="register()" style="vertical-align:middle; margin-top: 50px; margin-bottom: 50px;">
 		확인</button>
 			
 		</div>

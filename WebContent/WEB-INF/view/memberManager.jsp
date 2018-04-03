@@ -38,7 +38,7 @@
         <td align="center">${m.LV }</td>
         <c:choose>
 	    <c:when test="${m.LV eq '2'}"><td></td></c:when>
-	    <c:otherwise><td align="center"><input type="checkbox" name="no" class="check" value="${m.NO }"/></td></c:otherwise>
+	    <c:otherwise><td align="center"><input type="checkbox" name="no" class="check tt" value="${m.NO }"/></td></c:otherwise>
 	    </c:choose>
       </tr>
      </c:forEach>
@@ -53,59 +53,85 @@
 <br/>
 </div>
 <script>
-$("#b").click(function(){
-	if(window.confirm("정말로 선택한 회원들을 강퇴시키겠습니까?")){
-		$("#del").submit()
-	}
-})
-$("#m").click(function(){
-	var content = window.prompt("전송할 메세지를 입력하세요")
-	if(content!=null){
+	$("#b").click(function(){
+		var b = false;
 		
-		
-		$(".check").each(function(){
-		if($(this).is(':checked')){
-		
-		$.ajax({
-			url: "/manager/message",
-			type: "POST",
-			async:false,
-			data : {
-				"content" : content,
-				"target" : $(this).val()
-			},
-			success: function(rst){
-				if(rst == true){
-					
-
-				} else {
-
-				}
+		$(".tt").each(function() {
+			if ($(this).is(':checked')) {
+				b = true;
+				return true;
 			}
-		});
-		}
 		})
-		window.alert("메세지가 전송되었습니다.")
-	}
 	
-})
-
-$("#checkAll").change(function(){
-	if( $("#checkAll").is(':checked') ){
-	    $(".check").prop("checked", true);
-	  }else{
-	    $(".check").prop("checked", false);
-	  }
-})
-$(".check").change(function(){
-	var state=true;
-	$(".check").each(function(){
-		if(!$(this).is(':checked')){
-			state=false;
-			return false;
+		if (!b) {
+			alert("강퇴할 회원을 선택하세요");
+		} else {
+	
+			if(window.confirm("정말로 선택한 회원들을 강퇴시키겠습니까?")){
+				$("#del").submit()
+			}
+	
 		}
 	})
-	$("#checkAll").prop("checked", state);
-})
 
+	$("#m").click(function() {
+		var b = false;
+
+		$(".tt").each(function() {
+			if ($(this).is(':checked')) {
+				b = true;
+				return true;
+			}
+		})
+
+		if (!b) {
+			alert("메세지를 전송할 회원을 선택하세요");
+		} else {
+			var content = window.prompt("전송할 메세지를 입력하세요")
+			if (content != null) {
+
+				$(".check").each(function() {
+					if ($(this).is(':checked')) {
+
+						$.ajax({
+							url : "/manager/message",
+							type : "POST",
+							async : false,
+							data : {
+								"content" : content,
+								"target" : $(this).val()
+							},
+							success : function(rst) {
+								if (rst == true) {
+
+								} else {
+
+								}
+							}
+						});
+					}
+				})
+				window.alert("메세지가 전송되었습니다.")
+			}
+		}
+
+	})
+
+	$("#checkAll").change(function() {
+		if ($("#checkAll").is(':checked')) {
+			$(".check").prop("checked", true);
+		} else {
+			$(".check").prop("checked", false);
+		}
+	})
+	$(".check").change(function() {
+		var state = true;
+		$(".check").each(function() {
+			if (!$(this).is(':checked')) {
+				state = false;
+				return false;
+			}
+		})
+		$("#checkAll").prop("checked", state);
+	})
 </script>

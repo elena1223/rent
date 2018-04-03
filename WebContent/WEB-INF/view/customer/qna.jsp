@@ -34,9 +34,16 @@
 </style>
 <div  style="margin-bottom: 25px;">
   <h2 style="color:#2E64FE"><%=typek %></h2> 
-    <c:if test="${logon==null}">
+  <p style="margin-bottom: 10px;">
+  <c:if test="${logon==null && type=='qna'}">
   <span><small>문의글은 회원가입 후 작성하실 수 있습니다.</small></span>
   </c:if>
+  <c:if test="${type=='review'}">
+  <span><small>에코 렌트카를 이용하신 후기를 작성해주세요.</small></span>
+  </c:if>  
+  <c:if test="${logon==null && type=='notice'}">
+  <span><small>저희 렌트카를 이용 시, 알아두실 사항입니다.</small></span>
+  </c:if>  
   <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
   <p align="right"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">글쓰기</button></p>

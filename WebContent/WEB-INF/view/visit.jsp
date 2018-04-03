@@ -28,12 +28,14 @@ textarea {
 <body>
     <div id="sub_tit">
         <h2 id="ctn_title">방명록</h2>
+        <p style="margin-bottom: 10px;">
+        <span><small>누구나 자유롭게 남기고 싶은 말을 작성해주세요.</small></span>
 		<div style="border-top:2px solid #ccc;"></div>
     </div>
 <form style="margin-top: 30px;" id="visitform" name="visitform" method="post" autocomplete="off">
   <textarea  name= "comment" id="comment"></textarea>
   <p align="right">
-		<button type="button" onclick="visit()"
+		<button type="button" onclick="visit()" class="btn"
 		style="vertical-align:middle; margin-top: 10px; margin-bottom: 20px;">확인</button>  
 </form>
 
@@ -42,7 +44,6 @@ textarea {
 		<c:forEach var="v" items="${requestScope.list}" varStatus="vs" 
 		begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
 			<hr size="1" width="700">
-<%-- 			<label>${vs.count}</label><br/> --%>
 			<label>${v.name}</label>
 			<label><small>${v.date}</small></label>
 			<c:if test="${logon.LV==2}">

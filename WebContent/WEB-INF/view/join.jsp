@@ -371,7 +371,7 @@ font-size: small;
 </div>
     <div class="btn_confirm" align="center">
         <input style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;" 
-        type="submit" class="btn_submit" value="회원가입">
+        type="submit" class="btn_submit btn" value="회원가입">
     </div>
 
     </form>
