@@ -38,8 +38,8 @@ th {
 				<tr class="success">
 					<td align="center">${r.NAME }</td>
 					<td>${r.CNAME }</td>
-					<td align="center">${r.START_DAY }</td>
-					<td align="center">${r.END_DAY }</td>
+					<td align="center"><fmt:formatDate value="${r.START_DAY }" pattern="yyyy-MM-dd"/></td>
+					<td align="center"><fmt:formatDate value="${r.END_DAY }" pattern="yyyy-MM-dd"/></td>
 					<td>${r.ID }</td>
 					<td align="center">${r.PHONE }</td>
 					<td align="center"><input type="checkbox" class="tt" name="no"
@@ -75,8 +75,8 @@ th {
 				<tr class="danger">
 					<td align="center">${r.NAME }</td>
 					<td>${r.CNAME }</td>
-					<td align="center">${r.START_DAY }</td>
-					<td align="center">${r.END_DAY }</td>
+					<td align="center"><fmt:formatDate value="${r.START_DAY }" pattern="yyyy-MM-dd"/></td>
+					<td align="center"><fmt:formatDate value="${r.END_DAY }" pattern="yyyy-MM-dd"/></td>
 					<td>${r.ID }</td>
 					<td align="center">${r.PHONE }</td>
 					<td align="center"><input type="checkbox" class="t" name="no"
@@ -113,8 +113,8 @@ th {
 			<tr class="active">
 				<td align="center">${r.NAME }</td>
 				<td>${r.CNAME }</td>
-				<td align="center">${r.START_DAY }</td>
-				<td align="center">${r.END_DAY }</td>
+				<td align="center"><fmt:formatDate value="${r.START_DAY }" pattern="yyyy-MM-dd"/></td>
+				<td align="center"><fmt:formatDate value="${r.END_DAY }" pattern="yyyy-MM-dd"/></td>
 				<td>${r.ID }</td>
 				<td align="center">${r.PHONE }</td>
 				<td align="center"><c:if test="${r.CANCEL eq '3' }">
@@ -126,7 +126,6 @@ th {
 </table>
 
 <script>
-
 	$("#cancel").click(function() {
 	
 		var b = false;
@@ -149,7 +148,6 @@ th {
 		}
 	})
 	
-
 	$("#admit").click(function() {
 		var b = false;
 		$(".t").each(function() {
@@ -159,16 +157,13 @@ th {
 				return true;
 			}
 		})
-
 		if (!b) {
 			alert("승인 할 취소 건을 선택하세요");
 		} else {
-
 			if (window.confirm("선택한 예약을 취소하시겠습니까?")) {
 				$("#cancelAdmit").submit();
 			}
 		}
-
 	})
 	
 	

@@ -93,7 +93,7 @@ public class ManagerController {
 		return "default";
 	}
 
-	@RequestMapping(path = "/canclep", method = RequestMethod.POST)
+	@RequestMapping(path = "/cancelp", method = RequestMethod.POST)
 	public String cancelHandle(HttpSession session, Model model, @RequestParam String[] no,
 			@RequestParam String c) {
 		
