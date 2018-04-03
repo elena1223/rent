@@ -24,19 +24,18 @@ public class CustomerController {
 	@RequestMapping("/{type}")
 	public String qnaHandle(Model model, @PathVariable String type, @RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "") String key) {
-
 		model.addAttribute("main", "customer/qna.jsp");
 		Map map = new HashMap();
 		map.put("type", type);
 		map.put("key", "%"+key+"%");
 		List<Map> res=customerService.readAllBoard(map);
-		if(!type.equals("notice")&&key.length()<1) {
-			Map notice=new HashMap();
-			notice.put("type", "notice");
-			notice.put("key", "%%");
-			List<Map> noti=customerService.readAllBoard(notice);
-		model.addAttribute("noti",noti);
-		}
+			if(!type.equals("notice")&&key.length()<1) {
+				Map notice=new HashMap();
+				notice.put("type", "notice");
+				notice.put("key", "%%");
+				List<Map> noti=customerService.readAllBoard(notice);
+			model.addAttribute("noti",noti);
+			}
 
 		model.addAttribute("board", res);
 		Map<String, Integer> paging = new HashMap<String, Integer>();
@@ -46,19 +45,22 @@ public class CustomerController {
 		paging.put("countList", 10);
 		paging.put("countPage", 5);
 		paging.put("totalPage", res.size() % 10 > 0 ? res.size() / 10 + 1 : res.size() / 10);
-		if (page > paging.get("totalPage")) {
-			paging.put("page", paging.get("totalPage"));
-		}
+			if (page > paging.get("totalPage")) {
+				paging.put("page", paging.get("totalPage"));
+			}
 		paging.put("startPage", ((paging.get("page") - 1) / 5) * 5 + 1);
 		paging.put("endPage", paging.get("startPage") + 5 - 1 > paging.get("totalPage") ? 
 				paging.get("totalPage") : paging.get("startPage") + 5 - 1);
 		model.addAttribute("page", paging);
 		return "default";
+	
+		
 
 	}
 
 	@RequestMapping("/{type}/{no}")
 	public String qnaNoHandle(Model model, @PathVariable String no, @PathVariable String type) {
+
 		Map read = customerService.readOneBoard(no);
 		model.addAttribute("board", read);
 		model.addAttribute("comments", customerService.readComments(no));
@@ -72,10 +74,17 @@ public class CustomerController {
 	}
 
 	@RequestMapping(path = "/write", method = RequestMethod.GET)
-	public String writeHandle(Model model, String type) {
+	public String writeHandle(Model model, String type,HttpSession session) {
+		if(session.getAttribute("logon")!=null) {
+			if(type.equals("notice")&&!String.valueOf(((Map)session.getAttribute("logon")).get("LV")).equals("2")) {
+				return "redirect:/customer/"+type;
+				}
 		model.addAttribute("main", "customer/write.jsp");
 		model.addAttribute("type", type);
 		return "default";
+		}else {
+			return "redirect:/customer/"+type;
+		}
 	}
 
 	@RequestMapping(path = "/modify", method = RequestMethod.POST)

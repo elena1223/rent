@@ -32,8 +32,8 @@ th {
 			<tr class="active">
 				<td align="center"><small>${r.NAME }</small></td>
 				<td><small>${r.CNAME }</small></td>
-				<td align="center"><small>${r.START_DAY }</small></td>
-				<td align="center"><small>${r.END_DAY }</small></td>
+				<td align="center"><small><fmt:formatDate value="${r.START_DAY }" pattern="yyyy-MM-dd"/></small></td>
+				<td align="center"><small><fmt:formatDate value="${r.END_DAY }" pattern="yyyy-MM-dd"/></small></td>
 				<td><small>${r.ID }</small></td>
 				<td align="center"><small>${r.PHONE }</small></td>
 				<td align="center"><c:if test="${r.CANCEL eq '3' }">
