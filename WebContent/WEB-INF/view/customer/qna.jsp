@@ -34,6 +34,9 @@
 </style>
 <div  style="margin-bottom: 25px;">
   <h2 style="color:#2E64FE"><%=typek %></h2> 
+    <c:if test="${logon==null}">
+  <span><small>문의글은 회원가입 후 작성하실 수 있습니다.</small></span>
+  </c:if>
   <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
   <p align="right"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">글쓰기</button></p>

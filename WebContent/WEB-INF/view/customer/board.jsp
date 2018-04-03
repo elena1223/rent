@@ -25,6 +25,7 @@
 <div class="container" style="margin-bottom: 25px;">
  <c:set var="notice" value="notice"/>
   <h2><%=typek %></h2>
+
   <p style="position: absolute; right: 0; margin-right:170px">
     <a href="/customer/${board.TYPE}" class="btn" id="list">목록으로</a>
     <c:if test="${logon.NO==board.WRITER ||logon.LV==2 }">
