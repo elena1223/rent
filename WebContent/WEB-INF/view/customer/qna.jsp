@@ -75,8 +75,7 @@
 		      	<td align="center">${b.NO }</td>
     	  	</c:otherwise>
       	</c:choose>
-        <td><a href="/customer/${type}/${b.NO }" class="bgg">${b.TITLE } (${b.CNT }
-        <c:if test="${b.CNT==null }">0</c:if>)</a></td>
+        <td><a href="/customer/${type}/${b.NO }" class="bgg">${b.TITLE }</a> (${b.CNT }<c:if test="${b.CNT==null }">0</c:if>)</td>
         <td align="center">${b.NAME }</td>
         <td align="center"><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
         <td align="center">${b.HIT }</td>

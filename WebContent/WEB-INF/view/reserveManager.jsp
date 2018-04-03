@@ -38,8 +38,8 @@ th {
 				<tr class="success">
 					<td align="center">${r.NAME }</td>
 					<td>${r.CNAME }</td>
-					<td align="center">${r.START_DAY }</td>
-					<td align="center">${r.END_DAY }</td>
+					<td align="center"><fmt:formatDate value="${r.START_DAY }" pattern="yyyy-MM-dd"/></td>
+					<td align="center"><fmt:formatDate value="${r.END_DAY }" pattern="yyyy-MM-dd"/></td>
 					<td>${r.ID }</td>
 					<td align="center">${r.PHONE }</td>
 					<td align="center"><input type="checkbox" class="tt" name="no"
@@ -75,8 +75,8 @@ th {
 				<tr class="danger">
 					<td align="center">${r.NAME }</td>
 					<td>${r.CNAME }</td>
-					<td align="center">${r.START_DAY }</td>
-					<td align="center">${r.END_DAY }</td>
+					<td align="center"><fmt:formatDate value="${r.START_DAY }" pattern="yyyy-MM-dd"/></td>
+					<td align="center"><fmt:formatDate value="${r.END_DAY }" pattern="yyyy-MM-dd"/></td>
 					<td>${r.ID }</td>
 					<td align="center">${r.PHONE }</td>
 					<td align="center"><input type="checkbox" class="t" name="no"
@@ -113,8 +113,8 @@ th {
 			<tr class="active">
 				<td align="center">${r.NAME }</td>
 				<td>${r.CNAME }</td>
-				<td align="center">${r.START_DAY }</td>
-				<td align="center">${r.END_DAY }</td>
+				<td align="center"><fmt:formatDate value="${r.START_DAY }" pattern="yyyy-MM-dd"/></td>
+				<td align="center"><fmt:formatDate value="${r.END_DAY }" pattern="yyyy-MM-dd"/></td>
 				<td>${r.ID }</td>
 				<td align="center">${r.PHONE }</td>
 				<td align="center"><c:if test="${r.CANCEL eq '3' }">
