@@ -72,12 +72,10 @@ font {
 		}
 	
 
-	
-
-
   window.channelPluginSettings = {
     "pluginKey": "2d430381-a4c9-4620-bebc-c885356f0493"
   };
+  
   (function() {
     var node = document.createElement('div');
     node.id = 'ch-plugin';
