@@ -6,9 +6,10 @@
  }
 
 </style>
-<div class="condition" id="contentsBody">
+<div class="condition" id="contentsBody" style="margin-bottom: 187px;">
 	<div class="subTitle clr">
-		<h2 style="color:red">대여자격</h2>
+		<h2 style="color:red"><b>대여자격</b></h2>
+		<hr/>
 		<p>에코렌터카와 함께 편안한 드라이빙 되세요!</p>
 	</div>
 

@@ -6,7 +6,7 @@
 <title>Login</title>
 </head>
 <body>
-	<div align="center">
+	<div align="center" style="margin-bottom: 190px;">
 		<form action="/session" method="post">
 			<div>
 				<h2 style="margin-bottom: 20px;">Login</h2> 

@@ -13,7 +13,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div style="float:left; margin-right:10px">
   <h2 style="color:#2E64FE">차량 선택</h2>
- <table style="padding-left:10px">
+	<p style="margin-bottom: 50px; margin-top: 10px;">
+	<small>렌트하실 차량을 선택해 주세요.</small>
+	<div style="margin-bottom: 20px;">
+ <table style="padding-left:10px;">
  <tr>
   <td width="110px">
   <select class="form-control" style="width:100px" id="sel1">
@@ -35,14 +38,16 @@
   </tr>
  
 </table>
+</div>
 <br/>
 <span id="cimg"></span>
 
 </div >
-<div style="float:center; margin-left:10px">
+<div style="float:center; margin-left:10px; margin-bottom: 180px;">
 <table class="table table-bordered" id="info" style="width:400px;margin-top:140px">
 </table>
-<p style="margin-right:215px" align="right"><button type="button" id="sub" style="width:400px" class="btn btn-primary">날짜선택</button></p>
+<p style="margin-right:172px" align="right">
+<button type="button" id="sub" style="width:400px" class="btn btn-primary">날짜선택</button></p>
 </div>
 <script>
 

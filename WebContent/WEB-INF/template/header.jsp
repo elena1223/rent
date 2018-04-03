@@ -5,6 +5,14 @@
 	String uriArr[]=((String)request.getAttribute( "javax.servlet.forward.request_uri")).split("/");
 	String uri=uriArr.length>0?uriArr[1]:"index";
 %>
+<style>
+<!--
+font {
+	font-family: "고딕"
+}
+
+-->
+</style>
 <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>

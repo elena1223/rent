@@ -130,7 +130,6 @@ th {
 	
 		var b = false;
 		$(".tt").each(function() {
-			console.log($(this).val());
 			if ($(this).is(':checked')) {
 				b = true;
 				return true;
@@ -151,7 +150,6 @@ th {
 	$("#admit").click(function() {
 		var b = false;
 		$(".t").each(function() {
-			console.log($(this).val());
 			if ($(this).is(':checked')) {
 				b = true;
 				return true;

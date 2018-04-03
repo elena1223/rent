@@ -27,7 +27,7 @@ table {
 			<c:if test="${li.TYPE == param.type }">
 				<table class="table table-condensed">
 					<tr>
-						<td colspan="5">&nbsp;<b style="font-size: 20px;">${li.CNAME }</b><small>(${li.MAX }인승)</small></td>
+						<td colspan="5">&nbsp;<b style="font-size: 20px;">${li.CNAME }</b><small>&nbsp;(${li.MAX }인승)</small></td>
 					</tr>
 					<tr>
 						<td rowspan="5" style="width: 50%"><img

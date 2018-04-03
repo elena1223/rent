@@ -52,7 +52,7 @@ th{
 	        <td>${v.CNAME}</td>
 	        <td>${v.SDAY}</td>
 	        <td>${v.EDAY }</td>
-	        <td><input type="checkbox" name="no" value='${v.NO}'/></td>
+	        <td><input type="checkbox" class="tt" name="no" value='${v.NO}'/></td>
 	      </tr>
     	</c:forEach>
 	</tbody>
@@ -79,7 +79,7 @@ th{
 	        <td>${v.CNAME}</td>
 	        <td>${v.SDAY}</td>
 	        <td>${v.EDAY }</td>
-	        <td><input type="checkbox" name="no" value='${v.NO}'/></td>
+	        <td><input type="checkbox" class="cc" name="no" value='${v.NO}'/></td>
 	      </tr>
     	</c:forEach>
 	</tbody>
@@ -111,14 +111,49 @@ th{
   </table>
 </div>
 <script>
-$("#myb").click(function(){
-	if(window.confirm("선택한 예약을 취소하시겠습니까? 관리자가 승인할시 예약이 취소됩니다.")){
-		$("#my").submit();
-	} 
-  })
-  $("#cancelb").click(function(){
-		$("#cancel").submit();
-  })
+  	$("#myb").click(function() {
+	
+		var b = false;
+		$(".tt").each(function() {
+			if ($(this).is(':checked')) {
+				b = true;
+				return true;
+			}
+		})
+	
+		if (!b) {
+			alert("취소할 예약을 선택하세요");
+		} else {
+	
+			if(window.confirm("선택한 예약을 취소하시겠습니까? 관리자가 승인할시 예약이 취소됩니다.")){
+				$("#my").submit();
+			} 
+	
+		}
+	})
+  
+    	$("#cancelb").click(function() {
+	
+		var b = false;
+		$(".cc").each(function() {
+// 			console.log($(this).val());
+			if ($(this).is(':checked')) {
+				b = true;
+				return true;
+			}
+		})
+	
+		if (!b) {
+			alert("철회할 취소 건을 선택하세요");
+		} else {
+	
+			if(window.confirm("취소 요청을 철회하시겠습니까?")){
+				$("#cancel").submit();
+			} 
+	
+		}
+	})
+  
 </script>
 </body>
 </html>

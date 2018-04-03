@@ -61,6 +61,7 @@ public class ManagerController {
 
 		ServletContext sc = req.getServletContext();
 		String realPath = sc.getRealPath("/imgCar");
+		System.out.println("저장경로" + realPath);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String fileName = sdf.format(new Date()) + "_" + img.getOriginalFilename();
 

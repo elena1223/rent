@@ -10,7 +10,8 @@
    margin-bottom: 50px;
  }
 </style>
-<h2 style="color:red; margin:20px"><b>오시는 길</b></h2>
+<h2 style="color:red;"><b>오시는 길</b></h2>
+
 <hr/>
 <div id="map">
 <script>

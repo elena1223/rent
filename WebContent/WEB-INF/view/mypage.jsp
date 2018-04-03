@@ -121,8 +121,8 @@ td	{
 					<td>
 						<input type="text" name = "lv" id= "lv" /> &nbsp; 
 						<input type="hidden" id = "lvv" name="lvv" >
-						<input type="button" id="t2"  value="확인" onclick="authCheck()"> 
-						<input type="button" id="t3" value="다시받기" onclick="mailcheck()"> 
+						<input type="button" id="t2"  class="btn" value="확인" onclick="authCheck()"> 
+						<input type="button" id="t3" class="btn" value="다시받기" onclick="mailcheck()"> 
 						 
 					</td>
 				</tr>	
@@ -153,20 +153,20 @@ td	{
 						<input type="text" name= "phone" id="phone" autocomplete="off" maxlength="13"
 						value="${mypage.PHONE}" onblur="myphoneCheck()" class="p"
 						style="padding: 2px;"disabled/>
-						<button type="button" id="t4">변경하기</button>
+						<button type="button" class="btn" id="t4">변경하기</button>
 						&nbsp;<small><span class="msg_phone"></span></small>
 					</td>
 				</tr>
 
 			</table>
 		<p  align="right" >
-		<button type="button" onclick="outMember()"style=" vertical-align:middle; margin-top: 10px; margin-bottom: 10px;color:grey; ">
+		<button type="button" class="btn" onclick="outMember()"style=" vertical-align:middle; margin-top: 10px; margin-bottom: 10px;color:grey; ">
 		회원탈퇴</button>
 		</p>
 		<br/>
-		<button type="button" onclick="edit()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
+		<button type="button" class="btn" onclick="edit()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
 		확인</button>
-		<button type="button" onclick="home()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
+		<button type="button" class="btn" onclick="home()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
 		취소</button>	
 		</div>
 	</form>

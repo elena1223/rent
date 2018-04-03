@@ -55,7 +55,7 @@
     <thead>
       <tr>
       	<th style="width:7%"></th>
-        <th style="width:50%">제목</th>
+        <th style="width:50%; text-align: center;">제목</th>
         <th style="width:15%; text-align: center;">작성자</th>
         <th style="width:20%; text-align: center;">작성일자</th>
         <th style="width:20%; text-align: center;">조회수</th>

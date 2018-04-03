@@ -30,13 +30,15 @@
 			</table>
 
   <table>
-  <tr><td><input type="text" name="start" readonly class="input-group input-append date" id="from"  style="width: 100%"/></td>
-  <td> ~ </td>
-  <td><input type="text" name="end" readonly class="input-group input-append date" id="to"  style="width: 100%"/></td></tr>
+  <tr><td align="center"><input type="text" name="start" readonly 
+  class="input-group input-append date" id="from"  style="width: 80%; text-align: center;"/></td>
+  <td> &nbsp; ~  &nbsp;</td>
+  <td align="center"><input type="text" name="end" readonly 
+  class="input-group input-append date" id="to"  style="width: 80%; text-align: center;"/></td></tr>
   </table>
   
 </form>
-
+	<p style="margin-top: 10px;">
   총 <span id="day">1</span>일 / <span id="price"></span>원<br/>
   <span id="msg"></span><br/>
   <button type="button" id="sub" style= "margin-left:280px" class="btn btn-primary">예약하기</button>
