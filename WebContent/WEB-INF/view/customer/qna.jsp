@@ -62,11 +62,19 @@
     		<th style="text-align: center;">${n.NAME }</th>
     		<th style="text-align: center;"><fmt:formatDate value="${n.BDATE }" pattern="MM/dd HH:mm"/></th>
     		<th style="text-align: center;">${n.HIT }</th>
+    		<th></th>
     	</tr>
     </c:forEach>
-    <c:forEach var="b" items="${board }" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
+    <c:forEach var="b" items="${board }" varStatus="vs" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
       <tr>
-      	<td align="center">${b.NO }</td>
+      	<c:choose>
+      		<c:when test="${type==notice}">
+        		<td align="center">${vs.count }</td>
+      		</c:when>
+	      	<c:otherwise>
+		      	<td align="center">${b.NO }</td>
+    	  	</c:otherwise>
+      	</c:choose>
         <td><a href="/customer/${type}/${b.NO }" class="bgg">${b.TITLE } (${b.CNT }
         <c:if test="${b.CNT==null }">0</c:if>)</a></td>
         <td align="center">${b.NAME }</td>

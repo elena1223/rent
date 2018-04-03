@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="car">
 	<select id="readAllCar" resultType="hashMap">
-		select * from rent_car order by no asc
+		select * from rent_car order by price asc
 	</select>
 	<select id="readNewCar" resultType="hashMap"> 
 		select no,cname,img from rent_car order by no desc
@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from rent_car where no=#{no}
 	</select>
 	<select id="readByType" resultType="hashMap">
-		select * from rent_car where type=#{type}
+		select * from rent_car where type=#{type} order by price asc
 	</select>
 	<delete id="delete">
 		delete from rent_car where no=#{no}

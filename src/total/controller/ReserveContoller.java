@@ -3,6 +3,7 @@ package total.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.tiles.request.Request;
@@ -77,5 +78,5 @@ public class ReserveContoller {
 		model.addAttribute("main", "reserve/reservep.jsp");
 		return "default";
 	}
-
+	
 }

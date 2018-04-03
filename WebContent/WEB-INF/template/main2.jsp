@@ -36,11 +36,17 @@
       display: none; 
     }
   }
-  
-  
-  .banner{
+  .banners{
     position: relative;
-    background-image: url(./img/banner3.jpg);                                                               
+    background-image: url(./img/banners.jpg);                                                               
+    height: 15vh;  
+    background-size: cover;  
+  
+  }
+  
+  .banner {
+    position: relative;
+    background-image: url(./img/banner_main.jpg);                                                               
     height: 15vh;  
     background-size: cover;
 }
@@ -53,7 +59,7 @@
 
    z-index:1;
 }
- .banner .content{
+ .banner .content .banners{
      position: absolute;
      top:50%;
      left:50%;
@@ -110,21 +116,35 @@
   <h3>최신 차량</h3><br>
   <div class="row">
     <div class="col-sm-4">
+    <c:choose>
+    	<c:when test="${logon != null}">
       <a href="/reserve/${car[0].NO}"><img src="/imgCar/${car[0].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
+    	</c:when>
+    	<c:otherwise>
+      <a href="/info?type=소형"><img src="/imgCar/${car[0].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
+    	</c:otherwise>
+    </c:choose>      
       <p>${car[0].CNAME }</p>
     </div>
     <div class="col-sm-4"> 
+    <c:choose>
+    	<c:when test="${logon != null}">
       <a href="/reserve/${car[1].NO}"><img src="/imgCar/${car[1].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
+    	</c:when>
+    	<c:otherwise>
+      <a href="/info?type=소형"><img src="/imgCar/${car[1].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
+    	</c:otherwise>
+    </c:choose>
       <p>${car[1].CNAME }</p>    
     </div>
     
     <div class="col-sm-4">
     
-     <div class="banner">
-        <div class="content">
-            <h4><b>보험유의사항</b></h4>
-             <p>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</p>
-             <a href="/service/indemnity" style="text-decoration: none;">상세보기</a>
+     <div class="banners">
+        <div class="content" style="vertical-align: middle;">  
+            <br/> <b>보험유의사항</b>	<br/>
+            <p> <small>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</small></p>
+             <small><a href="/service/indemnity" style="text-decoration: none;">상세보기</a></small>
         </div>
         <div class="banner-cover"></div>
     </div>
@@ -134,9 +154,9 @@
     
       <div class="banner">
         <div class="content">
-            <h4><b>보험유의사항</b></h4>
-             <p>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</p>
-             <a href="/service/indemnity" style="text-decoration: none;">상세보기</a>
+            <h4><b>공지사항</b></h4>
+             <p>현재 진행중인 이벤트를 확인하세요!</p>
+             <a href="/customer/notice" style="text-decoration: none;">상세보기</a>
       	</div>
       	
      </div>
@@ -149,7 +169,6 @@
     
   </div>
 <br>
-<!-- Channel Plugin Scripts -->
 
 <footer class="container-fluid text-center">
   <tiles:insertAttribute name="footer"/>
