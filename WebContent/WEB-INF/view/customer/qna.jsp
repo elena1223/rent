@@ -45,7 +45,7 @@
   </c:if>  
   <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
-  <p align="right"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-primary">글쓰기</button></p>
+  <p align="right"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-info btn-sm">글쓰기</button></p>
   </c:if>
 </c:if>
   <form id="del" action="/customer/delete2" method="post">
@@ -59,7 +59,7 @@
         <th style="width:20%; text-align: center;">작성일자</th>
         <th style="width:20%; text-align: center;">조회수</th>
           <c:if test="${logon.LV eq '2' }">
-        <th style="width:5%"><input id="checkAll" type="checkbox"/></th>
+        <th style="width:5%"><input id="checkAll" class="tt" type="checkbox"/></th>
         </c:if>
       </tr>
     </thead>
@@ -89,14 +89,16 @@
         <td align="center"><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
         <td align="center">${b.HIT }</td>
         <c:if test="${logon.LV eq '2' }">
-        <td align="center"><input class="check" type="checkbox" name="no" value="${b.NO}"/></td>
+        <td align="center"><input class="check tt" type="checkbox" name="no" value="${b.NO}"/></td>
         </c:if>
 	</c:forEach>
     </tbody>
   </table> 
   </form>
 	<c:if test="${logon.LV eq '2' }">
-	<p align="right"> <a href="javascript:del();" class="bgg">[삭제]</a></p>
+	<p align="right"> 
+	<button type="button" id="cancel"class="btn btn-danger btn-sm">삭제</button>	
+	</p>
 	</c:if>
   <div style="float:left">
 	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
@@ -121,13 +123,28 @@
 </div>
 <br/>
 <script>
-	function del(){
+
+	$("#cancel").click(function() {
 		
-		if(window.confirm("선택한 게시물을 삭제하시겠습니까?")){
-			$("#del").submit();
+		var b = false;
+		$(".tt").each(function() {
+			if ($(this).is(':checked')) {
+				b = true;
+				return true;
+			}
+		})
+	
+		if (!b) {
+			alert("삭제할 게시물을 선택하세요");
+		} else {
+			
+			if(window.confirm("선택한 게시물을 삭제하시겠습니까?")){
+				$("#del").submit();
+			}
+	
 		}
-		
-	}
+	})
+
 	
 	$("#checkAll").change(function(){
 		if( $("#checkAll").is(':checked') ){
