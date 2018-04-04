@@ -75,6 +75,9 @@ textarea {
 	<script>
 		function visit() {
 			var comment = $("#comment").val();
+			if(comment.length<1){
+				window.alert("내용을 입력해 주세요.")
+			}else{
 
 			$.ajax({
 				url : "/visitw",
@@ -97,6 +100,7 @@ textarea {
 
 				}
 			});
+			}
 		}
 
 		function del(target) {
