@@ -103,7 +103,7 @@ public class CustomerController {
 		if (customerService.modifyBoard(map)) {
 			return "redirect:/customer/" + map.get("type") + "/" + map.get("no");
 		} else {
-			model.addAttribute("err", "湲��닔�젙 �떎�뙣");
+			model.addAttribute("err", "ERROR");
 			return "redirect:/customer/" + map.get("type");
 		}
 	}
@@ -116,11 +116,11 @@ public class CustomerController {
 			if (customerService.addBoard(map)) {
 				return "redirect:/customer/" + map.get("type");
 			} else {
-				model.addAttribute("err", "湲��옉�꽦 �떎�뙣");
+				model.addAttribute("err", "ERROR");
 				return "redirect:/customer/" + map.get("type");
 			}
 		} else {
-			model.addAttribute("err", "濡쒓렇�씤 �썑 �씠�슜�븯�떎 �닔 �엳�뒗 �꽌鍮꾩뒪�엯�땲�떎.");
+			model.addAttribute("err", "ERROR.");
 			return "redirect:/login";
 		}
 	}

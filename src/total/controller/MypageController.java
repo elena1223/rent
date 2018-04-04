@@ -58,7 +58,7 @@ public class MypageController {
 	
 	
 	
-	@RequestMapping(path = "/mypageInfo")
+	@RequestMapping(path = "/mypageInfo", method = RequestMethod.POST)
 	public String myPageHandle(Model model, HttpSession session, HttpServletRequest req,
 			@RequestParam Map<String, String> param) {
 		try {
