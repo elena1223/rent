@@ -43,8 +43,8 @@
 <span id="cimg"></span>
 
 </div >
-<div style="float:center; margin-left:10px; margin-bottom: 180px;">
-<table class="table table-bordered" id="info" style="width:400px;margin-top:140px">
+<div style="float:center; margin-left:10px; margin-bottom: 115px;">
+<table class="table table-bordered" id="info" style="width:400px;  margin-top:200px">
 </table>
 <p style="margin-right:172px" align="right">
 <button type="button" id="sub" style="width:400px" class="btn btn-primary">날짜선택</button></p>
