@@ -118,7 +118,7 @@
     <div class="col-sm-4">
     <c:choose>
     	<c:when test="${logon != null}">
-      <a href="/reserve/${car[0].NO}"><img src="/imgCar/${car[0].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
+      <a href="/reserve/${car[0].NO}"><img src="/imgCar/${car[0].IMG}" class="img-responsive needLogin" style="width:100%" alt="Image"></a>
     	</c:when>
     	<c:otherwise>
       <a href="/info?type=소형"><img src="/imgCar/${car[0].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
@@ -129,7 +129,7 @@
     <div class="col-sm-4"> 
     <c:choose>
     	<c:when test="${logon != null}">
-      <a href="/reserve/${car[1].NO}"><img src="/imgCar/${car[1].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>
+      <a href="/reserve/${car[1].NO}"><img src="/imgCar/${car[1].IMG}" class="img-responsive needLogin" style="width:100%" alt="Image"></a>
     	</c:when>
     	<c:otherwise>
       <a href="/info?type=소형"><img src="/imgCar/${car[1].IMG}" class="img-responsive" style="width:100%" alt="Image"></a>

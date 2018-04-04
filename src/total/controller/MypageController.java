@@ -157,17 +157,21 @@ public class MypageController {
 	@RequestMapping("/mypage/reserve")
 	public String readMyResevation(Model model, HttpSession session, HttpServletRequest req) {
 		
-		HttpSession s = req.getSession();
-		Map logon = (Map) s.getAttribute("logon");
-		if (logon == null) {
-			return "redirect:/";
+		if (!(session.getAttribute("logon") == null)) {
+			if(!String.valueOf(((Map)session.getAttribute("logon")).get("LV")).equals("0")) {
+				String no = String.valueOf(((Map)session.getAttribute("logon")).get("NO"));
+				model.addAttribute("my", mypageService.readMyResevation(no));
+				model.addAttribute("end",mypageService.endMyReserve(no));
+				model.addAttribute("cancel",mypageService.cacelMyReserve(no));
+				model.addAttribute("main","myreservation.jsp");
+				return "default";
+			}else {
+				return "redirect:/mypage";
+			}
+		} else {
+			return "redirect:/login";
 		}
-		String no = String.valueOf(logon.get("NO"));
-			model.addAttribute("my", mypageService.readMyResevation(no));
-			model.addAttribute("end",mypageService.endMyReserve(no));
-			model.addAttribute("cancel",mypageService.cacelMyReserve(no));
-			model.addAttribute("main","myreservation.jsp");
-			return "default";
+
 	}
 	
 	

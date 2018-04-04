@@ -31,7 +31,7 @@
 	<c:when test="${uri==location[4]}">
 	<h3>회원정보</h3>
 		<p><a href="/mypage">정보수정</a></p>
-		<p><a href="/mypage/reserve">나의예약 목록</a></p>
+		<p><a href="/mypage/reserve" class="needLogin">나의예약 목록</a></p>
 	</c:when>
 	<c:when test="${uri==location[5]}">
 	<h3>관리자</h3>

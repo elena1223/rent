@@ -53,7 +53,7 @@ table {
 						<td colspan="4" style="height: 50px">
 						<button onclick="location.href='/reserve/${li.NO}'" class="btn"
 								style="width: 100%; height: 100%; background-color: #ff6000;">
-								<b style="font-size: 15px; color: white;">선택</b>
+								<b style="font-size: 15px; color: white;" class="needLogin">선택</b>
 							</button>
 							</td>
 						</c:if>

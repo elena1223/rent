@@ -31,29 +31,39 @@ public class ReserveContoller {
 
 	@RequestMapping("")
 	public String reserveHandle(Model model, HttpSession session) {
-		if (session.getAttribute("logon") == null) {
-			model.addAttribute("main", "login.jsp");
-
-			return "default";
+		if (!(session.getAttribute("logon") == null)) {
+			if(!String.valueOf(((Map)session.getAttribute("logon")).get("LV")).equals("0")) {
+				model.addAttribute("main", "reserve/reserve.jsp");
+				model.addAttribute("list", infoService.readAllCar());
+				return "default";
+			}else {
+				return "redirect:/mypage";
+			}
 		} else {
-			model.addAttribute("main", "reserve/reserve.jsp");
-			model.addAttribute("list", infoService.readAllCar());
-			return "default";
+			return "redirect:/login";
 		}
 
 	}
 
 	@RequestMapping("/{no}")
-	public String noHandle(Model model, @PathVariable String no) {
-		Map car = infoService.readOneCar(no);
-		if (car.get("NO") != null) {
-			model.addAttribute("car", car);
-			model.addAttribute("main", "reserve/selectDate.jsp");
-			return "default";
-
+	public String noHandle(Model model, @PathVariable String no,HttpSession session) {
+		if (!(session.getAttribute("logon") == null)) {
+			if(!String.valueOf(((Map)session.getAttribute("logon")).get("LV")).equals("0")) {
+				Map car = infoService.readOneCar(no);
+				if (car.get("NO") != null) {
+					model.addAttribute("car", car);
+					model.addAttribute("main", "reserve/selectDate.jsp");
+					return "default";
+				} else {
+					return "redirect:/reserve";
+				}
+			}else {
+				return "redirect:/mypage";
+			}
 		} else {
-			return "redirect:/reserve";
+			return "redirect:/login";
 		}
+
 
 	}
 
