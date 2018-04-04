@@ -130,7 +130,7 @@ public class CustomerController {
 		if (customerService.deleteBoard(no)) {
 			return "redirect:/customer/" + type;
 		} else {
-			model.addAttribute("err", "寃뚯떆湲� �궘�젣 �떎�뙣");
+			model.addAttribute("err", "ERROR");
 			return "redirect:/customer/" + type;
 		}
 	}
@@ -140,7 +140,7 @@ public class CustomerController {
 		map.put("mno", ((Map) session.getAttribute("logon")).get("NO"));
 		map.put("name", ((Map) session.getAttribute("logon")).get("NAME"));
 		if (!customerService.addComments(map)) {
-			model.addAttribute("err", "�뙎湲� �옉�꽦�뿉 �떎�뙣�븯���뒿�땲�떎.");
+			model.addAttribute("err", "ERROR.");
 		}
 		return "redirect:" + map.get("uri");
 	}
@@ -149,7 +149,7 @@ public class CustomerController {
 	public String cdeleteHandle(Model model, @RequestParam String no, @RequestParam String cno,
 			@RequestParam String type) {
 		if (!customerService.deleteComment(no)) {
-			model.addAttribute("err", "�뙎湲��궘�젣�뿉 �떎�뙣�븯���뒿�땲�떎.");
+			model.addAttribute("err", "ERROR.");
 		}
 		return "redirect:/customer/" + type + "/" + cno;
 	}

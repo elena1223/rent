@@ -11,7 +11,7 @@
 <form><p align="right" ><span class="glyphicon glyphicon-search"></span> <input style="height:30px" name="key" value="${key }" placeholder="아이디 or 이메일"/> 
 </p></form>
 <form id="del" action="/manager/delete" method="post">
-<table class="table table-bordered" style="width:100%">
+<table class="table table-bordered table-hover" style="width:100%">
     <thead>
       <tr>
       	<th width="7%" style="text-align: center;">번호</th>

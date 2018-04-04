@@ -18,7 +18,6 @@
 		response.sendRedirect("/index");
 	}
 	
-
 %>
  <c:set var="notice" value="notice"/>
   <meta charset="utf-8">
