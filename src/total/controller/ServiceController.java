@@ -1,5 +1,9 @@
 package total.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/service")
 public class ServiceController {
+	
+	@RequestMapping("")
+	public String serviceHandle(Model model, HttpSession session) {
+
+		return "redirect:/service/way";
+
+	}
 	
 	@RequestMapping("/way")
 	public String wayController(Model model){

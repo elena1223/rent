@@ -43,6 +43,15 @@ public class ManagerController {
 
 	}
 
+	
+	
+	@RequestMapping("")
+	public String managerHandle(Model model, HttpSession session) {
+		
+			return "redirect:/manager/register";
+	}
+	
+	
 	@RequestMapping(path = "/register", method = RequestMethod.GET)
 	public String infoGetHandle(Model model, HttpSession session) {
 		if (!lvCheck(session)) {
@@ -61,7 +70,7 @@ public class ManagerController {
 
 		ServletContext sc = req.getServletContext();
 		String realPath = sc.getRealPath("/imgCar");
-		System.out.println("저장경로" + realPath);
+//		System.out.println("저장경로" + realPath);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String fileName = sdf.format(new Date()) + "_" + img.getOriginalFilename();
 

@@ -21,6 +21,13 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 
+	@RequestMapping("")
+	public String customerHandle(Model model, HttpSession session) {
+
+		return "redirect:/customer/qna";
+
+	}
+	
 	@RequestMapping("/{type}")
 	public String qnaHandle(Model model, @PathVariable String type, @RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "") String key) {
