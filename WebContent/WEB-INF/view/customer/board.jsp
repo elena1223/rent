@@ -26,13 +26,13 @@
  <c:set var="notice" value="notice"/>
   <h2><%=typek %></h2>
 
-  <p style="position: absolute; right: 0; margin-right:170px">
-    <a href="/customer/${board.TYPE}" class="btn" id="list">목록으로</a>
+  <p align="right" style="width:80%">
+    <a href="/customer/${board.TYPE}" class="btn btn-success btn-xs" id="list">목록으로</a>
     <c:if test="${logon.NO==board.WRITER ||logon.LV==2 }">
-    <a href="javascript:$('#modify').submit()" class="btn" id="update">수정하기</a>
+    <a href="javascript:$('#modify').submit()" class="btn btn-warning btn-xs" id="update">수정하기</a>
     </c:if>
     <c:if test="${logon.NO==board.WRITER||logon.LV==2}">
-    <a href="/customer/delete?no=${board.NO}&type=${board.TYPE}" class="btn" id="delete">삭제</a>
+    <a href="/customer/delete?no=${board.NO}&type=${board.TYPE}" class="btn btn-danger btn-xs" id="delete">삭제</a>
     </c:if>     
   </p>  
   <table class="table table-bordered" style="width:80%">
@@ -68,7 +68,7 @@
   		<input type="hidden" name="cno" value="${board.NO }"/>
       <textarea class="form-control" name="comment" rows="5" id="content" style="resize: none;height:100px;width:80%" placeholder="댓글작성"></textarea><br/>
       <p align="right">
-       <button id="sub" style=" right: 0; margin-right:225px" class="btn btn-primary">댓글작성</button>
+       <button id="sub" style=" right: 0; margin-right:225px" class="btn btn-default btn-xs">댓글작성</button>
        </p>
      </form>
        <br/><br/><br/>

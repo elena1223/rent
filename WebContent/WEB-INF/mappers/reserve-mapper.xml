@@ -16,12 +16,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="readCancel" resultType="hashMap">
 	select * from rent_member right join (select cancel,rent_reserve.no as rno,mno,cname,start_day,end_day 
 		as end_day from rent_reserve left join rent_car on rent_reserve.cno = rent_car.no) 
-		tmp on tmp.mno = rent_member.no where end_day >= sysdate and (name like #{key} or cname like #{key} or id like #{key}) and cancel=1 order by start_day desc
+		tmp on tmp.mno = rent_member.no where end_day >= sysdate and (name like #{key} or cname like #{key} or id like #{key}) and cancel=1 order by start_day asc
+	</select>
+	
+	<select id="managerCancel" resultType="hashMap">
+	select * from rent_member right join (select cancel,rent_reserve.no as rno,mno,cname,start_day,end_day 
+		as end_day from rent_reserve left join rent_car on rent_reserve.cno = rent_car.no) 
+		tmp on tmp.mno = rent_member.no where end_day >= sysdate and start_day>= sysdate and cancel=1 
+        order by start_day asc
 	</select>
 	<select id="readAll" resultType="hashMap">
 		select * from rent_member right join (select cancel,rent_reserve.no as rno,mno,cname,start_day,end_day 
 		as end_day from rent_reserve left join rent_car on rent_reserve.cno = rent_car.no) 
-		tmp on tmp.mno = rent_member.no where end_day >= sysdate and (name like #{key} or cname like #{key} or id like #{key})and cancel=0 order by start_day desc
+		tmp on tmp.mno = rent_member.no where end_day >= sysdate and (start_day &gt; sysdate or start_day = sysdate) and (name like #{key} or cname like #{key} or id like #{key})and cancel=0 order by start_day asc
 	</select>
 	<select id="endReserve" resultType="hashMap">
 		select * from rent_member right join (select cancel,rent_reserve.no as rno,mno,cname,start_day,end_day from rent_reserve left join rent_car on rent_reserve.cno = rent_car.no) 

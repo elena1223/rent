@@ -109,7 +109,7 @@ td	{
 						<input type="hidden" id="id" name="id" value="${mypage.ID}"/> &nbsp;
 						<small><span class="msg_id"></span></small> 
 						<c:if test="${mypage.LV == 0}">
-						<input type="button" id="t1" value="인증" onclick="mailcheck()">
+						<input type="button" id="t1" class="btn btn-info btn-xs" value="인증" onclick="mailcheck()">
 						</c:if> 
 					</td>
 				</tr>	
@@ -121,8 +121,8 @@ td	{
 					<td>
 						<input type="text" name = "lv" id= "lv" /> &nbsp; 
 						<input type="hidden" id = "lvv" name="lvv" >
-						<input type="button" id="t2"  class="btn" value="확인" onclick="authCheck()"> 
-						<input type="button" id="t3" class="btn" value="다시받기" onclick="mailcheck()"> 
+						<input type="button" id="t2"  class="btn btn-info btn-xs" value="확인" onclick="authCheck()"> 
+						<input type="button" id="t3" class="btn btn-info btn-xs" value="다시받기" onclick="mailcheck()"> 
 						 
 					</td>
 				</tr>	
@@ -153,20 +153,21 @@ td	{
 						<input type="text" name= "phone" id="phone" autocomplete="off" maxlength="13"
 						value="${mypage.PHONE}" onblur="myphoneCheck()" class="p"
 						style="padding: 2px;"disabled/>
-						<button type="button" class="btn" id="t4">변경하기</button>
+						<button type="button" class="btn btn-info btn-xs" id="t4">변경하기</button>
 						&nbsp;<small><span class="msg_phone"></span></small>
 					</td>
 				</tr>
 
 			</table>
 		<p  align="right" >
-		<button type="button" class="btn" onclick="outMember()"style=" vertical-align:middle; margin-top: 10px; margin-bottom: 10px;color:grey; ">
+		<button type="button" class="btn btn-default btn-sm" onclick="outMember()"style="
+		 vertical-align:middle; margin-top: 10px; margin-bottom: 10px; color:#BDBDBD; ">
 		회원탈퇴</button>
 		</p>
 		<br/>
-		<button type="button" class="btn" onclick="edit()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
+		<button type="button" class="btn btn-success btn-sm" onclick="edit()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
 		확인</button>
-		<button type="button" class="btn" onclick="home()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
+		<button type="button" class="btn btn-warning btn-sm" onclick="home()" style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;">
 		취소</button>	
 		</div>
 	</form>
@@ -299,13 +300,15 @@ td	{
 	
     function myphoneCheck(){
 		var phone =  $("#phone").val();
+		var phoneCheck = phone.replace(/\-/g,"");
 		
-		if(phone.length > 13){
+		if(phoneCheck.length < 10 || phoneCheck.length > 11 ){
 			alert("잘못된 휴대폰 번호입니다.");
 			$("#phone").val("");
 		
     		return false;
 		}
+
 		
 		$.ajax({
 			url: "/myphoneCheck",

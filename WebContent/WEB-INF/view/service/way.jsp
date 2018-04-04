@@ -31,25 +31,21 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWsZvnZtBBPJgSjIT8JmruDVcg2_9j1Ks&callback=initMap">
     </script>
 </div>
-<h2><small style="color:#2E64FE">위치안내</small></h2>
-<table style="margin:10px;padding:10px;">
-	<tr>
-		<td style="width:100px"><b>주소</b></td>  
-		<td>서울특별시 중구 명동 세종대로</td>
-	</tr>
-	<tr>
-		<td style="width:100px;"><b>전화번호</b></td>
-		<td>010-1234-4321</td>
-	</tr>
-</table >
-	<h2><small style="color:#2E64FE">대중교통안내</small></h2>
-<table style="margin:10px;padding:10px;">
-	<tr>
-		<td style="width:100px"><b>지하철</b></td>
-		<td><span style="color:#0B0B61"><b>1호선</b></span> 시청역</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><span style="color:#0B6121"><b>2호선</b></span> 시청역 을지로입구역</td>
-	</tr>
-</table >
+
+    <div class="panel panel-info" style="margin-left: 400px; height: 200px;">
+      <div class="panel-heading" style="text-align: center;"><b>위&nbsp;치&nbsp;안&nbsp;내</b></div>
+      <div class="panel-body" style="vertical-align: middle;">
+      <br/><br/>
+      	주소 : 서울특별시 중구 명동 세종대로<br/>
+      	전화번호 : 010-1234-1234
+      </div>
+    </div>
+    <div class="panel panel-info"  style="margin-left: 400px;  height: 200px;">
+      <div class="panel-heading"style="text-align: center;"> <b>대&nbsp;중&nbsp;교&nbsp;통&nbsp;안&nbsp;내</b></div>
+      <br/><br/>
+      <div class="panel-body">
+      	지하철 :<span style="color:#0B0B61">&nbsp;&nbsp;<b>1호선</b></span> 시청역 <br/>
+      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      	<span style="color:#0B6121"><b>2호선</b></span> 시청역 을지로입구역
+      </div>
+    </div>    

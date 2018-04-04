@@ -8,7 +8,7 @@
 
 <div align="center"> 
 <h2 style="color: #2E64FE">회원 관리</h2>
-<form><p align="right" ><span class="glyphicon glyphicon-search"></span> <input style="height:30px" name="key" value="${key }" placeholder="아이디 or 이메일"/> 
+<form><p align="right" ><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp; <input style="height:30px" name="key" value="${key }" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아이디 or 이메일"/> 
 </p></form>
 <form id="del" action="/manager/delete" method="post">
 <table class="table table-bordered table-hover" style="width:100%">

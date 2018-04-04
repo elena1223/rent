@@ -9,14 +9,15 @@
   <input type="hidden" name="type" value="${type}">
   <input type="hidden" name="no" value="${no}">
  <div class="form-group">
-  <input type="text" name="title" class="form-control" value=${title } id="title" placeholder="제목">
+  <input type="text" name="title" autocomplete="off" class="form-control" value=${title } id="title" placeholder="제목">
 </div>
   
   <div  class="form-group">
-  <textarea class="form-control" name="contents" rows="5" id="content" style="resize: none;height:300px" placeholder="본문">${content }</textarea>
+  <textarea class="form-control" name="contents" rows="5" 
+  id="content" style="resize: none; height:300px" placeholder="본문">${content }</textarea>
 </div>
 <p align="right">
- <button id="sub" style="right: 0; margin:10px" class="btn btn-default">수정완료</button>
+ <button id="sub" style="right: 0; margin:10px" class="btn btn-sm btn-default">수정완료</button>
  </p>
 </form>
  <script>

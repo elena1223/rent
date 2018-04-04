@@ -125,5 +125,40 @@ public class JoinController {
 
 		return check == null;
 	}
+	
+	//마이페이지 내 휴대폰번호 변경할 시 작동하는 phoneCheck
+	
+	@ResponseBody
+	@RequestMapping(path = "/myphoneCheck", method = RequestMethod.POST)
+	public boolean myphoneCheck(Model model, HttpSession session, @RequestParam Map<String, String> param,
+			HttpServletRequest req) {
+
+		HttpSession s = req.getSession();
+		Map logon = (Map) s.getAttribute("logon");
+		String phone = String.valueOf(logon.get("PHONE"));
+		String paramphone = String.valueOf(param.get("phone"));
+		Map check = new HashMap<>();
+		String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(param.get("phone"));
+
+		if (paramphone.equals(phone)) {
+			param.put("phone", phone);
+		} else {
+			if (m.matches()) {
+
+				try {
+					check = joinService.existPhoneCheck(param.get("phone"));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return check == null;
+			}
+
+			return check == null;
+		}
+		return true;
+	}
+	
 
 }

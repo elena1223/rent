@@ -77,6 +77,10 @@ public class ReserveService {
 	public List<Map> cancelReserve(String key) {
 		return template.selectList("reserve.readCancel", key);
 	}
+	
+	public List<Map> managerCancel(){
+		return template.selectList("reserve.managerCancel");
+	}
 
 	public boolean cancellation(String no, String c) {
 		Map map = new HashMap();

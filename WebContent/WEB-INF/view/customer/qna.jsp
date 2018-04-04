@@ -45,14 +45,15 @@
   </c:if>  
   <c:if test="${logon!=null}">
 <c:if test="${type!=notice||logon.LV==2}">
-  <p align="right"><button type="button" onclick="location.href='/customer/write?type=${type}'" class="btn btn-info btn-sm">글쓰기</button></p>
+  <p align="right"><button type="button" onclick="location.href='/customer/write?type=${type}'" 
+  class="btn btn-sm" style="background-color: #F6CED8; color: #610B5E;">글쓰기</button></p>
   </c:if>
 </c:if>
   <form id="del" action="/customer/delete2" method="post">
   <input type="hidden" name="type" value="${type}">
   <table class="table" style="width:100%">
     <thead>
-      <tr>
+      <tr class="active">
       	<th style="width:7%"></th>
         <th style="width:50%; text-align: center;">제목</th>
         <th style="width:15%; text-align: center;">작성자</th>
@@ -65,17 +66,20 @@
     </thead>
     <tbody>
     <c:forEach var="n" items="${noti }" end="2">
-    	<tr>
-    		<th style="text-align: center;">공지</th>
-    		<th><a href="/customer/notice/${n.NO }" class="bgg">${n.TITLE }</a></th>
+    	<tr style="color: black; background-color: #F2EFFB;">
+    		<th style="text-align: center;"><span class="glyphicon glyphicon-volume-up"></span> 공지</th>
+    		<th><a href="/customer/notice/${n.NO }" class="bgg" style="color: black;"><b>${n.TITLE }</b></a></th>
     		<th style="text-align: center;">${n.NAME }</th>
     		<th style="text-align: center;"><fmt:formatDate value="${n.BDATE }" pattern="MM/dd HH:mm"/></th>
     		<th style="text-align: center;">${n.HIT }</th>
-    		<th></th>
+        <c:if test="${logon.LV eq '2' }">
+        <td align="center"><input class="check tt" type="checkbox" name="no" value="${n.NO}"/></td>
+        </c:if>    		
     	</tr>
     </c:forEach>
+    
     <c:forEach var="b" items="${board }" varStatus="vs" begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
-      <tr>
+      <tr class="default">
       	<c:choose>
       		<c:when test="${type==notice}">
         		<td align="center">${vs.count }</td>
@@ -84,7 +88,17 @@
 		      	<td align="center">${b.NO }</td>
     	  	</c:otherwise>
       	</c:choose>
-        <td><a href="/customer/${type}/${b.NO }" class="bgg">${b.TITLE }</a> (${b.CNT }<c:if test="${b.CNT==null }">0</c:if>)</td>
+		<td>
+        <c:choose>
+        	<c:when test="${type==notice}">
+        <a href="/customer/${type}/${b.NO }" class="bgg">${b.TITLE }</a>         	
+        	</c:when>
+	        <c:otherwise>
+	    <a href="/customer/${type}/${b.NO }" class="bgg">${b.TITLE }</a> 
+	        (${b.CNT==null? 0 : b.CNT })
+	        </c:otherwise>
+      	</c:choose>
+      	</td>
         <td align="center">${b.NAME }</td>
         <td align="center"><fmt:formatDate value="${b.BDATE }" pattern="MM/dd HH:mm"/></td>
         <td align="center">${b.HIT }</td>

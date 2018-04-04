@@ -9,13 +9,13 @@
 <script type="text/javascript" src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/bootstrap/js/bootstrap-datepicker.kr.js"></script>
 
-<div style="float:left  width: 100%" align="center">
+<div style="float:left; width: 100%" align="center">
   <h2 style="color:#2E64FE">예약 날짜 선택</h2>
   <small style="color:gray">당일은 예약할 수 없으며  내일날짜부터 예약하실 수 있습니다.</small>
   <h4 style="color:gray">${car.CNAME}</h4>
 <form id="form" action="/reserve/result" method="post">
 <input type="hidden" name="no" value="${car.NO }">
-<img src="/imgCar/${car.IMG }" style="width: 300px; height: 200px;">
+<img src="/imgCar/${car.IMG }" style="width: 400px; height: 200px;">
 			<table class="table table-condensed" style="width: 300px">
 				<tbody align="center">
 					<tr>
@@ -32,9 +32,11 @@
   <table>
   <tr><td align="center"><input type="text" name="start" readonly 
   class="input-group input-append date" id="from"  style="width: 80%; text-align: center;"/></td>
-  <td> &nbsp; ~  &nbsp;</td>
+  <td> &nbsp;~ &nbsp;</td>
   <td align="center"><input type="text" name="end" readonly 
-  class="input-group input-append date" id="to"  style="width: 80%; text-align: center;"/></td></tr>
+  class="input-group input-append date" id="to"  style="width: 80%; text-align: center;"/></td>
+  <td>  <button type="button" id="sub"  class="btn btn-success">예약하기</button>
+  </td></tr>
   </table>
   
   
@@ -47,9 +49,7 @@
   </div>
 </div>
   <br/>
-  <button type="button" id="sub" style= "margin-left:280px" class="btn btn-primary">예약하기</button>
-  </div>
-  <br/>
+</div>
   
 <script>
     var dateCheck=false;
@@ -94,7 +94,7 @@
                      $("#days").css("color","red");
                      $("#days").html(html)
                   }
-               });
+               })
                
             } else {
                $("#msg").css("color","green");

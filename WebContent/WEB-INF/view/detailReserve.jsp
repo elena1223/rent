@@ -36,9 +36,16 @@ th {
 				<td align="center"><small><fmt:formatDate value="${r.END_DAY }" pattern="yyyy-MM-dd"/></small></td>
 				<td><small>${r.ID }</small></td>
 				<td align="center"><small>${r.PHONE }</small></td>
-				<td align="center"><c:if test="${r.CANCEL eq '3' }">
+				<td align="center">
+				<c:choose>
+					<c:when test="${r.CANCEL eq '3' }">
 						<span style="color: red"><small>취소</small></span>
-					</c:if></td>
+					</c:when>
+					<c:otherwise>
+						<span style="color: blue"><small>완료</small></span>						
+					</c:otherwise>
+				</c:choose>	
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

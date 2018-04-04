@@ -70,7 +70,6 @@ public class ManagerController {
 
 		ServletContext sc = req.getServletContext();
 		String realPath = sc.getRealPath("/imgCar");
-//		System.out.println("저장경로" + realPath);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String fileName = sdf.format(new Date()) + "_" + img.getOriginalFilename();
 
@@ -98,7 +97,7 @@ public class ManagerController {
 		model.addAttribute("main", "reserveManager.jsp");
 		model.addAttribute("reserve", reserveService.readAll(key));
 		model.addAttribute("end", reserveService.endReserve(key));
-		model.addAttribute("cancle", reserveService.cancelReserve(key));
+		model.addAttribute("cancle", reserveService.managerCancel());
 
 		return "default";
 	}

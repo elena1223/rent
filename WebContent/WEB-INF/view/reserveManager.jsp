@@ -71,7 +71,7 @@ th {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="r" items="${cancel }">
+			<c:forEach var="r" items="${cancle }">
 				<tr class="danger">
 					<td align="center">${r.NAME }</td>
 					<td>${r.CNAME }</td>

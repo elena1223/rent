@@ -143,7 +143,7 @@
      <div class="banners">
         <div class="content" style="vertical-align: middle;">  
             <br/> <b>보험유의사항</b>	<br/>
-            <p> <small>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</small></p>
+            <small>고객의 안전을 최우선으로 생각합니다. <br>이용전 반드시 확인하세요!</small><br>
              <small><a href="/service/indemnity" style="text-decoration: none;">상세보기</a></small>
         </div>
         <div class="banner-cover"></div>
@@ -154,16 +154,15 @@
     
       <div class="banner">
         <div class="content">
-            <h4><b>공지사항</b></h4>
-             <p>현재 진행중인 이벤트를 확인하세요!</p>
-             <a href="/customer/notice" style="text-decoration: none;">상세보기</a>
+            <h4><b style="background-color: white;">공지사항</b></h4>
+             <p style="background-color: white;"><b>현재 진행중인 이벤트를 확인하세요!</b></p>
+             <a href="/customer/notice" style="text-decoration: none;">CLICK!</a>
       	</div>
       	
      </div>
      
         <div class="banner-cover"></div>
     </div>      
-      
       
     </div>
     
