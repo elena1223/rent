@@ -160,7 +160,6 @@ th, td {
 	}
 
 	function idCheck(){
-		
 		var id =  $("#id").val();
 		if(id.length==0){
 			//아이디가 없는 경우
@@ -168,7 +167,6 @@ th, td {
 			$(".msg_id").css("color", "red");
 			return false;
 		}
-
 		$.ajax({
 			url: "/idCheck",
 			type: "POST",
@@ -178,21 +176,24 @@ th, td {
 			},
 			success: function(rst){
 				var result = rst;
-				if(result == ""){
+				console.log(result);
+				if(result == "true"){
 					//아이디가 없는 경우
 					$(".msg_id").html("사용가능합니다.");
 					$(".msg_id").css("color", "green");
 
-				} else {
+				} else if (result == "false") {
 					//아이디가 있는 경우
 					$(".msg_id").html("이미 사용중인 ID입니다.");
 					$(".msg_id").css("color", "red");
-
+					//아이디 형식이 틀린 경우
+				} else {
+					$(".msg_id").html("잘못된 ID 형식 입니다.");
+					$(".msg_id").css("color", "red");
 				}
 			}
 		});
 	}
-
 	function authCheck(){
 		
 		var lv =  $("#lv").val();

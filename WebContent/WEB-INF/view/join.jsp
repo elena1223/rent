@@ -369,9 +369,9 @@ font-size: small;
         </fieldset>
     </section>
 </div>
-    <div class="btn_confirm" align="center">
+    <div class="btn_confirm" align="center" style="margin-bottom: 40px; margin-top: 20px;">
         <input style="vertical-align:middle; margin-top: 20px; margin-bottom: 50px;" 
-        type="submit" class="btn_submit btn" value="회원가입">
+        type="submit" class="btn_submit btn btn-success" value="회원가입">
     </div>
 
     </form>

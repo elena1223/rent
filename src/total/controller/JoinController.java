@@ -84,24 +84,28 @@ public class JoinController {
 
 	@ResponseBody
 	@RequestMapping(path = "/idCheck", method = RequestMethod.POST)
-	public Map idCheck(Model model, HttpSession session, @RequestParam Map<String, String> param) {
+	public String idCheck(Model model, HttpSession session, @RequestParam Map<String, String> param) {
 
 		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(param.get("id"));
-		Map check = new HashMap<>();
-		if (m.matches()) {
+		boolean b = m.matches();
+		System.out.println(b);
+		if (b) {
 
 			try {
-				check = joinService.existIdCheck(param.get("id"));
+				Map map = joinService.existIdCheck(param.get("id"));
+				if(map !=null) {
+					return "false";
+				} else {
+					return "true";
+				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return check;
 		}
-		return check;
-
+		return "error";
 	}
 
 	@ResponseBody

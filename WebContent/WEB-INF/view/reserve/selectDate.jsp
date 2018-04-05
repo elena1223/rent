@@ -12,7 +12,7 @@
 <div style="float:left; width: 100%" align="center">
   <h2 style="color:#2E64FE">예약 날짜 선택</h2>
   <small style="color:gray">당일은 예약할 수 없으며  내일날짜부터 예약하실 수 있습니다.</small>
-  <h4 style="color:gray">${car.CNAME}</h4>
+  <h4 style="color: #AC58FA;"><b>${car.CNAME}</b></h4>
 <form id="form" action="/reserve/result" method="post">
 <input type="hidden" name="no" value="${car.NO }">
 <img src="/imgCar/${car.IMG }" style="width: 400px; height: 200px;">
@@ -31,10 +31,12 @@
 
   <table>
   <tr><td align="center"><input type="text" name="start" readonly 
-  class="input-group input-append date" id="from"  style="width: 80%; text-align: center;"/></td>
-  <td> &nbsp;~ &nbsp;</td>
+  class="input-group input-append date" id="from"  style="width: 80%; text-align: center; 
+  border:1px; border-style:solid; border-color: #D8D8D8; "/></td>
+  <td>~</td>
   <td align="center"><input type="text" name="end" readonly 
-  class="input-group input-append date" id="to"  style="width: 80%; text-align: center;"/></td>
+  class="input-group input-append date" id="to"  style="width: 80%; text-align: center;
+  border:1px; border-style:solid; border-color: #D8D8D8; "/></td>
   <td>  <button type="button" id="sub"  class="btn btn-success">예약하기</button>
   </td></tr>
   </table>

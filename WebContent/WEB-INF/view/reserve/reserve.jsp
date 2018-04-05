@@ -47,7 +47,7 @@
 <table class="table table-bordered" id="info" style="width:480px;  margin-top:200px; background-color: #F5F6CE;">
 </table>
 <p style="margin-right:94px" align="right">
-<button type="button" id="sub" style="width:480px; " class="btn btn-success">날짜선택</button></p>
+<button type="button" id="sub" style="width:480px; " class="btn btn-success">날&nbsp;짜&nbsp;선&nbsp;택</button></p>
 </div> 
 <script>
 
