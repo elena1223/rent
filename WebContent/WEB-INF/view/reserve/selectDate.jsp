@@ -88,7 +88,7 @@
                          $("#days").html("");
                          dateCheck=true;
                 	 }else{
-                     var html="예약 불가능한 날짜가 있습니다.(${car.CNT}대 운영중)<br/>"
+                     var html=""
                      for(var i=0;res.length>i;i++){
                         html+=res[i]
                         if(res.length==i+1||(i+1)%3==0){
@@ -97,6 +97,8 @@
                            html+=" | "
                         }
                      }
+                     $("#msg").html("<br/>예약 불가능한 날짜가 있습니다.(${car.CNT}대 운영중)");
+                     $("#msg").css("color","red");
                      $("#days").css("color","red");
                      $("#days").html(html)
                   }
