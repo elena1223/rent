@@ -84,6 +84,12 @@
                      "cnt" : ${car.CNT} 
                   },
                   success: function(res){
+                	 if(res.length==0){
+                         $("#msg").css("color","green");
+                         $("#msg").html("<br/>예약 가능한 날짜 입니다.");
+                         $("#days").html("");
+                         dateCheck=true;
+                	 }else{
                      var html="예약 불가능한 날짜가 있습니다.(${car.CNT}대 운영중)<br/>"
                      for(var i=0;res.length>i;i++){
                         html+=res[i]
@@ -95,6 +101,7 @@
                      }
                      $("#days").css("color","red");
                      $("#days").html(html)
+                  }
                   }
                })
                
