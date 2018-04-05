@@ -16,7 +16,7 @@ th {
 <h2 style="color: #2E64FE" align="center">예약 내역</h2>
 <form style="position: absolute; right: 0; margin: 10px">
 	<span style="text-align: right" class="glyphicon glyphicon-search"></span>
-	<input name="key" value="${key}" />
+	&nbsp;&nbsp;<input name="key" value="${key}" autocomplete="off" placeholder="차량, 이름, 이메일"/>
 </form>
 <h3 style="text-align: left">◈ 진행중인 예약</h3>
 <form id="cancelForm" action="/manager/cancelp" method="post">

@@ -103,7 +103,7 @@
 			<div id="imagePreview"></div>
 
 			<br/>
-			<button type="submit" class="btn" style="width: 20%" >등록</button>
+			<button type="submit" class="btn btn-warning" style="width: 20%;" >등록</button>
 		</form>
 	</div>
 	<br/>
