@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="dateCheck" resultType="hashMap">
 	select * from rent_car left join (select cno,count(*) as rcnt from rent_reserve where 
-	(((start_day &lt; to_date(#{start},'YYYY-MM-DD') and end_day > to_date(#{start},'YYYY-MM-DD'))or(start_day &lt; to_date(#{end},'YYYY-MM-DD') and end_day > to_date(#{end},'YYYY-MM-DD')) or (start_day between to_date(#{start},'YYYY-MM-DD') and to_date(#{end},'YYYY-MM-DD')) or (end_day between to_date(#{start},'YYYY-MM-DD') and to_date(#{end},'YYYY-MM-DD'))) and cancel!=3 
+	(((start_day &lt;= to_date(#{start},'YYYY-MM-DD') and end_day >= to_date(#{start},'YYYY-MM-DD'))or(start_day &lt; to_date(#{end},'YYYY-MM-DD') and end_day >= to_date(#{end},'YYYY-MM-DD')) or (start_day between to_date(#{start},'YYYY-MM-DD') and to_date(#{end},'YYYY-MM-DD')) or (end_day between to_date(#{start},'YYYY-MM-DD') and to_date(#{end},'YYYY-MM-DD'))) and cancel!=3 
 	) group by cno) tmp on rent_car.no=tmp.cno where no=#{no}
 	</select>
 	<select id="overlapDate" resultType="hashMap">
