@@ -33,7 +33,8 @@ textarea {
 		<div style="border-top:2px solid #ccc;"></div>
     </div>
 <form style="margin-top: 30px;" id="visitform" name="visitform" method="post" autocomplete="off">
-  <textarea  name= "comment" id="comment"></textarea>
+  <textarea  name= "comment" id="comment">
+  </textarea>
   <p align="right">
 		<button type="button" onclick="visit()" class="btn btn-info btn-sm"
 		style="vertical-align:middle; margin-top: 10px; margin-bottom: 20px;">확인</button>  
@@ -51,7 +52,8 @@ textarea {
 				<br>
 			</c:if>
 			<p style="margin-top: 10px;">
-			<br /> ${v.comment} <br />
+			<br />   <c:out value="${v.comment}"> </c:out> 
+ 			<br />
 				<p style="color: grey;" align="right">
 					tag.&nbsp;
 					<c:forEach var="t" items="${v.tags}" varStatus="vs">

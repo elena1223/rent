@@ -46,7 +46,7 @@
                 
             </tr>
             <tr height="300px">
-                <td colspan="4">${board.CONTENTS }</td>
+                <td colspan="4"> <c:out value="${board.CONTENTS }"> </c:out> </td>
             </tr>
       </table>
  <c:if test="${board.TYPE!=notice }">
