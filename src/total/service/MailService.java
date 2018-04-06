@@ -25,7 +25,7 @@ public class MailService {
 		
 		message.setRecipient(RecipientType.TO, new InternetAddress(email));
 
-		message.setSubject("[에코렌트카] 회원용 인증 메일 입니다.","text/html;charset=utf-8");
+		message.setSubject("[ECHORENT] E-mail Authentication Mail");
 
 		String content = "가입을 <b>축하</b>드립니다.<br/> 인증키  [  " + authkey +"  ] 를 입력해주세요."
 				+ "<br/>사용에 불편하신점이 있으면 고객센터에 글을 남겨주세요.";
