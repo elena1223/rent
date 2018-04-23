@@ -47,6 +47,7 @@ public class VisitController {
 	public boolean visitPostController(Model model, HttpSession session, 
 			@RequestParam Map<String, String> param, HttpServletRequest req){
 
+		String addr = req.getRemoteAddr();	// 요청지 IP
 		HttpSession s = req.getSession();
 		Map logon = (Map) s.getAttribute("logon");
 		
@@ -82,6 +83,8 @@ public class VisitController {
 		query.put("comment", comments);
 		query.put("tags", tags);
 		query.put("date", date);
+		query.put("ip", addr);
+		
 
 		boolean b = visitService.writeVisit(query);
 		
@@ -94,24 +97,27 @@ public class VisitController {
 			@RequestParam Map<String, String> param, @RequestParam(defaultValue= "1") int page,@RequestParam(defaultValue="") String tag){
 		List<Map> list;
 	
+
 		list = visitService.listVisit(tag);
 		
 		Map<String,Integer> paging = new HashMap<String,Integer>();
 		int size = list.size();
-		
-		paging.put("page", page);
-		paging.put("totalCount", size);
-		paging.put("countList", 10);
-		paging.put("countPage", 5);
-		paging.put("totalPage", list.size()%10 > 0 ? list.size()/10+1 : list.size()/10 );
-		if(page > paging.get("totalPage")) {
-			paging.put("page",paging.get("totalPage"));
+		if(size >= 1) {
+			paging.put("page", page);
+			paging.put("totalCount", size);
+			paging.put("countList", 10);
+			paging.put("countPage", 5);
+			paging.put("totalPage", list.size()%10 > 0 ? list.size()/10+1 : list.size()/10 );
+			if(page > paging.get("totalPage")) {
+				paging.put("page",paging.get("totalPage"));
+			}
+			paging.put("startPage",((paging.get("page")-1)/5)*5+1);
+			paging.put("endPage", paging.get("startPage")+5-1 > paging.get("totalPage")?
+					paging.get("totalPage") : paging.get("startPage")+5-1);
+			model.addAttribute("page",paging);
+		} else {
+			model.addAttribute("page",null);
 		}
-		paging.put("startPage",((paging.get("page")-1)/5)*5+1);
-		paging.put("endPage", paging.get("startPage")+5-1 > paging.get("totalPage")?
-				paging.get("totalPage") : paging.get("startPage")+5-1);
-		
-		model.addAttribute("page",paging);
 		model.addAttribute("list", list);
 		model.addAttribute("main","visit.jsp");		
 		

@@ -41,12 +41,15 @@ textarea {
 </form>
 
             <!-- 방명록 내용 부분 -->
+          
 	<div id="comment">
+	<c:if test="${page != null }">
 		<c:forEach var="v" items="${requestScope.list}" varStatus="vs" 
 		begin="${(page.page-1)*page.countList }" end="${(page.page-1)*page.countList+page.countList-1}">
 			<hr size="1" width="700">
 			<label><span class="glyphicon glyphicon-user"></span>&nbsp; ${v.name}</label>
 			<label><small>${v.date}</small></label>
+			<label><small>&nbsp;&nbsp;:&nbsp;&nbsp;${v.ip }</small></label>
 			<c:if test="${logon.LV==2}">
 				<span><small><a href="javascript:del('${v.id}')">&nbsp;&nbsp;[삭제]</a></small></span>
 				<br>
@@ -62,18 +65,21 @@ textarea {
 				</p>
 		</c:forEach>
 		<hr size="1" width="700">
+		</c:if>
 	</div>
 	<div style="float:left; margin-bottom: 30px;">
-	<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
-		<c:choose>
-		<c:when test="${page.page==i}">
-		<b>${i }</b>
-		</c:when>
-		<c:otherwise>
-		<a href="?page=${i }&tag=${tag}">${i }</a>
-		</c:otherwise>
-		</c:choose> 
-	</c:forEach>
+	<c:if test="${page != null }">
+		<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
+			<c:choose>
+			<c:when test="${page.page==i}">
+			<b>${i }</b>
+			</c:when>
+			<c:otherwise>
+			<a href="?page=${i }&tag=${tag}">${i }</a>
+			</c:otherwise>
+			</c:choose> 
+		</c:forEach>
+	</c:if>
 	</div>
 	<script>
 		function visit() {

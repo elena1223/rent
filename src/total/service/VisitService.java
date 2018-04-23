@@ -60,7 +60,8 @@ public class VisitService {
 					visit.put("tags", doc.get("tags"));
 					visit.put("date", doc.get("date"));
 					visit.put("id", doc.get("_id"));
-
+					visit.put("ip", doc.get("ip"));
+					
 					list.add(visit);
 				}
 
